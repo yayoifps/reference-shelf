@@ -628,6 +628,40 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
 .a-ltglow .pv-lit{animation:pv-pulse 3s ease-in-out infinite}
 
 .pv-sharp>*{fill:var(--face-ink)}
+.pv-fg>*{fill:var(--face-ink);opacity:.9}
+.pv-fg{filter:blur(1.4px)}
+.pv-flash{opacity:0}
+
+/* --- 追加タイプ --- */
+@keyframes pv-shake{
+  0%{transform:translate(0,0)} 14%{transform:translate(6px,-5px) rotate(1.6deg)}
+  30%{transform:translate(-7px,4px) rotate(-1.4deg)} 46%{transform:translate(5px,6px) rotate(1deg)}
+  62%{transform:translate(-4px,-6px) rotate(-1.2deg)} 100%{transform:translate(0,0)}}
+.a-shake .pv-scene{animation:pv-shake .9s linear infinite}
+.a-tsuper .pv-subj{--x1:-38px;--x2:38px;animation:pv-x 12s linear infinite alternate}
+@keyframes pv-ramp{0%{transform:translateX(-38px)}30%{transform:translateX(-7px)}
+                   70%{transform:translateX(7px)}100%{transform:translateX(38px)}}
+.a-tramp .pv-subj{animation:pv-ramp 3.4s linear infinite alternate}
+.a-tlapse .pv-bg{--x1:44px;--x2:-44px;animation:pv-x .8s linear infinite}
+.a-tlapse .pv-subj{--x1:-30px;--x2:30px;animation:pv-x .4s steps(4) infinite alternate}
+@keyframes pv-impact{0%,70%{opacity:0}74%,80%{opacity:1}84%,100%{opacity:0}}
+.a-impact .pv-flash{animation:pv-impact 2.4s steps(1) infinite}
+.a-impact .pv-subj{--x1:-30px;--x2:22px;animation:pv-hold 2.4s ease-out infinite}
+.a-tocam .pv-subj{--s1:1;--s2:2.5;animation:pv-s 2.2s cubic-bezier(.55,0,.9,.35) infinite alternate}
+@keyframes pv-oner{0%{transform:translateX(28px) scale(1)}100%{transform:translateX(-28px) scale(1.22)}}
+.a-oner .pv-scene{animation:pv-oner 6.5s ease-in-out infinite alternate}
+.a-chase .pv-bg{--x1:38px;--x2:-38px;animation:pv-x 2.4s linear infinite}
+.a-chase .pv-subj{--y1:0px;--y2:-3.5px;animation:pv-y .42s ease-in-out infinite alternate}
+.a-chase .pv-subj2{--y1:-3.5px;--y2:0px;animation:pv-y .42s ease-in-out infinite alternate}
+@keyframes pv-anime{0%,100%{transform:scale(1) skewX(0)}50%{transform:scale(1.32) skewX(-6deg)}}
+.a-aanime .pv-scene{animation:pv-anime 3.4s ease-in-out infinite}
+.a-ematch .pv-b{animation:pv-fadein 3.4s ease-in-out infinite}
+@keyframes pv-swapA{0%,44%{transform:translateX(0)}56%,100%{transform:translateX(62px)}}
+@keyframes pv-swapB{0%,44%{transform:translateX(0)}56%,100%{transform:translateX(-62px)}}
+.a-eline .pv-subj{animation:pv-swapA 3s steps(1) infinite alternate}
+.a-eline .pv-subj2{animation:pv-swapB 3s steps(1) infinite alternate}
+.a-emontage .pv-b{animation:pv-cut .7s steps(1) infinite}
+.a-ejl .pv-b{animation:pv-cut 3s steps(1) infinite}
 .a-ltilt .pv-scene{filter:blur(2.6px)}
 .a-lsoft .pv-scene{filter:blur(1.3px)}
 .a-tsteps .pv-subj{--x1:-34px;--x2:34px;animation:pv-x 2.6s steps(7) infinite alternate}
@@ -2952,15 +2986,24 @@ drone:{c:"a-drone",cap:"上空へ引く"},        roll:{c:"a-roll",cap:"画面�
 hand:{c:"a-hand",cap:"細かく揺れる"},        steadi:{c:"a-steadi",cap:"滑らかに進む"},
 whip:{c:"a-whip",cap:"一気に振る"},          push:{c:"a-push",cap:"ゆっくり寄る"},
 body:{c:"a-body",cap:"人物は固定・背景が暴れる"},      fpv:{c:"a-fpv",cap:"本人の視界",pov:1},
+afight:{c:"a-hand",two:1,cap:"揺れながら2人の攻防を追う"},
+ashake:{c:"a-shake",cap:"衝撃に合わせて画面が大きく揺れる"},
+achase:{c:"a-chase",two:1,cap:"追う側と追われる側を一緒に運ぶ"},
+atocam:{c:"a-tocam",cap:"手前に突き出てくる"},
+aoner:{c:"a-oner",two:1,cap:"切らずに動き続ける"},
+aanime:{c:"a-aanime",cap:"パースごと歪ませた誇張"},
 /* サイズ（黄色い枠＝写る範囲） */
 fwide:{crop:[4,4,264,78],cap:"場所ぜんぶ"},   ffull:{crop:[104,10,64,72],cap:"頭からつま先まで"},
 fmed:{crop:[110,16,52,50],cap:"腰から上"},    fcu:{crop:[120,22,32,30],cap:"顔だけ"},
 fecu:{crop:[127,30,18,12],cap:"目だけ"},      finsert:{crop:[122,50,30,22],cap:"手元・小物だけ"},
-ftwo:{crop:[102,10,104,72],cap:"2人を1画面に",two:1},
-fots:{crop:[96,8,112,76],cap:"相手の肩越しに",two:1},
+ftwo:{crop:[102,10,104,72],cap:"2人を対等に1画面へ",two:1},
+fots:{cap:"手前の肩越しに相手を見る",fg:"shoulder",crop:[88,6,158,76]},
+festab:{ss:.45,crop:[4,4,264,78],cap:"人は小さく、場所を見せる"},
+fmaster:{two:1,crop:[4,4,264,78],cap:"場面全体を通しで押さえる"},
 /* アングル（地平線の高さと大きさで見せる） */
 alevel:{ground:44,feet:70,cap:"地平線が目の高さに来る"},
 alow:{ground:80,feet:84,ss:1.35,cap:"見上げる＝大きく、地平線は下"},
+aworm:{ground:88,feet:92,ss:1.8,cap:"地面すれすれ＝圧迫感が最大"},
 ahigh:{ground:16,feet:72,ss:.7,cap:"見下ろす＝小さく、地平線は上"}, atop:{top:1,cap:"真上から"},
 adutch:{rot:12,cap:"画面を傾ける"},           apov:{pov:1,cap:"本人の視界"},
 /* 構図 */
@@ -2993,6 +3036,10 @@ ltbounce:{light:"bounce",cap:"反射させて影側を起こす"},
 tslow:{c:"a-tslow",cap:"ゆっくり進む"},   tfast:{c:"a-tfast",cap:"速く進む"},
 tfreeze:{c:"a-tfreeze",cap:"途中で止まる"}, tbullet:{c:"a-tbullet",cap:"人は止まりカメラが回る"},
 trev:{c:"a-trev",cap:"行って戻る"},
+tsuper:{c:"a-tsuper",cap:"肉眼では見えない領域まで遅く"},
+tramp:{c:"a-tramp",cap:"速い→遅い→速い と速度が変わる"},
+tlapse:{c:"a-tlapse",cap:"長い時間を一気に圧縮する"},
+timpact:{c:"a-impact",light:"flash",cap:"当たった1〜2コマだけ別の絵に差し替え"},
 /* 繋ぎ */
 fix:{cap:"動かさない（止まっているのが正解の時もある）"},
 ltilt:{c:"a-ltilt",sharp:1,cap:"上下がボケて模型に見える"},
@@ -3004,18 +3051,23 @@ texpl:{c:"a-expl",light:"expl",cap:"閃光→衝撃→煙の順"},
 epace:{c:"a-epace",b:1,cap:"カットの長さで緊張が変わる"},
 ecut:{c:"a-ecut",b:1,cap:"パッと切り替わる"},   ediss:{c:"a-ediss",b:1,cap:"重なって溶ける"},
 ewipe:{c:"a-ewipe",b:1,cap:"線が横切って入れ替わる"}, efade:{c:"a-efade",b:1,blk:1,cap:"黒を挟む"},
-ejump:{c:"a-ejump",cap:"同じ画のまま位置が飛ぶ"},   epar:{c:"a-epar",b:1,cap:"別の場所を交互に"}
+ejump:{c:"a-ejump",cap:"同じ画のまま位置が飛ぶ"},   epar:{c:"a-epar",b:1,cap:"別の場所を交互に"},
+ematch:{c:"a-ematch",b:1,bnofig:1,cap:"人はそのまま、背景だけ別の場所へ"},
+eline:{c:"a-eline",two:1,ov:"line",two2:1,cap:"線を越えると左右が入れ替わる"},
+emontage:{c:"a-emontage",b:1,cap:"短いカットを次々に積む"},
+ejl:{c:"a-ejl",b:1,fg:"jl",cap:"音だけ先に切り替わる（画より早い）"},
+ldistort:{lens:"grid",cap:"直線が樽型に膨らむ"}
 };
 
 const ANIM = {
  pan:"pan", tilt:"tilt", dolly:"dolly", track:"track", handheld:"hand", steadi:"steadi",
  crane:"crane", zoom:"zoom", dzoom:"dz", orbit:"orbit", whip:"whip", pushin:"push",
  truck:"truck", pedestal:"ped", croll:"roll", drone:"drone", bodymount:"body",
- wide:"fwide", estab:"fwide", master:"fwide", full:"ffull", med:"fmed", cu:"fcu", ecu:"fecu",
+ wide:"fwide", estab:"festab", master:"fmaster", full:"ffull", med:"fmed", cu:"fcu", ecu:"fecu",
  ots:"fots", two:"ftwo", insert:"finsert",
- eye:"alevel", low:"alow", high:"ahigh", top:"atop", pov:"apov", dutch:"adutch", worm:"alow",
+ eye:"alevel", low:"alow", high:"ahigh", top:"atop", pov:"apov", dutch:"adutch", worm:"aworm",
  thirds:"cthirds", sym:"csym", lead:"clead", frame:"cframe", neg:"cneg", depth:"cdepth", blocking:"cblock",
- wideangle:"lwide", tele:"ltele", fisheye:"lfish", distort:"lfish", dof:"ldof", rack:"lrack",
+ wideangle:"lwide", tele:"ltele", fisheye:"lfish", distort:"ldistort", dof:"ldof", rack:"lrack",
  flare:"lflare", anamo:"lanamo",
  three:"lt3", backlit:"ltback", rim:"ltrim", lowkey:"ltlow", highkey:"lthigh",
  practical:"ltprac", golden:"ltgold", shadow:"ltshadow",
@@ -3023,12 +3075,12 @@ const ANIM = {
  underlight:"ltunder", toplight:"lttop", catchlight:"ltcatch",
  hardsoft:"ltsoft", colortemp:"lttemp", tealorange:"ltteal", night:"ltnight",
  rays:"ltrays", fire:"ltfire", bounce:"ltbounce",
- slowmo:"tslow", highspeed:"tslow", fastmo:"tfast", lapse:"tfast", freeze:"tfreeze",
+ slowmo:"tslow", highspeed:"tsuper", fastmo:"tfast", lapse:"tlapse", freeze:"tfreeze",
  bullet:"tbullet", reversem:"trev",
- fightcam:"hand", chase:"track", oner:"steadi", shaky:"hand", ramp:"tslow",
- impact:"tfreeze", animecam:"dz", fpv:"fpv", tocam:"dolly",
- match:"ediss", cjump:"ejump", reverse:"ecut", line180:"ecut", jlcut:"ediss",
- montage:"ecut", dissolve:"ediss", fade:"efade", wipe:"ewipe", parallel:"epar",
+ fightcam:"afight", chase:"achase", oner:"aoner", shaky:"ashake", ramp:"tramp",
+ impact:"timpact", animecam:"aanime", fpv:"fpv", tocam:"atocam",
+ match:"ematch", cjump:"ejump", reverse:"ecut", line180:"eline", jlcut:"ejl",
+ montage:"emontage", dissolve:"ediss", fade:"efade", wipe:"ewipe", parallel:"epar",
  fix:"fix", tiltshift:"ltilt", softfocus:"lsoft", diag:"cdiag", steps:"tsteps",
  hitstop:"thit", explosion:"texpl", pacing:"epace"
 };
@@ -3141,7 +3193,29 @@ function pvSVG(id){
       <path class="pv-lit" d="M150 ${G-6} L146 ${G-30} L162 ${G-30} Z" opacity=".2"/>`;
   if(p.light === "expl") light = `<circle class="pv-lit" cx="206" cy="${G-18}" r="26"/>
       <circle class="pv-dark" cx="206" cy="${G-18}" r="13" opacity=".3"/>`;
+  if(p.light === "flash") light = `<rect class="pv-flash" width="272" height="86" fill="#fff"/>`;
   const sharp = p.sharp ? figure(136, F-24*S, S, "pv-sharp") : "";
+  /* 肩なめ：手前の人物の頭と肩を大きく置く */
+  const fg = p.fg === "shoulder"
+    ? `<g class="pv-fg"><circle cx="42" cy="30" r="26"/>
+       <path d="M-14 86 L-14 68 Q42 48 98 68 L98 86 Z"/></g>`
+    : p.fg === "jl"
+    ? `<g><rect y="58" width="272" height="28" fill="var(--face-2)" opacity=".92"/>
+       <text class="pv-cap" x="7" y="70">画</text>
+       <rect x="24" y="64" width="112" height="5" fill="var(--face-mute)"/>
+       <rect x="136" y="64" width="132" height="5" fill="var(--spine)"/>
+       <text class="pv-cap" x="7" y="82">音</text>
+       <rect x="24" y="76" width="60" height="5" fill="var(--face-mute)"/>
+       <rect x="84" y="76" width="184" height="5" fill="var(--spine)"/>
+       <path d="M84 74 L84 71 M136 62 L136 59" stroke="var(--sticker)" stroke-width="1.6"/>
+       <path d="M84 72 L136 72" stroke="var(--sticker)" stroke-width="1.4" stroke-dasharray="3 2"/></g>` : "";
+  /* レンズ歪み：直線が樽型に膨らむ格子 */
+  if(p.lens === "grid") ov = `<g stroke="var(--face-mute)" stroke-width="1.8" fill="none" opacity=".85">
+      <path d="M8 12 Q136 32 264 12"/><path d="M8 76 Q136 56 264 76"/>
+      <path d="M42 4 Q28 44 42 82"/><path d="M230 4 Q244 44 230 82"/></g>`;
+  /* イマジナリーライン：2人を結ぶ線 */
+  if(p.ov === "line") ov = `<path d="M120 ${G-16} L212 ${G-16}" stroke="var(--sticker)"
+      stroke-width="1.6" stroke-dasharray="4 3"/>`;
   const letterbox = p.lens === "anamo"
       ? `<rect class="pv-dark" width="272" height="12"/><rect class="pv-dark" y="74" width="272" height="12"/>` : "";
   const flare = (p.lens === "flare" || p.lens === "anamo")
@@ -3155,7 +3229,8 @@ function pvSVG(id){
          <g class="pv-bg"><rect x="24" y="${G-48}" width="44" height="48"/>
            <rect x="186" y="${G-28}" width="52" height="28"/></g>
          <path class="pv-ground" d="M0 ${G} L272 ${G}"/>
-         ${figure(92, G-24, 1, "pv-subj")}</g>` : "";
+         ${p.bnofig ? "" : figure(92, G-24, 1, "pv-subj")}</g>
+         ${p.bnofig ? figure(136, F-24*S, S, "pv-sharp") : ""}` : "";
   const blk = p.blk ? `<rect class="pv-blk" width="272" height="86" fill="#000"/>` : "";
   const rot = p.rot ? ` style="transform:rotate(${p.rot}deg);transform-box:view-box;transform-origin:136px 43px"` : "";
 
@@ -3165,7 +3240,7 @@ function pvSVG(id){
       <g class="pv-scene"${rot}>
         <g class="pv-bg">${bg}</g>${ground}${subj}${subj2}
       </g>
-      ${sharp}${light}${letterbox}${flare}${ov}${pov}${sceneB}${blk}${crop}
+      ${sharp}${light}${letterbox}${flare}${ov}${pov}${sceneB}${fg}${blk}${crop}
     </g>
     <rect class="pv-frame" x=".5" y=".5" width="271" height="85"/>
   </svg>
