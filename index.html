@@ -683,6 +683,9 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
       <path d="M12 40 L24 29 L36 40 Z" fill="currentColor" stroke="none" opacity=".55"/>
       <path d="M24 4 L24 8 M38 9 L35 12 M10 9 L13 12 M43 20 L39 20 M5 20 L9 20" stroke-width="3"/>
     </g>
+    <g id="mk-ccolor" fill="none" stroke="currentColor" stroke-width="3.5">
+      <circle cx="18" cy="24" r="13"/><circle cx="32" cy="16" r="13"/><circle cx="32" cy="33" r="13"/>
+    </g>
     <g id="mk-ctime" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
       <circle cx="24" cy="25" r="17"/>
       <path d="M24 15 L24 25 L31 30"/>
@@ -925,7 +928,8 @@ const GENRES = [
   {id:"cshot", ja:"ショットサイズ",en:"shot size",    gh:258, gs:"40%", mk:"mk-cshot", floor:"camera"},
   {id:"cangle",ja:"アングル",     en:"camera angle",  gh:22,  gs:"58%", mk:"mk-cangle",floor:"camera"},
   {id:"ccomp", ja:"構図",         en:"composition",   gh:148, gs:"36%", mk:"mk-ccomp", floor:"camera"},
-  {id:"clight",ja:"光・ライティング",en:"lighting",   gh:47,  gs:"55%", mk:"mk-clight",floor:"camera"},
+  {id:"clight",ja:"光の当て方",   en:"lighting",      gh:47,  gs:"55%", mk:"mk-clight",floor:"camera"},
+  {id:"ccolor",ja:"光の質・色",   en:"light and color",gh:105, gs:"38%", mk:"mk-ccolor",floor:"camera"},
   {id:"ctime", ja:"時間・速度",   en:"time and speed",gh:292, gs:"32%", mk:"mk-ctime", floor:"camera"},
   {id:"caction",ja:"アクション撮影",en:"action camera",gh:353, gs:"52%", mk:"mk-caction",floor:"camera"},
   {id:"cedit", ja:"繋ぎ・演出",   en:"editing",       gh:325, gs:"34%", mk:"mk-cedit", floor:"camera"}
@@ -1425,31 +1429,106 @@ const DATA = [
  res:"リムライトの作例、背景と分離する仕組みの解説。",
  tip:"アニメの「輪郭のハイライト」がこれ。暗い背景で人物を見せる時に必須。",
  alt:["separation lighting film","edge light technique"]},
-{id:"lowkey",g:"clight",ja:"ローキー",en:"low key lighting cinematography",kana:"ロー キー ライティング",tag:"応用",
+{id:"keylight",g:"clight",ja:"キーライト",en:"key light placement",kana:"キー ライト プレイスメント",tag:"基本",
+ mean:"主光源をどこに置くか。これ1つで顔の陰影の8割が決まる。",
+ res:"キーライトの位置を動かした比較映像、角度別の見え方。",
+ tip:"「正面・斜め45度・真横・真上・真下」で並べた比較動画が一番分かりやすい。",
+ alt:["key light angle comparison","lighting angle test face"]},
+{id:"rembrandt",g:"clight",ja:"レンブラント",en:"rembrandt lighting",kana:"レンブラント ライティング",tag:"応用",
+ mean:"斜め45度上から。影側の頬に三角形の光ができる。肖像画の定番。",
+ res:"三角形の作り方の解説、セットアップ図、作例。",
+ tip:"頬の三角が目印。キャラの顔の塗り分けにそのまま使える。",
+ alt:["rembrandt triangle lighting","portrait lighting patterns"]},
+{id:"butterfly",g:"clight",ja:"バタフライ",en:"butterfly paramount lighting",kana:"バタフライ パラマウント ライティング",tag:"応用",
+ mean:"正面の真上から。鼻の下に蝶の形の影ができる。美しく見せる古典。",
+ res:"パラマウント照明の解説、ハリウッド女優風のライティング。",
+ tip:"影が顔の中心に対称に出る。きれいに見せたい決めカット向き。",
+ alt:["paramount lighting setup","glamour lighting technique"]},
+{id:"split",g:"clight",ja:"スプリット",en:"split lighting technique",kana:"スプリット ライティング テクニック",tag:"応用",
+ mean:"真横から当てて顔を半分だけ照らす。二面性・葛藤・悪役。",
+ res:"半面照明の作例、心理的効果の解説、ノワールでの使用。",
+ tip:"顔の半分を完全に落とすほど不穏になる。境界の位置で印象が変わる。",
+ alt:["split lighting portrait","half face lighting film"]},
+{id:"sidelight",g:"clight",ja:"サイドライト",en:"side lighting cinematography",kana:"サイド ライティング シネマトグラフィー",tag:"基本",
+ mean:"横から当てる。凹凸が最も強調され、質感が出る。",
+ res:"横からの光の作例、質感の出方の比較、彫刻的な陰影。",
+ tip:"肌のざらつきや布のしわを見せたい時はこれ。真正面の光はそれを消す。",
+ alt:["side light texture film","sculptural lighting"]},
+{id:"underlight",g:"clight",ja:"アンダーライト",en:"under lighting horror",kana:"アンダー ライティング ホラー",tag:"応用",
+ mean:"下から当てる。影が上に伸びて不気味になる。怪談・怪物の定番。",
+ res:"下からの光の作例、ホラーでの使用、懐中電灯を顎の下から当てる実演。",
+ tip:"影の向きが日常と逆になるだけで不安になる。焚き火や床の光源にも使える。",
+ alt:["uplighting horror effect","bottom light face creepy"]},
+{id:"toplight",g:"clight",ja:"トップライト",en:"top lighting cinematography",kana:"トップ ライティング シネマトグラフィー",tag:"応用",
+ mean:"真上から落とす。目が影に沈み、孤立感・尋問・神々しさ。",
+ res:"真上からの光の作例、取調室の演出、スポットの落とし方。",
+ tip:"目が落ちくぼむので表情が読めなくなる。感情を隠したい時に。",
+ alt:["overhead light interrogation","spotlight from above film"]},
+{id:"catchlight",g:"clight",ja:"キャッチライト",en:"catchlight eye light",kana:"キャッチ ライト アイ ライト",tag:"アニメ向き",
+ mean:"瞳に映り込む光の点。これがあるだけで生きた目になる。",
+ res:"キャッチライトの解説、形の違い、入れ方と消し方。",
+ tip:"消すと途端に死んだ目になる。アニメの瞳ハイライトはこれの誇張。",
+ alt:["catchlight eyes portrait","eye light film technique"]},
+{id:"lowkey",g:"ccolor",ja:"ローキー",en:"low key lighting cinematography",kana:"ロー キー ライティング",tag:"応用",
  mean:"暗部が多く、明暗差が強い。緊張・不穏・ノワール。",
  res:"ローキーの作例、フィルム・ノワール、明暗法の分析。",
  tip:"明暗の対比を極端にした古典技法は chiaroscuro（キアロスクーロ）。",
  alt:["film noir lighting","chiaroscuro lighting"]},
-{id:"highkey",g:"clight",ja:"ハイキー",en:"high key lighting",kana:"ハイ キー ライティング",tag:"応用",
+{id:"highkey",g:"ccolor",ja:"ハイキー",en:"high key lighting",kana:"ハイ キー ライティング",tag:"応用",
  mean:"全体が明るく影が薄い。清潔・日常・コメディ。",
  res:"ハイキーの作例、ローキーとの比較、CMやコメディでの使用。",
  tip:"ローキーと並べて見ると、光だけでジャンルが決まるのが分かる。",
  alt:["high key vs low key","bright lighting comedy"]},
-{id:"practical",g:"clight",ja:"実光源",en:"practical lights cinematography",kana:"プラクティカル ライツ シネマトグラフィー",tag:"応用",
+{id:"practical",g:"ccolor",ja:"実光源",en:"practical lights cinematography",kana:"プラクティカル ライツ シネマトグラフィー",tag:"応用",
  mean:"画面に写っている電灯・ネオン・炎そのものを光源にする。",
  res:"実光源の作例、ネオン街の撮り方、蝋燭だけのシーン。",
  tip:"「光源が画面内にある」と説得力が跳ね上がる。背景美術の設計に効く。",
  alt:["motivated lighting film","neon lighting cinematography"]},
-{id:"golden",g:"clight",ja:"マジックアワー",en:"golden hour cinematography",kana:"ゴールデン アワー シネマトグラフィー",tag:"応用",
+{id:"golden",g:"ccolor",ja:"マジックアワー",en:"golden hour cinematography",kana:"ゴールデン アワー シネマトグラフィー",tag:"応用",
  mean:"日の出・日没前後の低くて赤い光。長い影と暖色。",
  res:"マジックアワーの作例、時間帯ごとの光の色の比較。",
  tip:"日没直後の青い時間は blue hour。色設計の参考になる。",
  alt:["blue hour cinematography","time of day lighting"]},
-{id:"shadow",g:"clight",ja:"影の演出",en:"hard shadow cinematography",kana:"ハード シャドウ シネマトグラフィー",tag:"応用",
- mean:"輪郭のはっきりした影を積極的に使う。ブラインドや格子の影など。",
- res:"影の形で語る作例、ハードとソフトの比較、影だけで見せる演出。",
- tip:"硬い影＝小さく強い光源、柔らかい影＝大きい光源。この対応を覚えると描き分けられる。",
- alt:["hard vs soft light","shadow patterns cinematography"]},
+{id:"hardsoft",g:"ccolor",ja:"硬い光・柔らかい光",en:"hard light vs soft light",kana:"ハード ライト ブイエス ソフト ライト",tag:"基本",
+ mean:"光源が小さいほど影の縁が硬く、大きいほど柔らかい。質のすべての土台。",
+ res:"硬軟の比較映像、ディフューザーの効果、影の縁の違い。",
+ tip:"曇り空＝巨大な光源＝柔らかい影。晴天の太陽＝小さく見える＝硬い影。",
+ alt:["diffusion lighting comparison","shadow edge quality"]},
+{id:"shadow",g:"ccolor",ja:"窓・格子の影",en:"gobo shadow pattern lighting",kana:"ゴボ シャドウ パターン ライティング",tag:"応用",
+ mean:"ブラインドや窓枠を通した影の模様。画面に情報と不穏さを足す。",
+ res:"影の模様の作例、ノワールのブラインド、木漏れ日。",
+ tip:"影の形で場所と時間を語れる。木漏れ日は dappled light。",
+ alt:["venetian blind shadow noir","dappled light through trees"]},
+{id:"colortemp",g:"ccolor",ja:"色温度",en:"color temperature cinematography",kana:"カラー テンパチャー シネマトグラフィー",tag:"基本",
+ mean:"光の色みの尺度。電球はオレンジ、日陰や月は青く写る。",
+ res:"ケルビン別の比較、ホワイトバランスの解説、室内と屋外の混在。",
+ tip:"「暖かい＝安心・過去」「冷たい＝不安・現在」が定番の使い分け。",
+ alt:["white balance explained film","kelvin color chart lighting"]},
+{id:"tealorange",g:"ccolor",ja:"暖色×寒色",en:"teal and orange color grading",kana:"ティール アンド オレンジ カラー グレーディング",tag:"応用",
+ mean:"人物を暖色、背景を寒色にして分離する。現代映画の定番配色。",
+ res:"色設計の分析、補色対比の解説、作品ごとのパレット分析。",
+ tip:"色で人物を浮かせる考え方。アニメの色彩設計にそのまま流用できる。",
+ alt:["complementary color film palette","color script analysis"]},
+{id:"night",g:"ccolor",ja:"夜・月明かり",en:"night moonlight cinematography",kana:"ナイト ムーンライト シネマトグラフィー",tag:"応用",
+ mean:"夜のシーンの作り方。真っ暗ではなく、青い光で形を見せる。",
+ res:"ナイトシーンの照明、青い月光の作り方、昼に撮って夜に見せる技法。",
+ tip:"昼間に撮って夜に見せるのは day for night。夜景の色設計の参考になる。",
+ alt:["day for night technique","blue moonlight lighting"]},
+{id:"rays",g:"ccolor",ja:"光芒",en:"volumetric god rays cinematography",kana:"ボリュメトリック ゴッド レイズ",tag:"アニメ向き",
+ mean:"空気中の埃や霧に光の筋が見える現象。神々しさ・奥行き。",
+ res:"薄明光線の作例、霧を焚いた撮影、逆光での発生条件。",
+ tip:"アニメの「光の柱」の元。埃や霧がないと出ないので、空気の演出とセット。",
+ alt:["crepuscular rays film","atmospheric haze lighting"]},
+{id:"fire",g:"ccolor",ja:"炎の揺らぎ",en:"firelight flicker lighting",kana:"ファイアライト フリッカー ライティング",tag:"アニメ向き",
+ mean:"焚き火や蝋燭の不規則に揺れる暖色光。顔の陰影が絶えず動く。",
+ res:"炎の照明の作例、揺らぎの周期、蝋燭だけのシーン。",
+ tip:"揺れは不規則。等間隔で明滅させると嘘になる。",
+ alt:["candlelight scene cinematography","campfire lighting setup"]},
+{id:"bounce",g:"ccolor",ja:"バウンス・レフ",en:"bounce light reflector",kana:"バウンス ライト リフレクター",tag:"基本",
+ mean:"壁や板に反射させて影側を起こす。柔らかく自然な補助光。",
+ res:"レフ板の効果の比較、天井バウンス、白と銀の違い。",
+ tip:"影を消すのではなく「起こす」。地面からの照り返しも同じ理屈。",
+ alt:["reflector fill light comparison","ceiling bounce lighting"]},
 
 /* ---- 時間・速度 ---- */
 {id:"slowmo",g:"ctime",ja:"スローモーション",en:"slow motion cinematography",kana:"スロー モーション シネマトグラフィー",tag:"基本",
@@ -2192,9 +2271,55 @@ practical:[["モチベーテッドライティング：光源に理由を持た�
 golden:[["ブルーアワー：日没直後の青い時間","blue hour cinematography"],
  ["時間帯ごとの光の色","time of day color temperature"],
  ["長い影：低い太陽の使い方","long shadows golden hour"]],
-shadow:[["ハードとソフトの比較","hard light vs soft light"],
- ["影の形で語る：模様の投影","shadow pattern gobo lighting"],
+shadow:[["ゴボ：型を通して影の模様を作る","gobo lighting pattern"],
+ ["ブラインドの影：ノワールの定番","venetian blind shadow noir"],
+ ["木漏れ日：葉を通した斑の光","dappled light through trees"],
  ["影だけで人物を見せる","shadow only shot technique"]],
+keylight:[["角度別比較：45度・真横・真上","key light angle comparison"],
+ ["レイシオ：キーとフィルの明るさの比","lighting ratio explained"],
+ ["ショートとブロード：顔のどちら側を照らすか","short vs broad lighting"]],
+rembrandt:[["頬の三角の作り方","rembrandt triangle setup"],
+ ["肖像照明の4パターン比較","portrait lighting patterns comparison"],
+ ["絵画のレンブラント光","rembrandt painting light analysis"]],
+butterfly:[["パラマウント照明のセット","paramount butterfly lighting setup"],
+ ["クラムシェル：上下から挟む","clamshell lighting technique"],
+ ["グラマー照明：影を最小にする","glamour beauty lighting"]],
+split:[["半面照明の作例","split lighting portrait tutorial"],
+ ["二面性の演出","duality lighting film analysis"],
+ ["境界の位置で印象を変える","lighting transition line face"]],
+sidelight:[["質感を出す横からの光","texture side lighting"],
+ ["彫刻的な陰影","sculpting with light cinematography"],
+ ["キッカー：斜め後ろからの側光","kicker light setup"]],
+underlight:[["下からの光でホラー","uplighting horror face"],
+ ["焚き火・懐中電灯の下向き光源","bottom light source scene"],
+ ["影が上に伸びる仕組み","shadow direction lighting explained"]],
+toplight:[["取調室の吊り下げ照明","interrogation room lighting"],
+ ["目が影に沈む効果","eye socket shadow lighting"],
+ ["天井からのスポット","overhead spotlight scene"]],
+catchlight:[["キャッチライトの形と光源の関係","catchlight shape light source"],
+ ["キャッチライトを消す効果","removing catchlight dead eyes"],
+ ["アニメの瞳のハイライト","anime eye highlight shading"]],
+hardsoft:[["ディフューザーで柔らかくする","diffusion lighting comparison"],
+ ["光源の大きさと影の縁","light size shadow edge"],
+ ["曇天と晴天の違い","overcast vs sunny light quality"]],
+colortemp:[["ケルビン別の見え方","kelvin color temperature comparison"],
+ ["ホワイトバランスで色が変わる仕組み","white balance explained cinematography"],
+ ["室内と屋外の色が混ざる画","mixed color temperature scene"]],
+tealorange:[["補色対比の配色","complementary color grading"],
+ ["カラースクリプト：作品全体の色設計","color script animation film"],
+ ["色で人物を背景から分離する","color separation subject background"]],
+night:[["デイ・フォー・ナイト：昼に撮って夜に見せる","day for night technique"],
+ ["青い月光の作り方","moonlight lighting setup"],
+ ["夜景の実光源設計","night exterior lighting cinematography"]],
+rays:[["薄明光線の作例","crepuscular rays cinematography"],
+ ["霧を焚いて光を見せる","atmospheric haze film lighting"],
+ ["アニメの光の柱","anime light shaft effect"]],
+fire:[["蝋燭だけのシーン","candlelight only scene film"],
+ ["焚き火の照明セット","campfire lighting setup"],
+ ["揺らぎの作り方","flicker effect lighting tutorial"]],
+bounce:[["レフ板ありなしの比較","reflector comparison lighting"],
+ ["天井バウンス","ceiling bounce light technique"],
+ ["ネガティブフィル：あえて影を足す","negative fill lighting"]],
 
 slowmo:[["速度別の印象の違い","slow motion speed comparison"],
  ["使いどころ：どこで落とすか","when to use slow motion"],
@@ -2329,7 +2454,18 @@ lanamo:{c:"a-lflare",lens:"anamo",cap:"横長＋横一文字の光"},
 lt3:{c:"a-lt3",light:"three",cap:"3灯で立体を作る"}, ltback:{c:"a-ltglow",light:"back",cap:"後ろから＝輪郭が光る"},
 ltrim:{light:"rim",cap:"輪郭だけ光る"},              ltlow:{light:"low",cap:"暗部が多い"},
 lthigh:{light:"high",cap:"影が少なく明るい"},        ltprac:{c:"a-ltglow",light:"prac",cap:"画面内の光源で照らす"},
-ltgold:{light:"gold",cap:"低く長い夕の光"},          ltshadow:{light:"shadow",cap:"硬い影で見せる"},
+ltgold:{light:"gold",cap:"低く長い夕の光"},          ltshadow:{light:"gobo",cap:"型を通した影の模様"},
+ltkey:{light:"key",cap:"主光源の位置で陰影が決まる"}, ltrem:{light:"rem",cap:"斜め上から＝頬に三角の光"},
+ltbfly:{light:"bfly",cap:"真上正面から＝鼻の下に影"}, ltsplit:{light:"split",cap:"真横から＝顔が半分だけ"},
+ltside:{light:"side",cap:"横から＝凹凸が出る"},       ltunder:{light:"under",cap:"下から＝影が上に伸びる"},
+lttop:{light:"top",cap:"真上から＝目が影に沈む"},     ltcatch:{light:"catch",head:1,cap:"瞳に映る光の点"},
+ltsoft:{light:"soft",cap:"小さい光源＝硬い影／大きい光源＝柔らかい影"},
+lttemp:{light:"temp",cap:"電球はオレンジ、月や日陰は青"},
+ltteal:{light:"teal",cap:"人物を暖色・背景を寒色に分ける"},
+ltnight:{light:"night",cap:"真っ暗にせず青い光で形を見せる"},
+ltrays:{c:"a-ltglow",light:"rays",cap:"埃や霧に光の筋が見える"},
+ltfire:{c:"a-ltglow",light:"fire",cap:"不規則に揺れる暖色光"},
+ltbounce:{light:"bounce",cap:"反射させて影側を起こす"},
 /* 時間 */
 tslow:{c:"a-tslow",cap:"ゆっくり進む"},   tfast:{c:"a-tfast",cap:"速く進む"},
 tfreeze:{c:"a-tfreeze",cap:"途中で止まる"}, tbullet:{c:"a-tbullet",cap:"人は止まりカメラが回る"},
@@ -2352,6 +2488,10 @@ const ANIM = {
  flare:"lflare", anamo:"lanamo",
  three:"lt3", backlit:"ltback", rim:"ltrim", lowkey:"ltlow", highkey:"lthigh",
  practical:"ltprac", golden:"ltgold", shadow:"ltshadow",
+ keylight:"ltkey", rembrandt:"ltrem", butterfly:"ltbfly", split:"ltsplit", sidelight:"ltside",
+ underlight:"ltunder", toplight:"lttop", catchlight:"ltcatch",
+ hardsoft:"ltsoft", colortemp:"lttemp", tealorange:"ltteal", night:"ltnight",
+ rays:"ltrays", fire:"ltfire", bounce:"ltbounce",
  slowmo:"tslow", highspeed:"tslow", fastmo:"tfast", lapse:"tfast", freeze:"tfreeze",
  bullet:"tbullet", reversem:"trev",
  fightcam:"hand", chase:"track", oner:"steadi", shaky:"hand", ramp:"tslow",
@@ -2365,7 +2505,8 @@ function pvSVG(id){
   const p = PV[t]; if(!p) return "";
   const G = p.ground ?? 66, F = p.feet ?? G, S = p.ss ?? 1;
   const sky = p.light === "gold" ? `<rect width="272" height="86" fill="var(--sticker)" opacity=".34"/>` : "";
-  const bg = p.top
+  const bg = p.head ? ""
+    : p.top
       ? `<rect x="42" y="18" width="24" height="24" rx="2"/><rect x="206" y="46" width="28" height="20" rx="2"/>`
     : p.lens === "wide"
       ? `<path d="M14 ${G} L40 26 L58 26 L46 ${G} Z"/><path d="M258 ${G} L232 26 L214 26 L226 ${G} Z"/>`
@@ -2375,14 +2516,19 @@ function pvSVG(id){
       ? `<path d="M8 ${G} Q30 22 52 ${G} Z"/><path d="M220 ${G} Q242 22 264 ${G} Z"/>`
       : `<rect x="18" y="${G-34}" width="26" height="34"/><rect x="52" y="${G-44}" width="18" height="44"/>
          <rect x="204" y="${G-38}" width="30" height="38"/><rect x="240" y="${G-26}" width="20" height="26"/>`;
-  const ground = p.top ? ""
+  const ground = (p.top || p.head) ? ""
     : p.lens === "fish"
       ? `<path class="pv-ground" d="M0 ${G+8} Q136 ${G-10} 272 ${G+8}"/>`
       : `<path class="pv-ground" d="M0 ${G} L272 ${G}"/>`;
   const figure = (x,y,s,cls)=>`<g class="${cls}" style="transform-origin:${x}px ${y+16}px">
       <circle cx="${x}" cy="${y}" r="${8*s}"/>
       <rect x="${x-7*s}" y="${y+8*s}" width="${14*s}" height="${18*s}" rx="${4*s}"/></g>`;
-  const subj = p.top
+  const subj = p.head
+      ? `<g class="pv-subj"><circle cx="136" cy="44" r="33"/>
+         <ellipse cx="118" cy="36" rx="8" ry="7" fill="var(--face)"/>
+         <ellipse cx="152" cy="36" rx="8" ry="7" fill="var(--face)"/>
+         <circle cx="117" cy="36" r="4"/><circle cx="153" cy="36" r="4"/></g>`
+    : p.top
       ? `<g class="pv-subj"><ellipse cx="136" cy="44" rx="20" ry="16" opacity=".18"/>
          <circle cx="136" cy="40" r="11"/><rect x="131" y="40" width="10" height="24" rx="4"/></g>`
       : figure(136, F-24*S, S, "pv-subj");
@@ -2413,9 +2559,51 @@ function pvSVG(id){
   if(p.light === "prac") light = `<circle class="pv-lit" cx="70" cy="${G-14}" r="6"/>
       <circle class="pv-lit" cx="70" cy="${G-14}" r="16" opacity=".22"/>`;
   if(p.light === "gold") light = `<rect class="pv-dark" x="136" y="${G}" width="90" height="5" opacity=".45"/>`;
-  if(p.light === "shadow") light = `<g class="pv-dark" opacity=".5">
+  if(p.light === "gobo") light = `<g class="pv-dark" opacity=".5">
       <rect x="0" y="18" width="272" height="9"/><rect x="0" y="38" width="272" height="9"/>
       <rect x="0" y="58" width="272" height="9"/></g>`;
+  /* --- 当て方のパターン --- */
+  const lampL = `<circle class="pv-lit" cx="92" cy="14" r="5"/>`;
+  if(p.light === "key") light = `${lampL}<path class="pv-lit" d="M92 19 L118 34 L118 44 Z" opacity=".22"/>
+      <ellipse class="pv-dark" cx="158" cy="${G+2}" rx="20" ry="4" opacity=".45"/>`;
+  if(p.light === "rem") light = `${lampL}<path class="pv-dark" d="M136 34 a8 8 0 0 1 0 16 z" opacity=".5"/>
+      <path class="pv-lit" d="M138 40 l5 3 l-5 3 z"/>`;
+  if(p.light === "bfly") light = `<circle class="pv-lit" cx="136" cy="10" r="5"/>
+      <ellipse class="pv-dark" cx="136" cy="47" rx="5" ry="2.5" opacity=".55"/>
+      <ellipse class="pv-dark" cx="136" cy="${G+2}" rx="14" ry="3" opacity=".4"/>`;
+  if(p.light === "split") light = `<circle class="pv-lit" cx="14" cy="40" r="5"/>
+      <path class="pv-dark" d="M136 34 a8 8 0 0 1 0 16 z" opacity=".62"/>
+      <rect class="pv-dark" x="136" y="50" width="7" height="18" opacity=".62"/>`;
+  if(p.light === "side") light = `<circle class="pv-lit" cx="14" cy="34" r="5"/>
+      <path class="pv-dark" d="M136 34 a8 8 0 0 1 0 16 z" opacity=".38"/>
+      <rect class="pv-dark" x="136" y="50" width="7" height="18" opacity=".38"/>`;
+  if(p.light === "under") light = `<circle class="pv-lit" cx="136" cy="76" r="5"/>
+      <path class="pv-lit" d="M118 76 L136 26 L154 76 Z" opacity=".2"/>
+      <rect class="pv-dark" width="272" height="30" opacity=".45"/>`;
+  if(p.light === "top") light = `<circle class="pv-lit" cx="136" cy="8" r="5"/>
+      <path class="pv-lit" d="M128 10 L112 ${G} L160 ${G} L144 10 Z" opacity=".2"/>
+      <rect class="pv-dark" width="272" height="86" opacity=".4"/>
+      <path class="pv-lit" d="M128 10 L112 ${G} L160 ${G} L144 10 Z" opacity=".18"/>`;
+  if(p.light === "catch") light = `<circle class="pv-lit" cx="115" cy="33" r="2.6"/>
+      <circle class="pv-lit" cx="151" cy="33" r="2.6"/>`;
+  /* --- 質と色 --- */
+  if(p.light === "soft") light = `<ellipse class="pv-dark" cx="186" cy="${G+3}" rx="24" ry="5" opacity=".55"/>
+      <ellipse class="pv-dark" cx="86" cy="${G+3}" rx="24" ry="6" opacity=".3" style="filter:blur(3px)"/>
+      <text class="pv-cap" x="66" y="82">やわらかい</text><text class="pv-cap" x="172" y="82">かたい</text>`;
+  if(p.light === "temp") light = `<rect width="136" height="86" fill="#f0a93c" opacity=".34"/>
+      <rect x="136" width="136" height="86" fill="#5b8fd6" opacity=".32"/>
+      <text class="pv-cap" x="8" y="12">電球</text><text class="pv-cap" x="238" y="12">月・日陰</text>`;
+  if(p.light === "teal") light = `<rect width="272" height="86" fill="#4f8fbf" opacity=".3"/>
+      <ellipse cx="136" cy="${G-22}" rx="26" ry="30" fill="#f0a93c" opacity=".45"/>`;
+  if(p.light === "night") light = `<rect width="272" height="86" fill="#2b4a7a" opacity=".55"/>
+      <circle class="pv-lit" cx="228" cy="18" r="9" opacity=".85"/>`;
+  if(p.light === "rays") light = `<g class="pv-lit" opacity=".3">
+      <path d="M40 0 L86 0 L34 ${G} L4 ${G} Z"/><path d="M96 0 L124 0 L74 ${G} L52 ${G} Z"/></g>`;
+  if(p.light === "fire") light = `<circle class="pv-lit" cx="96" cy="${G-6}" r="7"/>
+      <circle class="pv-lit" cx="96" cy="${G-6}" r="22" opacity=".22"/>
+      <ellipse class="pv-lit" cx="136" cy="${G-22}" rx="18" ry="22" opacity=".16"/>`;
+  if(p.light === "bounce") light = `${lampL}<rect class="pv-lit" x="150" y="${G-6}" width="34" height="4" opacity=".8"/>
+      <path class="pv-lit" d="M150 ${G-6} L146 ${G-30} L162 ${G-30} Z" opacity=".2"/>`;
   const letterbox = p.lens === "anamo"
       ? `<rect class="pv-dark" width="272" height="12"/><rect class="pv-dark" y="74" width="272" height="12"/>` : "";
   const flare = (p.lens === "flare" || p.lens === "anamo")
