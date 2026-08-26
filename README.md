@@ -33,7 +33,22 @@ GitHub Pages で公開する場合は、リポジトリの **Settings → Pages 
 
 外部から読み込んでいるのは Google Fonts のみ。データはすべて `index.html` の中に入っています。
 
-更新するときは `index.html` を編集して `.\publish.ps1` を実行すると、コミット・push・Pages反映まで通ります。
+## ファイル構成
+
+| ファイル | 役割 |
+|---|---|
+| `src/page.html` | 中身の本体（ここを編集する） |
+| `index.html` | `build.ps1` が生成する公開用ページ。直接編集しない |
+| `build.ps1` | `src/page.html` に `<head>`（OGPタグ含む）を被せて `index.html` を作る |
+| `make-ogp.ps1` | SNS共有用のサムネイル `ogp.png` を作る |
+| `publish.ps1` | コミット → push → Pages反映 |
+
+更新の手順:
+
+```
+.\build.ps1        # src/page.html → index.html
+.\publish.ps1      # コミットして公開
+```
 
 ## ライセンス
 
