@@ -2,9 +2,9 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="アニメ・ゲーム制作用の英語リファレンス検索ワード66本。棚を眺めてクリックでコピー、YouTubeに貼り付けるだけ。">
+<meta name="description" content="アニメ・ゲーム制作用の英語リファレンス検索ワード。体の動きとカメラワークの2フロア。クリックでコピーしてYouTubeへ。">
 <meta property="og:title" content="リファレンス検索ワード棚">
-<meta property="og:description" content="アニメ・ゲーム制作用の英語リファレンス検索ワード66本。クリックでコピーしてYouTubeへ。">
+<meta property="og:description" content="体の動きとカメラワークの英語リファレンス検索ワード集。クリックでコピーしてYouTubeへ。">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📼</text></svg>">
 <title>リファレンス検索ワード棚</title>
@@ -172,7 +172,34 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
   font:inherit;font-size:14px;outline:none;
 }
 .search svg{flex:none;opacity:.5}
-.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+/* フロア切り替え（体の動き / カメラワーク） */
+.navrow{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.floors{display:flex;gap:0;flex:none;border:1px solid var(--ink);border-radius:2px;overflow:hidden}
+.floorbtn{
+  display:flex;align-items:center;gap:7px;
+  padding:6px 13px;background:var(--panel);color:var(--ink-2);
+  font-family:"DotGothic16",monospace;font-size:12.5px;white-space:nowrap;
+  border-right:1px solid var(--ink);
+  transition:background .12s,color .12s;
+}
+.floorbtn:last-child{border-right:0}
+.floorbtn svg{width:17px;height:17px;flex:none}
+.floorbtn i{font-style:normal;font-size:10.5px;opacity:.7;font-variant-numeric:tabular-nums}
+.floorbtn:hover{color:var(--ink)}
+.floorbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.navdiv{width:1px;align-self:stretch;background:var(--line);flex:none}
+.crossfloor{
+  margin:8px 0 0;font-size:12px;color:var(--ink-2);
+  display:flex;gap:7px;align-items:center;flex-wrap:wrap;
+}
+.crossfloor[hidden]{display:none}   /* display:flex は UA の [hidden] に勝つので明示的に消す */
+.crossfloor button{
+  font-family:"DotGothic16",monospace;font-size:11.5px;
+  border:1px solid var(--line);border-radius:2px;padding:2px 9px;background:var(--panel);
+}
+.crossfloor button:hover{border-color:var(--ink-2);color:var(--ink)}
+
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;flex:1 1 380px}
 .navlabel{
   font-family:"DotGothic16",monospace;font-size:11px;color:var(--ink-2);
   letter-spacing:.1em;padding-right:2px;white-space:nowrap;
@@ -506,6 +533,52 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
       <rect x="7" y="7" width="34" height="34" rx="9"/><circle cx="24" cy="24" r="3.5" fill="currentColor" stroke="none"/>
     </g>
 
+    <!-- 2F カメラの棚マーク（48x48） -->
+    <g id="mk-cmove" fill="currentColor" stroke="none">
+      <rect x="4" y="14" width="26" height="18" rx="3"/>
+      <path d="M30 19 L45 12 L45 34 L30 27 Z"/>
+      <rect x="8" y="38" width="32" height="4" rx="2" opacity=".55"/>
+    </g>
+    <g id="mk-cshot" fill="none" stroke="currentColor" stroke-width="3.5">
+      <rect x="4" y="7" width="40" height="34" rx="2"/>
+      <rect x="13" y="14" width="22" height="20" rx="1.5"/>
+      <rect x="21" y="20" width="7" height="8" rx="1"/>
+    </g>
+    <g id="mk-cangle" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round">
+      <path d="M24 6 L44 40 L4 40 Z"/>
+      <circle cx="24" cy="6" r="3.5" fill="currentColor" stroke="none"/>
+    </g>
+    <g id="mk-ccomp" fill="none" stroke="currentColor" stroke-width="3.5">
+      <rect x="4" y="8" width="40" height="32" rx="2"/>
+      <path d="M17.3 8 L17.3 40 M30.6 8 L30.6 40 M4 18.6 L44 18.6 M4 29.3 L44 29.3" stroke-width="2"/>
+    </g>
+    <g id="mk-caction" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
+      <rect x="4" y="10" width="40" height="28" rx="2"/>
+      <path d="M11 18 L23 18 M9 24 L27 24 M13 30 L21 30" stroke-width="3"/>
+      <path d="M31 15 L37 24 L31 24 L37 33" stroke-width="3"/>
+    </g>
+    <g id="mk-cedit" fill="currentColor" stroke="none">
+      <rect x="4" y="12" width="40" height="24" rx="2"/>
+      <g fill="var(--face)" opacity=".95">
+        <rect x="7" y="15" width="5" height="4"/><rect x="7" y="29" width="5" height="4"/>
+        <rect x="36" y="15" width="5" height="4"/><rect x="36" y="29" width="5" height="4"/>
+        <rect x="16" y="15" width="16" height="18" rx="1"/>
+      </g>
+    </g>
+
+    <!-- フロアのアイコン（24x24） -->
+    <g id="ic-body" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <circle cx="13" cy="4" r="2.4" fill="currentColor" stroke="none"/>
+      <path d="M13 7.5 L11 14 L8 21"/><path d="M11 14 L15 18 L15 22"/>
+      <path d="M13 9.5 L18 12"/><path d="M13 9.5 L7 11"/>
+    </g>
+    <g id="ic-cam" fill="currentColor" stroke="none">
+      <rect x="2" y="8" width="13" height="10" rx="1.5"/>
+      <path d="M15 11 L22 7.5 L22 18.5 L15 15 Z"/>
+      <circle cx="6" cy="5" r="2.8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="11.5" cy="5" r="2.8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    </g>
+
     <!-- 武器の種類アイコン（64x26） -->
     <g id="ic-any" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="32" cy="13" r="7"/><path d="M32 9.5v7M28.5 13h7"/>
@@ -652,7 +725,11 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
       </div>
       <span class="stock dot" id="stock"></span>
     </div>
-    <nav class="chips" id="genrechips" aria-label="棚案内"></nav>
+    <div class="navrow">
+      <div class="floors" id="floors" role="group" aria-label="フロア"></div>
+      <nav class="chips" id="genrechips" aria-label="棚案内"></nav>
+    </div>
+    <p class="crossfloor" id="crossfloor" hidden></p>
   </div>
 
   <main id="shelf"></main>
@@ -717,7 +794,21 @@ const GENRES = [
      {ja:"クロスボウ", en:"crossbow",    ic:"ic-crossbow", kind:"bow"},
      {ja:"手裏剣",     en:"shuriken",    ic:"ic-shuriken", kind:"thrown"}]},
   {id:"react", ja:"やられ",    en:"reaction",   gh:18,  gs:"30%", mk:"mk-react"},
-  {id:"life",  ja:"日常・演技", en:"acting",    gh:148, gs:"38%", mk:"mk-life"}
+  {id:"life",  ja:"日常・演技", en:"acting",    gh:148, gs:"38%", mk:"mk-life"},
+
+  /* ---- 2F：カメラ ---- */
+  {id:"cmove", ja:"カメラの動き", en:"camera moves",  gh:190, gs:"48%", mk:"mk-cmove", floor:"camera"},
+  {id:"cshot", ja:"ショットサイズ",en:"shot size",    gh:258, gs:"40%", mk:"mk-cshot", floor:"camera"},
+  {id:"cangle",ja:"アングル",     en:"camera angle",  gh:25,  gs:"58%", mk:"mk-cangle",floor:"camera"},
+  {id:"ccomp", ja:"構図",         en:"composition",   gh:150, gs:"36%", mk:"mk-ccomp", floor:"camera"},
+  {id:"caction",ja:"アクション撮影",en:"action camera",gh:350, gs:"52%", mk:"mk-caction",floor:"camera"},
+  {id:"cedit", ja:"繋ぎ・演出",   en:"editing",       gh:300, gs:"34%", mk:"mk-cedit", floor:"camera"}
+];
+GENRES.forEach(g=>{ if(!g.floor) g.floor = "body"; });
+
+const FLOORS = [
+  {id:"body",   ja:"体の動き",    en:"body movement", ic:"ic-body"},
+  {id:"camera", ja:"カメラワーク", en:"camera work",  ic:"ic-cam"}
 ];
 
 /* ============================================================
@@ -1060,7 +1151,260 @@ const DATA = [
  mean:"喜怒哀楽での顔の変化。眉・目・口の連動を見る。",
  res:"表情筋の解説、俳優の表情集、感情ごとの比較映像。",
  tip:"CG寄りなら facial animation reference、口の形なら mouth shapes lip sync。",
- alt:["facial animation reference","mouth shapes lip sync chart"]}
+ alt:["facial animation reference","mouth shapes lip sync chart"]},
+
+/* ================= 2F：カメラ ================= */
+/* ---- カメラの動き ---- */
+{id:"pan",g:"cmove",ja:"パン",en:"pan shot camera movement",kana:"パン ショット カメラ ムーブメント",tag:"基本",
+ mean:"カメラの位置は動かさず、左右に振る。首を横に振るのと同じ。",
+ res:"パンの実演と作例、良い例と悪い例の比較、速度の付け方の解説。",
+ tip:"風景を見せる緩いパンは scenic pan、素早いのは whip pan と別物として扱われる。",
+ alt:["panning shot examples","how to pan camera smoothly"]},
+{id:"tilt",g:"cmove",ja:"ティルト",en:"tilt shot camera movement",kana:"ティルト ショット カメラ ムーブメント",tag:"基本",
+ mean:"位置は動かさず、上下に振る。見上げ・見下ろしの動き。",
+ res:"ティルトアップ／ダウンの作例、建物や人物を舐める動き。",
+ tip:"下から上は tilt up（威圧・登場）、上から下は tilt down（失意・全体像）。",
+ alt:["tilt up shot examples","tilt down reveal shot"]},
+{id:"dolly",g:"cmove",ja:"ドリー",en:"dolly shot camera movement",kana:"ドリー ショット カメラ ムーブメント",tag:"基本",
+ mean:"カメラ自体が前後に動く。ズームと違って背景の見え方が変わる。",
+ res:"レール上の移動撮影、ドリーとズームの違いの比較動画。",
+ tip:"寄るのは dolly in、引くのは dolly out。ズームとの違いは dolly vs zoom で一発。",
+ alt:["dolly in dolly out examples","dolly vs zoom difference"]},
+{id:"track",g:"cmove",ja:"追従",en:"tracking shot camera movement",kana:"トラッキング ショット カメラ ムーブメント",tag:"基本",
+ mean:"歩く・走る被写体と並んで動き続ける。横移動が多い。",
+ res:"並走撮影の作例、有名映画のトラッキングショット集。",
+ tip:"横に平行移動するのは truck / crab とも呼ぶ。追いかけるなら following shot。",
+ alt:["famous tracking shots","following shot cinematography"]},
+{id:"handheld",g:"cmove",ja:"手持ち",en:"handheld camera movement",kana:"ハンドヘルド カメラ ムーブメント",tag:"応用",
+ mean:"肩や手で持って撮る。微細な揺れが緊張感やドキュメント感を生む。",
+ res:"手持ちの作例、揺れの作り方、三脚との比較。",
+ tip:"アニメに写す時は「揺れ幅・周期・不規則さ」を見る。handheld camera shake で解説が出る。",
+ alt:["handheld vs tripod comparison","handheld camera shake tutorial"]},
+{id:"steadi",g:"cmove",ja:"ステディカム",en:"steadicam shot",kana:"ステディカム ショット",tag:"応用",
+ mean:"歩きながらでも揺れない、滑るような移動。長回しの定番。",
+ res:"ステディカムの実演、名作の長回し、ジンバルとの比較。",
+ tip:"現代の機材で撮るなら gimbal shot。動きの質はほぼ同じ。",
+ alt:["gimbal shot cinematography","famous steadicam shots"]},
+{id:"crane",g:"cmove",ja:"クレーン",en:"crane shot camera movement",kana:"クレーン ショット カメラ ムーブメント",tag:"応用",
+ mean:"アームで大きく上下する。見下ろしから寄る、寄りから引き上げる等。",
+ res:"クレーン／ジブの作例、ラストシーンの引き上げ。",
+ tip:"小型のものは jib shot。ドローンでの上昇は drone reveal shot。",
+ alt:["jib shot examples","drone reveal shot"]},
+{id:"zoom",g:"cmove",ja:"ズーム",en:"zoom shot camera",kana:"ズーム ショット カメラ",tag:"基本",
+ mean:"カメラは動かず、レンズだけで寄る／引く。背景の圧縮感が変わる。",
+ res:"ズームインの作例、急なズーム（クラッシュズーム）の演出。",
+ tip:"勢いよく寄る演出は crash zoom / snap zoom。ギャグにも緊張にも使える。",
+ alt:["crash zoom effect","snap zoom examples"]},
+{id:"dzoom",g:"cmove",ja:"ドリーズーム",en:"dolly zoom vertigo effect",kana:"ドリー ズーム ヴァーティゴ エフェクト",tag:"応用",
+ mean:"前に寄りながら引きズーム。被写体は同じ大きさのまま背景だけ歪む。",
+ res:"めまい効果の作例、有名映画の使用例、作り方の解説。",
+ tip:"「めまいショット」「ヒッチコックズーム」とも。vertigo effect が一番当たる。",
+ alt:["vertigo effect tutorial","hitchcock zoom examples"]},
+{id:"orbit",g:"cmove",ja:"回り込み",en:"orbit shot camera movement",kana:"オービット ショット カメラ ムーブメント",tag:"応用",
+ mean:"被写体を中心に円を描いて回る。決めの場面や紹介に使う。",
+ res:"回り込み撮影の作例、360度回転、ヒーローショット。",
+ tip:"360度回るなら 360 orbit shot、半周なら arc shot。",
+ alt:["arc shot cinematography","360 orbit shot tutorial"]},
+{id:"whip",g:"cmove",ja:"ウィップパン",en:"whip pan transition",kana:"ウィップ パン トランジション",tag:"応用",
+ mean:"ブレるほど高速に振る。場面転換にも、視線移動の勢いづけにも。",
+ res:"ウィップパンの作例、繋ぎとしての使い方、編集チュートリアル。",
+ tip:"アニメだと流線・ブレ背景とセット。whip pan transition tutorial で作り方が出る。",
+ alt:["whip pan examples","swish pan transition"]},
+{id:"pushin",g:"cmove",ja:"寄り・引き",en:"push in and pull out shot",kana:"プッシュ イン アンド プル アウト ショット",tag:"基本",
+ mean:"ゆっくり寄って感情に入る／引いて突き放す。速度が意味を決める。",
+ res:"スロープッシュインの作例、感情の高まりに合わせた寄り。",
+ tip:"気づかれない速さで寄るのが slow push in。定番の感情演出。",
+ alt:["slow push in shot","pull back reveal shot"]},
+
+/* ---- ショットサイズ ---- */
+{id:"wide",g:"cshot",ja:"ロング",en:"wide shot cinematography",kana:"ワイド ショット シネマトグラフィー",tag:"基本",
+ mean:"人物が小さく、場所全体が写るサイズ。状況を見せる。",
+ res:"ショットサイズの比較図解、映画の作例、使いどころの解説。",
+ tip:"もっと引くと extreme wide shot。人物が点になるサイズ。",
+ alt:["extreme wide shot examples","shot sizes explained"]},
+{id:"estab",g:"cshot",ja:"状況説明",en:"establishing shot cinematography",kana:"エスタブリッシング ショット",tag:"基本",
+ mean:"場面の最初に置く「ここはどこか」を示す一枚。",
+ res:"冒頭カットの作例、街・建物の外観カット、使い方の解説。",
+ tip:"アニメの「背景美術だけのカット」がまさにこれ。",
+ alt:["establishing shot examples","opening shot analysis"]},
+{id:"full",g:"cshot",ja:"全身",en:"full shot cinematography",kana:"フル ショット シネマトグラフィー",tag:"基本",
+ mean:"頭からつま先まで入るサイズ。体の動きを見せたい時に使う。",
+ res:"サイズ比較、ダンスやアクションでの使用例。",
+ tip:"アクションは全身が基本。切ると何をしているか伝わらなくなる。",
+ alt:["full shot vs medium shot","framing body shots"]},
+{id:"med",g:"cshot",ja:"ミディアム",en:"medium shot cinematography",kana:"ミディアム ショット シネマトグラフィー",tag:"基本",
+ mean:"腰から上。会話の標準サイズ。手振りと表情が両方入る。",
+ res:"会話シーンの作例、サイズの使い分け解説。",
+ tip:"胸から上は medium close up（バストアップ）。会話で最も使う。",
+ alt:["medium close up shot","conversation scene framing"]},
+{id:"cu",g:"cshot",ja:"クローズアップ",en:"close up shot cinematography",kana:"クローズ アップ ショット",tag:"基本",
+ mean:"顔が画面いっぱい。感情を見せる。",
+ res:"クローズアップの作例、名シーン分析、寄りの心理効果。",
+ tip:"寄るほど観客は感情に近づく。使いすぎると効果が薄れる。",
+ alt:["close up emotional impact","famous close up shots"]},
+{id:"ecu",g:"cshot",ja:"極端な寄り",en:"extreme close up shot",kana:"エクストリーム クローズ アップ ショット",tag:"応用",
+ mean:"目だけ、手だけ。異常な緊張や細部の強調。",
+ res:"目のアップの作例、緊迫シーンでの使用、西部劇の対決。",
+ tip:"対決前の目のアップは西部劇の定番。western standoff で作例が出る。",
+ alt:["extreme close up examples","eyes close up shot"]},
+{id:"ots",g:"cshot",ja:"肩なめ",en:"over the shoulder shot",kana:"オーバー ザ ショルダー ショット",tag:"基本",
+ mean:"相手の肩越しに見る。会話の距離感と関係を示す。",
+ res:"会話シーンの定番の組み立て、切り返しとセットの解説。",
+ tip:"切り返し（shot reverse shot）と必ずセットで覚える。",
+ alt:["over the shoulder conversation","shot reverse shot"]},
+{id:"two",g:"cshot",ja:"ツーショット",en:"two shot cinematography",kana:"ツー ショット シネマトグラフィー",tag:"基本",
+ mean:"2人を1画面に収める。2人の関係を距離で見せる。",
+ res:"2人の配置の作例、関係性を距離で表す解説。",
+ tip:"間の空き方＝心の距離。血縁や対立の演出に直結する。",
+ alt:["two shot blocking examples","character blocking film"]},
+{id:"insert",g:"cshot",ja:"インサート",en:"insert shot cinematography",kana:"インサート ショット",tag:"応用",
+ mean:"手元・小道具・時計などの差し込みカット。情報を足す。",
+ res:"インサートの作例、緊張を作る小物カットの使い方。",
+ tip:"手元のアップは cutaway とも。時間経過や心理の表現に使える。",
+ alt:["cutaway shot examples","detail shot filmmaking"]},
+
+/* ---- アングル ---- */
+{id:"eye",g:"cangle",ja:"目線の高さ",en:"eye level shot",kana:"アイ レベル ショット",tag:"基本",
+ mean:"観客と対等な高さ。中立で、余計な意味が乗らない基準。",
+ res:"アングル比較の図解、目線の高さの作例。",
+ tip:"どのアングルも「目線の高さと比べてどうか」で意味が決まる。まずこれが基準。",
+ alt:["camera angles explained","neutral camera angle"]},
+{id:"low",g:"cangle",ja:"あおり",en:"low angle shot cinematography",kana:"ロー アングル ショット",tag:"基本",
+ mean:"下から見上げる。大きく、強く、威圧的に見える。",
+ res:"ヒーロー登場の作例、悪役の威圧、心理効果の解説。",
+ tip:"英雄にも怪物にも使える。hero shot low angle で決めカットの例が出る。",
+ alt:["hero shot low angle","low angle psychological effect"]},
+{id:"high",g:"cangle",ja:"俯瞰",en:"high angle shot cinematography",kana:"ハイ アングル ショット",tag:"基本",
+ mean:"上から見下ろす。小さく、弱く、孤立して見える。",
+ res:"敗北・孤独の場面、心理効果の比較解説。",
+ tip:"あおりと交互に使うと力関係が一目で伝わる。",
+ alt:["high angle vs low angle","power dynamics camera angle"]},
+{id:"top",g:"cangle",ja:"真上から",en:"top down overhead shot",kana:"トップ ダウン オーバーヘッド ショット",tag:"応用",
+ mean:"真俯瞰。神の視点。配置や図形的な構図を見せる。",
+ res:"真上からの作例、ウェス・アンダーソン的な図形構図。",
+ tip:"bird eye view shot でも同じものが出る。地図的に状況を見せたい時に。",
+ alt:["bird eye view shot","god view shot film"]},
+{id:"pov",g:"cangle",ja:"主観",en:"POV shot cinematography",kana:"ピー オー ブイ ショット",tag:"応用",
+ mean:"登場人物が見ている物をそのまま映す。観客を中に入れる。",
+ res:"一人称視点の作例、ホラーやアクションでの使用。",
+ tip:"直前に「誰が見ているか」のカットを置かないと誰の視点か伝わらない。",
+ alt:["first person pov film","pov shot horror"]},
+{id:"dutch",g:"cangle",ja:"ダッチ",en:"dutch angle shot",kana:"ダッチ アングル ショット",tag:"応用",
+ mean:"画面を傾ける。不安・混乱・異常を示す。",
+ res:"ダッチアングルの作例、傾けた時の心理効果の解説。",
+ tip:"傾けすぎると狙いすぎに見える。ここぞの場面に絞る。",
+ alt:["dutch tilt examples","canted angle film"]},
+{id:"worm",g:"cangle",ja:"超あおり",en:"worm eye view shot",kana:"ワーム アイ ビュー ショット",tag:"応用",
+ mean:"地面すれすれから見上げる。巨大さと圧迫感が最大になる。",
+ res:"地面からの作例、巨大なものを見せるカット。",
+ tip:"足元にカメラを置くと空間が誇張される。パースを強く描く時の参考に。",
+ alt:["ground level shot film","low camera height examples"]},
+
+/* ---- 構図 ---- */
+{id:"thirds",g:"ccomp",ja:"三分割",en:"rule of thirds composition",kana:"ルール オブ サーズ コンポジション",tag:"基本",
+ mean:"画面を9分割し、線の交点に大事なものを置く。最も基本の型。",
+ res:"三分割の図解、良い例と悪い例、破り方の解説。",
+ tip:"守るだけでなく「わざと中央に置く」効果も合わせて見ると理解が早い。",
+ alt:["rule of thirds examples","breaking rule of thirds"]},
+{id:"sym",g:"ccomp",ja:"対称",en:"symmetrical composition film",kana:"シンメトリカル コンポジション フィルム",tag:"応用",
+ mean:"左右対称。人工的で、静かで、支配的な印象になる。",
+ res:"対称構図の作例、ウェス・アンダーソン、キューブリックの分析。",
+ tip:"kubrick one point perspective は一点透視の対称構図の宝庫。",
+ alt:["wes anderson symmetry","kubrick one point perspective"]},
+{id:"lead",g:"ccomp",ja:"導線",en:"leading lines composition",kana:"リーディング ラインズ コンポジション",tag:"基本",
+ mean:"線で視線を誘導する。道・廊下・手すりなどを使う。",
+ res:"導線構図の図解、写真・映画の作例。",
+ tip:"背景の線をどこへ向けるかで、観客がどこを見るかが決まる。",
+ alt:["leading lines photography","visual path composition"]},
+{id:"frame",g:"ccomp",ja:"額縁",en:"frame within a frame composition",kana:"フレーム ウィズイン ア フレーム",tag:"応用",
+ mean:"窓・扉・隙間の中に人物を入れる。閉塞感や覗き見の感覚。",
+ res:"額縁構図の作例、扉越し・窓越しのカット。",
+ tip:"閉じ込められた心情、盗み見の緊張、どちらにも効く。",
+ alt:["framing device cinematography","doorway shot composition"]},
+{id:"neg",g:"ccomp",ja:"余白",en:"negative space composition",kana:"ネガティブ スペース コンポジション",tag:"応用",
+ mean:"あえて空きを作る。孤独・不安・広さを語らせる。",
+ res:"余白構図の作例、孤独の表現、引きのカット分析。",
+ tip:"視線の先を空けるのが lead room、頭上の空きが headroom。両方セットで覚える。",
+ alt:["headroom and lead room","negative space film examples"]},
+{id:"depth",g:"ccomp",ja:"奥行き",en:"depth staging composition",kana:"デプス ステージング コンポジション",tag:"応用",
+ mean:"手前・中景・奥に物を置いて立体感を作る。平面的な絵を救う。",
+ res:"前景を使った構図の解説、奥行きの作り方、被写界深度の使い分け。",
+ tip:"foreground framing を足すと「手前に何か置く」作例が集まる。",
+ alt:["foreground framing tips","depth of field storytelling"]},
+
+/* ---- アクション撮影 ---- */
+{id:"fightcam",g:"caction",ja:"戦闘の撮り方",en:"fight scene cinematography",kana:"ファイト シーン シネマトグラフィー",tag:"応用",
+ mean:"殴り合いをどう見せるか。カメラ位置と繋ぎで説得力が決まる。",
+ res:"アクション撮影の分析動画、良い例と悪い例の比較、名作の解説。",
+ tip:"「なぜ最近のアクションは見づらいか」系の分析動画が一番勉強になる。",
+ alt:["action scene analysis","why action scenes look bad"]},
+{id:"chase",g:"caction",ja:"追跡",en:"chase scene camera work",kana:"チェイス シーン カメラ ワーク",tag:"応用",
+ mean:"追う・追われるの緊張。距離感を保ちながら速度を見せる。",
+ res:"追跡シーンの分析、走りを追う撮り方、名作のシーン解説。",
+ tip:"車なら car chase cinematography。乗り物ごとに定石が違う。",
+ alt:["car chase cinematography","foot chase scene analysis"]},
+{id:"oner",g:"caction",ja:"ワンカット",en:"oner long take action scene",kana:"ワナー ロング テイク アクション シーン",tag:"応用",
+ mean:"切らずに撮り切る。動線とカメラの段取りが全て。",
+ res:"長回しアクションの分析、舞台裏、段取りの解説。",
+ tip:"アニメのカメラ設計に一番効く。動きの繋ぎ方が丸ごと見える。",
+ alt:["long take action breakdown","oner behind the scenes"]},
+{id:"shaky",g:"caction",ja:"画面揺れ",en:"camera shake action scene",kana:"カメラ シェイク アクション シーン",tag:"応用",
+ mean:"衝撃に合わせて画面を揺らす。当たった感を足す。",
+ res:"衝撃時の揺れの作例、After Effects等での付け方、やりすぎ例。",
+ tip:"揺れは「当たった瞬間だけ短く」が基本。長いと酔う。",
+ alt:["impact camera shake tutorial","screen shake animation"]},
+{id:"ramp",g:"caction",ja:"スピードランプ",en:"speed ramp effect",kana:"スピード ランプ エフェクト",tag:"応用",
+ mean:"速度を急に落として、また戻す。決めの瞬間を伸ばす。",
+ res:"速度変化の作例、編集チュートリアル、アクションでの使いどころ。",
+ tip:"アニメのタメ／詰めと同じ発想。当たる直前で落として、当たった瞬間に戻す。",
+ alt:["speed ramp tutorial","slow motion action editing"]},
+{id:"impact",g:"caction",ja:"インパクトフレーム",en:"impact frame animation",kana:"インパクト フレーム アニメーション",tag:"アニメ向き",
+ mean:"当たった1〜2コマだけ白黒や抽象画に差し替える。衝撃の誇張。",
+ res:"インパクトフレームの解説、作画の作例、有名アニメの分析。",
+ tip:"日本のアニメ特有の技法。sakuga impact frame で作例が集まる。",
+ alt:["sakuga impact frame","smear frames animation"]},
+{id:"animecam",g:"caction",ja:"アニメのカメラ",en:"anime camera work analysis",kana:"アニメ カメラ ワーク アナリシス",tag:"アニメ向き",
+ mean:"実写にはない、パースを歪ませたアニメ特有のカメラ表現。",
+ res:"アニメの演出分析、3D背景と2D作画の合わせ方、名シーン解説。",
+ tip:"「アニメ 演出 カメラワーク 解説」と日本語で探すと現場寄りの解説も出る。",
+ alt:["anime cinematography analysis","3d camera anime background"]},
+
+/* ---- 繋ぎ・演出 ---- */
+{id:"match",g:"cedit",ja:"マッチカット",en:"match cut editing",kana:"マッチ カット エディティング",tag:"応用",
+ mean:"形や動きが似た物同士を繋ぐ。別の場所・時間へ滑らかに飛ぶ。",
+ res:"マッチカットの名場面集、作り方の解説、種類の分類。",
+ tip:"骨→宇宙船（2001年）が最も有名な例。graphic match でも出る。",
+ alt:["famous match cuts","graphic match editing"]},
+{id:"jump",g:"cedit",ja:"ジャンプカット",en:"jump cut editing",kana:"ジャンプ カット エディティング",tag:"応用",
+ mean:"同じ構図のまま時間を飛ばす。違和感・焦り・時間経過。",
+ res:"ジャンプカットの作例、使い方の解説、失敗例。",
+ tip:"YouTubeの喋り動画で多用されているのも同じ技法。",
+ alt:["jump cut examples","time passage editing"]},
+{id:"reverse",g:"cedit",ja:"切り返し",en:"shot reverse shot",kana:"ショット リバース ショット",tag:"基本",
+ mean:"AとBを交互に見せる会話の基本形。肩なめとセットで使う。",
+ res:"会話シーンの組み立て解説、カットの割り方、作例。",
+ tip:"これとイマジナリーラインを覚えると会話シーンが破綻しなくなる。",
+ alt:["conversation scene editing","dialogue coverage filmmaking"]},
+{id:"line180",g:"cedit",ja:"180度ルール",en:"180 degree rule filmmaking",kana:"180 ディグリー ルール フィルムメイキング",tag:"基本",
+ mean:"2人を結ぶ線を越えない決まり。越えると左右が入れ替わり混乱する。",
+ res:"図解つきの解説、破った時の違和感の実演、意図的に破る例。",
+ tip:"アクションでも同じ。向きが入れ替わると誰が誰を殴ったか分からなくなる。",
+ alt:["180 degree rule explained","crossing the line film"]},
+{id:"jlcut",g:"cedit",ja:"L字・J字カット",en:"j cut and l cut editing",kana:"ジェイ カット アンド エル カット",tag:"応用",
+ mean:"音だけ先に入る／音だけ残す。場面の繋ぎ目を柔らかくする。",
+ res:"音と画をずらす編集の解説、作例、会話での使い方。",
+ tip:"音を先に入れると「次への期待」、残すと「余韻」。音演出の基本。",
+ alt:["audio transition editing","sound bridge film"]},
+{id:"montage",g:"cedit",ja:"モンタージュ",en:"montage sequence editing",kana:"モンタージュ シーケンス エディティング",tag:"応用",
+ mean:"短いカットを積んで、長い時間や成長を一気に見せる。",
+ res:"モンタージュの名場面、組み立て方、音楽との合わせ方。",
+ tip:"training montage（特訓）が最も分かりやすい型。",
+ alt:["training montage examples","kuleshov effect"]},
+{id:"dissolve",g:"cedit",ja:"ディゾルブ",en:"cross dissolve transition",kana:"クロス ディゾルブ トランジション",tag:"基本",
+ mean:"前の画に次の画を重ねて溶かす。時間経過や回想の合図。",
+ res:"各種トランジションの比較、使い分けの解説、作例。",
+ tip:"カット（切り替え）とディゾルブの使い分けが分かると繋ぎが締まる。",
+ alt:["film transitions explained","fade dissolve wipe difference"]}
 ];
 
 /* ============================================================
@@ -1323,7 +1667,161 @@ acting:[["ラバン動作分析：動きの質を8種に分類、アニメータ
 face:[["FACS：表情を筋肉単位で分類したコード体系","FACS action units explained"],
  ["微表情：一瞬だけ出る本音の表情","micro expressions analysis"],
  ["口形（フォニーム）：セリフに合わせた口の形","phoneme mouth shapes chart animation"],
- ["視線の動き：目だけが先に動く仕組み","eye darts saccades animation reference"]]
+ ["視線の動き：目だけが先に動く仕組み","eye darts saccades animation reference"]],
+
+/* ---- カメラ ---- */
+pan:[["ホイップパン：ブレるほど速いパン","whip pan technique"],
+ ["スイッシュパン：繋ぎに使う高速パン","swish pan transition"],
+ ["パン＋ティルトの複合：斜めに舐める動き","combined pan and tilt movement"]],
+tilt:[["ティルトアップ：見上げて威圧感を出す","tilt up reveal shot"],
+ ["ティルトダウン：見下ろして状況を示す","tilt down establishing"],
+ ["ペデスタル：カメラごと垂直に上下（ティルトと別物）","pedestal shot vs tilt"]],
+dolly:[["ドリーイン：静かに寄って感情に入る","slow dolly in emotional"],
+ ["ドリーアウト：引いて突き放す・孤立させる","dolly out reveal isolation"],
+ ["ドリー vs ズーム：背景の見え方の決定的な違い","dolly vs zoom difference explained"],
+ ["ドリーカウンター：被写体と逆に動く","counter dolly movement"]],
+track:[["トラック（横移動）：真横に平行移動","truck shot crab dolly"],
+ ["フォローショット：背後から追い続ける","following shot behind character"],
+ ["リードショット：前に回り込んで後ろ向きに撮る","leading shot walk and talk"],
+ ["ウォーク＆トーク：歩きながらの会話撮影","walk and talk cinematography"]],
+handheld:[["ドキュメンタリー風：報道的な生々しさ","documentary style handheld"],
+ ["揺れの付け方：不規則な微振動の作り方","realistic handheld shake tutorial"],
+ ["三脚との比較：安定と不安の使い分け","tripod vs handheld comparison"]],
+steadi:[["ジンバル：現代の滑らか移動撮影","gimbal movement techniques"],
+ ["名作の長回し：ステディカムの代表例","famous steadicam long take"],
+ ["階段・狭所の移動：難所での動かし方","steadicam stairs technique"]],
+crane:[["ジブ：小型クレーンでの上下","jib shot tutorial"],
+ ["クレーンダウン：上から寄っていく登場","crane down reveal"],
+ ["ドローン上昇：終幕の引き上げ","drone pull back reveal"]],
+zoom:[["クラッシュズーム：一瞬で寄る強調","crash zoom effect"],
+ ["スナップズーム：ギャグにも緊張にも","snap zoom comedy timing"],
+ ["ズームアウトの落ち：引いて事態を明かす","zoom out reveal punchline"]],
+dzoom:[["めまい効果の作り方：撮影と設定の解説","dolly zoom how to tutorial"],
+ ["名場面：めまい／ジョーズの使用例","famous dolly zoom scenes"],
+ ["逆方向：引きながら寄せる変化","reverse dolly zoom"]],
+orbit:[["アークショット：半周だけ回る","arc shot cinematography"],
+ ["ヒーローショット：決めの回り込み","hero shot orbit slow motion"],
+ ["360度回転：完全に一周する","360 degree orbit shot"]],
+whip:[["繋ぎとしての使い方：場面転換","whip pan transition tutorial"],
+ ["視線誘導：振った先に情報を置く","whip pan reveal timing"],
+ ["アニメでの流線処理","anime speed lines pan"]],
+pushin:[["スロープッシュイン：気づかれない速さで寄る","slow push in emotional scene"],
+ ["プルバックリビール：引いて全体を明かす","pull back reveal shot"],
+ ["寄りの速度と意味の関係","camera movement speed meaning"]],
+
+wide:[["エクストリームワイド：人が点になる引き","extreme wide shot examples"],
+ ["ショットサイズ一覧：全種類の比較図","shot sizes chart cinematography"],
+ ["風景の中の人物：スケール感の作り方","scale in wide shots"]],
+estab:[["リエスタブリッシュ：途中で位置を再提示","re establishing shot"],
+ ["冒頭カットの作り方","opening establishing shot analysis"],
+ ["アニメの背景美術カット","anime background establishing shot"]],
+full:[["アクションのサイズ選び：どこまで引くか","framing action scenes shot size"],
+ ["ダンス撮影：全身を切らない原則","dance cinematography framing"],
+ ["カウボーイショット：腿から上の中間サイズ","cowboy shot american shot"]],
+med:[["ミディアムクローズアップ（バストアップ）","medium close up framing"],
+ ["会話のカバレッジ：必要なサイズの揃え方","dialogue scene coverage"],
+ ["手振りを入れる余白の取り方","framing hand gestures"]],
+cu:[["感情の寄り：どこで寄るかの判断","when to use close up emotion"],
+ ["名場面のクローズアップ分析","famous close up analysis"],
+ ["寄りの連続で高める編集","escalating close ups editing"]],
+ecu:[["目のアップ：対決前の緊張","eyes extreme close up standoff"],
+ ["西部劇の対決：定番の寄りの連鎖","western standoff editing"],
+ ["ディテールの強調：物のアップ","macro detail shot film"]],
+ots:[["肩なめの角度：どれだけ肩を入れるか","over the shoulder framing tips"],
+ ["ダーティ／クリーンOTS：肩を入れる・外す","dirty vs clean single shot"],
+ ["会話の距離感の作り方","conversation blocking camera"]],
+two:[["ブロッキング：2人の配置設計","blocking two characters scene"],
+ ["距離＝関係：間の空け方の意味","physical distance storytelling film"],
+ ["3人以上の配置","group blocking cinematography"]],
+insert:[["カッタウェイ：本筋を離れる差し込み","cutaway shot examples"],
+ ["小道具で語る：物のアップで心理を出す","props storytelling insert shot"],
+ ["時計・時間経過の見せ方","time passage insert shot"]],
+
+eye:[["アングル一覧：全種類の比較","camera angles chart explained"],
+ ["中立の基準：意味を足さない撮り方","neutral framing cinematography"],
+ ["目線の高さの微調整と印象","camera height psychology"]],
+low:[["ヒーローショット：決めの見上げ","hero shot low angle"],
+ ["巨大さの誇張：怪獣・ロボの見せ方","kaiju scale low angle"],
+ ["あおりのパース：作画での歪ませ方","perspective drawing low angle"]],
+high:[["敗北・孤立の俯瞰","high angle vulnerability"],
+ ["力関係の見せ方：あおりと交互に","power dynamics camera angles"],
+ ["俯瞰のパース：作画での描き方","perspective drawing high angle"]],
+top:[["バードアイ：完全な真上","bird eye view cinematography"],
+ ["図形的な構図：真上からの整列","overhead symmetrical composition"],
+ ["俯瞰での位置説明：状況の地図化","overhead shot spatial clarity"]],
+pov:[["一人称アクション：主観のアクション撮影","first person action cinematography"],
+ ["視線の繋ぎ：見る→見た物の順序","eyeline match editing"],
+ ["ホラーの主観：何者かの視点","pov horror stalker shot"]],
+dutch:[["傾きの角度と効果の関係","dutch angle degrees effect"],
+ ["名場面での使用例","famous dutch angle scenes"],
+ ["酔い・混乱の表現","disorientation camera technique"]],
+worm:[["地面からのアングル：足元にカメラ","ground level camera angle"],
+ ["空間の誇張：極端なパースの作り方","exaggerated perspective composition"],
+ ["巨大なものを仰ぐ","looking up at giant scale shot"]],
+
+thirds:[["三分割の破り方：中央配置の効果","centered composition effect"],
+ ["黄金比・フィボナッチ構図","golden ratio composition film"],
+ ["交点に何を置くか：優先順位","rule of thirds subject placement"]],
+sym:[["一点透視：正面から奥へ抜ける構図","one point perspective cinematography"],
+ ["ウェス・アンダーソンの対称","wes anderson symmetry analysis"],
+ ["対称を崩す：不穏さの作り方","breaking symmetry composition"]],
+lead:[["視線誘導：観客の目をどこへ運ぶか","visual eye trace composition"],
+ ["消失点の使い方","vanishing point composition film"],
+ ["背景の線で人物を指す","leading lines character focus"]],
+frame:[["扉・窓越しの構図","doorway framing cinematography"],
+ ["閉塞感の演出：狭さで語る","claustrophobic framing"],
+ ["覗き見の視点","voyeur framing shot"]],
+neg:[["ヘッドルーム：頭上の余白の基準","headroom framing rules"],
+ ["リードルーム：視線・進行方向の余白","lead room nose room framing"],
+ ["孤独の表現：余白で語る","isolation composition negative space"]],
+depth:[["前景を使う：手前に物を置く","foreground framing techniques"],
+ ["三層構成：手前・中・奥の作り方","foreground midground background composition"],
+ ["被写界深度：ボケで奥行きを作る","depth of field storytelling"]],
+
+fightcam:[["見づらいアクションの原因分析","why action scenes are hard to follow"],
+ ["地理を保つ：位置関係を崩さない撮り方","spatial geography action scene"],
+ ["ヒットの見せ方：当たりのカメラ位置","selling impact camera angle"],
+ ["香港式：長回しで技を見せる","hong kong action cinematography"]],
+chase:[["カーチェイスの撮り方","car chase cinematography breakdown"],
+ ["徒歩の追跡：距離感の維持","foot chase scene analysis"],
+ ["障害物の見せ方：先を予告する","chase scene obstacle staging"]],
+oner:[["長回しの段取り：舞台裏","long take behind the scenes"],
+ ["隠し繋ぎ：見えないカット割り","hidden cut long take"],
+ ["名作の長回し分析","famous oner scene analysis"]],
+shaky:[["インパクト時の揺れの作り方","impact camera shake after effects"],
+ ["やりすぎ例：酔う揺れの境界","shaky cam criticism analysis"],
+ ["アニメの画面揺れ","screen shake anime effect"]],
+ramp:[["速度変化の編集手順","speed ramp editing tutorial"],
+ ["決めの瞬間を伸ばす","slow motion hero moment"],
+ ["タメと詰め：アニメの緩急と同じ発想","timing and spacing animation"]],
+impact:[["インパクトフレームの作画解説","impact frame sakuga explained"],
+ ["スメア（残像）フレーム","smear frames animation"],
+ ["白抜き・カラーホールドの一枚","color hold impact frame"]],
+animecam:[["アニメの3D背景と2D作画の合わせ方","3d background 2d animation camera"],
+ ["名シーンの演出分析","anime direction analysis sakuga"],
+ ["パースを歪ませる作画","anime perspective distortion animation"]],
+
+match:[["有名なマッチカット集","famous match cuts compilation"],
+ ["動きで繋ぐ：アクションマッチ","match on action editing"],
+ ["形で繋ぐ：グラフィックマッチ","graphic match cut"]],
+jump:[["ジャンプカットの作例と是非","jump cut analysis film"],
+ ["時間圧縮の見せ方","compressing time editing"],
+ ["違和感の演出として使う","jump cut anxiety effect"]],
+reverse:[["会話のカバレッジ一式","dialogue scene coverage tutorial"],
+ ["視線の高さを揃える","eyeline match conversation"],
+ ["切り返しのリズム","cutting rhythm dialogue scene"]],
+line180:[["図解での解説","180 degree rule explained animation"],
+ ["意図的に破る：混乱を演出する","intentionally breaking 180 rule"],
+ ["アクションでの向きの管理","screen direction action scene"]],
+jlcut:[["音の先行・残し：J/Lカット","j cut l cut tutorial"],
+ ["サウンドブリッジ：音で場面を繋ぐ","sound bridge transition"],
+ ["音で期待を作る","audio foreshadowing editing"]],
+montage:[["特訓モンタージュの型","training montage breakdown"],
+ ["クレショフ効果：並べ方で意味が変わる","kuleshov effect experiment"],
+ ["音楽との同期","music montage editing sync"]],
+dissolve:[["トランジション全種の比較","film transitions types compared"],
+ ["回想への入り方","flashback transition technique"],
+ ["カットとディゾルブの使い分け","when to use dissolve vs cut"]]
 };
 
 const ADDWORDS = [
@@ -1354,7 +1852,7 @@ const gstyle = g => `--gh:${gmap[g].gh};--gs:${gmap[g].gs}`;
 /* 種類つきカードの既定ワードを先に作っておく（検索とPROの見出し用） */
 DATA.forEach(d=>{ if(d.vpat && !d.en) d.en = d.vpat.replace("{v}", gmap[d.g].vdef); });
 
-let query = "", view = "shelf";
+let query = "", view = "shelf", floor = "body";
 const chosen = {};                       // {棚id: 選んだ種類の英単語}
 function curVar(gid){
   const g = gmap[gid]; if(!g.vars) return null;
@@ -1393,7 +1891,7 @@ async function doCopy(t){
 }
 
 /* ---------- filter ---------- */
-function match(d){
+function hit(d){                          // 検索語だけの判定（フロアは見ない）
   if(!query) return true;
   const g = gmap[d.g];
   const hay = [d.ja,term(d),d.en,d.kana,d.mean,d.res,d.tip,g.ja,
@@ -1401,6 +1899,19 @@ function match(d){
                ...(g.vars||[]).map(v=>v.ja+" "+v.en),
                ...(PRO[d.id]||[]).flat()].join(" ").toLowerCase();
   return hay.includes(query);
+}
+function match(d){ return gmap[d.g].floor === floor && hit(d); }
+
+/* 別フロアにも該当があれば知らせる */
+function crossFloorNote(){
+  const el = $("#crossfloor");
+  if(!query){ el.hidden = true; return; }
+  const other = FLOORS.find(f=>f.id !== floor);
+  const n = DATA.filter(d=>gmap[d.g].floor === other.id && hit(d)).length;
+  if(!n){ el.hidden = true; return; }
+  el.hidden = false;
+  el.innerHTML = `「${esc(query)}」は<strong>${esc(other.ja)}</strong>のフロアにも ${n} 件あります
+    <button data-floor="${other.id}">${esc(other.ja)}へ移動</button>`;
 }
 
 /* ---------- 種類セレクター ---------- */
@@ -1448,14 +1959,14 @@ function renderShelf(){
       }).join("")}</div>
     </section>`;
   }).join("");
-  $("#stock").textContent = `${n} / ${DATA.length} 本`;
+  $("#stock").textContent = `${n} / ${floorCount(floor)} 本`;
   syncNav();
 }
 
 /* ---------- list ---------- */
 function renderList(){
   const items = DATA.filter(match);
-  $("#stock").textContent = `${items.length} / ${DATA.length} 本`;
+  $("#stock").textContent = `${items.length} / ${floorCount(floor)} 本`;
   if(!items.length){ $("#list").innerHTML = `<p class="empty">該当なし。別のことばで探してみてください。</p>`; syncNav(); return; }
   $("#list").innerHTML = `<p class="listhint dot">行を右クリック（スマホは長押し）すると、その動きの専門ワードが出ます</p>
     <div class="listwrap"><table>
@@ -1488,6 +1999,7 @@ function renderList(){
 }
 
 function render(){
+  buildFloors(); buildNav(); crossFloorNote();
   /* 隠す方は中身も消す。同じ id の棚が2つ残るとジャンプ先を間違える */
   if(view==="shelf"){
     $("#list").innerHTML=""; $("#list").hidden=true; $("#shelf").hidden=false; renderShelf();
@@ -1617,10 +2129,27 @@ document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ hidePop(); close
 
 /* ---------- 棚案内（ジャンプ）---------- */
 const nav = $("#genrechips"), counter = document.querySelector(".counter");
-nav.innerHTML =
-  `<span class="navlabel">棚案内</span>` +
-  `<button class="chip" data-jump="top">▲ 先頭</button>` +
-  GENRES.map(g=>`<button class="chip gv" data-jump="${g.id}" style="${gstyle(g.id)}"><span class="dotmk"></span>${esc(g.ja)}</button>`).join("");
+function floorCount(fid){ return DATA.filter(d=>gmap[d.g].floor===fid).length; }
+function buildFloors(){
+  $("#floors").innerHTML = FLOORS.map(f=>
+    `<button class="floorbtn" data-floor="${f.id}" aria-pressed="${f.id===floor}">
+       <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#${f.ic}"/></svg>
+       ${esc(f.ja)}<i>${floorCount(f.id)}本</i></button>`).join("");
+}
+function buildNav(){
+  nav.innerHTML =
+    `<span class="navlabel">棚案内</span>` +
+    `<button class="chip" data-jump="top">▲ 先頭</button>` +
+    GENRES.filter(g=>g.floor===floor)
+      .map(g=>`<button class="chip gv" data-jump="${g.id}" style="${gstyle(g.id)}"><span class="dotmk"></span>${esc(g.ja)}</button>`).join("");
+}
+document.addEventListener("click", e=>{
+  const b = e.target.closest?.("[data-floor]"); if(!b) return;
+  if(b.dataset.floor === floor) return;
+  floor = b.dataset.floor;
+  render();
+  window.scrollTo({top:0, behavior:"auto"});
+});
 
 let stickyH = 90;
 function measure(){ stickyH = counter.getBoundingClientRect().height + 10; }
@@ -1661,7 +2190,8 @@ $("#v-list").addEventListener("click", ()=>{ view="list"; $("#v-list").setAttrib
 
 $("#addgrid").innerHTML = ADDWORDS.map(a=>
   `<button class="addcard" data-copy="${esc(a.w)}"><b>${esc(a.w)}</b><span>${esc(a.d)}</span></button>`).join("");
-$("#subline").textContent = `ANIMATION REFERENCE / ${GENRES.length}棚 ${DATA.length}本 在庫中`;
+$("#subline").textContent =
+  `ANIMATION & CAMERA REFERENCE / ${FLOORS.length}フロア ${GENRES.length}棚 ${DATA.length}本 在庫中`;
 
 render();
 </script>
