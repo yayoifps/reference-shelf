@@ -2,9 +2,9 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="アニメ・ゲーム制作用の英語リファレンス検索ワード。体の動きとカメラワークの2フロア。クリックでコピーしてYouTubeへ。">
+<meta name="description" content="アニメ・ゲーム制作用の英語リファレンス検索ワード。体の動き・カメラワーク・アニメの基礎の3フロア。">
 <meta property="og:title" content="リファレンス検索ワード棚">
-<meta property="og:description" content="体の動きとカメラワークの英語リファレンス検索ワード集。クリックでコピーしてYouTubeへ。">
+<meta property="og:description" content="体の動き・カメラワーク・アニメの基礎の英語リファレンス検索ワード集。クリックでコピーしてYouTubeへ。">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📼</text></svg>">
 <title>リファレンス検索ワード棚</title>
@@ -121,13 +121,36 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01em}
 .sub{margin:2px 0 0;font-size:12.5px;color:var(--ink-2);letter-spacing:.06em}
 /* 手順：①〜③は一連の流れ、右クリックは流れの外の補足 */
-.howto{border-top:1px solid var(--line);padding-top:15px}
+.howto{
+  position:relative;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-left:4px solid var(--sticker);
+  border-radius:3px;
+  padding:20px 20px 16px;
+  margin-top:8px;
+}
+.howto-tag{
+  position:absolute;top:-11px;left:16px;
+  background:var(--sticker);color:var(--sticker-ink);
+  font-family:"DotGothic16",monospace;font-size:11.5px;letter-spacing:.1em;
+  padding:3px 12px;border-radius:2px;
+  box-shadow:0 2px 5px -2px rgba(0,0,0,.4);
+}
 .flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr)}
 .flow li{
+  position:relative;
   display:flex;gap:10px;align-items:flex-start;
   padding:0 22px;border-left:1px solid var(--line);
 }
 .flow li:first-child{border-left:0;padding-left:0}
+/* 流れを示す矢印。区切り線の上に重ねる */
+.flow li+li::before{
+  content:"→";
+  position:absolute;left:-9px;top:50%;transform:translateY(-50%);
+  background:var(--panel);padding:3px 0;
+  font-family:"DotGothic16",monospace;font-size:13px;color:var(--ink-2);
+}
 .flow b{
   flex:none;width:21px;height:21px;border-radius:50%;
   background:var(--ink);color:var(--bg);
@@ -138,7 +161,9 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
 .flow .d{display:block;font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:1px;text-wrap:pretty}
 .tipline{
   display:flex;gap:10px;align-items:center;
-  margin:14px 0 0;padding-top:12px;border-top:1px dashed var(--line);
+  margin:15px -20px -16px;padding:11px 20px 12px;
+  border-top:1px dashed var(--line);
+  background:var(--bg);border-radius:0 0 3px 3px;
   font-size:12.5px;color:var(--ink-2);line-height:1.55;
 }
 .tipline .plus{
@@ -661,6 +686,63 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
 .a-eline .pv-subj{animation:pv-swapA 3s steps(1) infinite alternate}
 .a-eline .pv-subj2{animation:pv-swapB 3s steps(1) infinite alternate}
 .a-emontage .pv-b{animation:pv-cut .7s steps(1) infinite}
+
+/* --- アニメの基礎（ボール） --- */
+.pv-ball,.pv-seg{fill:var(--face-ink)}
+.pv-ball,.pv-seg,.pv-chainw,.pv-pend{transform-box:view-box}
+.pv-ball{transform-origin:40px 54px}
+.pv-ball.b1{transform-origin:86px 55px}
+.pv-ball.b2{transform-origin:186px 58px}
+.pv-pend{transform-origin:136px 8px}
+.pv-seg{transform-origin:center}
+@keyframes pv-ballrun{
+  0%{transform:translate(0,-30px) scale(1,1)}
+  22%{transform:translate(38px,0) scale(.9,1.14)}
+  27%{transform:translate(46px,6px) scale(1.42,.6)}
+  33%{transform:translate(56px,0) scale(.92,1.12)}
+  55%{transform:translate(100px,-22px) scale(1,1)}
+  72%{transform:translate(140px,4px) scale(1.3,.72)}
+  86%{transform:translate(172px,-10px) scale(1,1)}
+  100%{transform:translate(200px,6px) scale(1.2,.82)}}
+.a-ball .pv-ball{animation:pv-ballrun 2.6s linear infinite}
+@keyframes pv-sq{0%,100%{transform:scale(1,1)}30%{transform:scale(1.45,.58)}65%{transform:scale(.8,1.3)}}
+.a-squash .pv-ball{animation:pv-sq 1.8s ease-in-out infinite}
+@keyframes pv-antic{
+  0%,20%{transform:translate(0,0) scale(1,1)}
+  35%{transform:translate(0,10px) scale(1.3,.68)}
+  45%{transform:translate(6px,-6px) scale(.85,1.2)}
+  70%{transform:translate(120px,-30px) scale(1,1)}
+  100%{transform:translate(200px,4px) scale(1.1,.9)}}
+.a-antic .pv-ball{animation:pv-antic 2.8s ease-out infinite}
+@keyframes pv-ease{0%{transform:translateX(0)}100%{transform:translateX(196px)}}
+.a-slowin .pv-ball{animation:pv-ease 2.6s cubic-bezier(.7,0,.3,1) infinite alternate}
+.a-even .pv-ball{animation:pv-ease 2.6s linear infinite alternate}
+@keyframes pv-arc{
+  0%{transform:translate(0,0)} 25%{transform:translate(52px,-50px)}
+  50%{transform:translate(104px,0)} 75%{transform:translate(156px,-44px)}
+  100%{transform:translate(208px,0)}}
+.a-arcs .pv-ball{animation:pv-arc 3.4s ease-in-out infinite alternate}
+.a-timing .b1{--x1:0px;--x2:70px;animation:pv-x 2.6s ease-in-out infinite alternate}
+.a-timing .b2{--x1:0px;--x2:70px;animation:pv-x 1s ease-in-out infinite alternate}
+.a-weight .b1{--y1:-26px;--y2:0px;animation:pv-y .8s cubic-bezier(.6,0,1,.5) infinite alternate}
+.a-weight .b2{--y1:-40px;--y2:0px;animation:pv-y 1.6s cubic-bezier(.4,0,.6,1) infinite alternate}
+.a-exagg .b1{--y1:0px;--y2:-10px;animation:pv-y 1.4s ease-in-out infinite alternate}
+.a-exagg .b2{--y1:0px;--y2:-38px;animation:pv-y 1.4s ease-in-out infinite alternate}
+.a-second .b1{--x1:-20px;--x2:20px;animation:pv-x 2.4s ease-in-out infinite alternate}
+.a-second .b2{--y1:0px;--y2:-12px;animation:pv-y .6s ease-in-out infinite alternate}
+.a-pend .pv-pend{--r1:-32deg;--r2:32deg;animation:pv-r 2.4s ease-in-out infinite alternate}
+.a-follow .pv-seg,.a-tail .pv-seg{--y1:-16px;--y2:16px;animation:pv-y 1.7s ease-in-out infinite alternate}
+.a-flag .pv-seg{--y1:-13px;--y2:13px;animation:pv-y 1.1s ease-in-out infinite alternate}
+.a-hair .pv-seg{--y1:-9px;--y2:9px;animation:pv-y 1.5s ease-in-out infinite alternate}
+@keyframes pv-loop{0%{transform:translateX(-6px)}100%{transform:translateX(212px)}}
+.a-loop .pv-ball{animation:pv-loop 2s linear infinite}
+@keyframes pv-smear{
+  0%,40%{transform:translateX(0) scale(1,1)}
+  50%{transform:translateX(100px) scale(3.4,.6);opacity:.55}
+  60%,100%{transform:translateX(196px) scale(1,1);opacity:1}}
+.a-smear .pv-ball{animation:pv-smear 2.2s steps(1) infinite alternate}
+.a-block .pv-ball{--x1:0px;--x2:196px;animation:pv-x 2.4s steps(5) infinite alternate}
+.a-ghost .pv-ball{--x1:96px;--x2:180px;animation:pv-x 2.2s ease-in-out infinite alternate}
 .a-ejl .pv-b{animation:pv-cut 3s steps(1) infinite}
 .a-ltilt .pv-scene{filter:blur(2.6px)}
 .a-lsoft .pv-scene{filter:blur(1.3px)}
@@ -799,11 +881,35 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
       <path d="M19 4 L29 4" stroke-width="4"/><path d="M24 4 L24 8" stroke-width="4"/>
     </g>
 
+    <!-- 3F アニメの基礎の棚マーク（48x48） -->
+    <g id="mk-prin" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+      <circle cx="14" cy="14" r="7"/><ellipse cx="34" cy="34" rx="9" ry="6"/>
+      <path d="M18 20 Q26 26 28 30" stroke-dasharray="1 6"/>
+    </g>
+    <g id="mk-drill" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+      <path d="M4 40 Q14 8 24 40 Q34 20 44 40"/>
+      <circle cx="24" cy="12" r="5" fill="currentColor" stroke="none"/>
+    </g>
+    <g id="mk-craft" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 42 Q16 24 24 22 Q34 20 38 6"/>
+      <circle cx="38" cy="6" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="10" cy="42" r="4" fill="currentColor" stroke="none"/>
+    </g>
+    <g id="mk-tool" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+      <path d="M6 40 Q18 40 24 24 Q30 8 42 8"/>
+      <circle cx="6" cy="40" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="42" cy="8" r="4" fill="currentColor" stroke="none"/>
+    </g>
+
     <!-- フロアのアイコン（24x24） -->
     <g id="ic-body" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
       <circle cx="13" cy="4" r="2.4" fill="currentColor" stroke="none"/>
       <path d="M13 7.5 L11 14 L8 21"/><path d="M11 14 L15 18 L15 22"/>
       <path d="M13 9.5 L18 12"/><path d="M13 9.5 L7 11"/>
+    </g>
+    <g id="ic-anim" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+      <path d="M2 20 Q7 5 12 20 Q17 10 22 20"/>
+      <circle cx="12" cy="6" r="2.6" fill="currentColor" stroke="none"/>
     </g>
     <g id="ic-cam" fill="currentColor" stroke="none">
       <rect x="2" y="8" width="13" height="10" rx="1.5"/>
@@ -930,7 +1036,8 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
         <p class="sub dot" id="subline">ANIMATION REFERENCE</p>
       </div>
     </div>
-    <div class="howto">
+    <section class="howto" aria-label="使い方">
+      <span class="howto-tag">使い方</span>
       <ol class="flow">
         <li><b>1</b><span><strong>カーソルを合わせる</strong>
           <span class="d">どんな動きか、検索すると何が出るかを日本語で表示</span></span></li>
@@ -941,7 +1048,7 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
       </ol>
       <p class="tipline"><span class="plus">＋</span>
         <span><strong>右クリック</strong>（スマホは長押し）すると、プロが使う技名のメニューが出ます</span></p>
-    </div>
+    </section>
   </div>
 </header>
 
@@ -1040,13 +1147,20 @@ const GENRES = [
   {id:"ccolor",ja:"光の質・色",   en:"light and color",gh:105, gs:"38%", mk:"mk-ccolor",floor:"camera"},
   {id:"ctime", ja:"時間・速度",   en:"time and speed",gh:292, gs:"32%", mk:"mk-ctime", floor:"camera"},
   {id:"caction",ja:"アクション撮影",en:"action camera",gh:353, gs:"52%", mk:"mk-caction",floor:"camera"},
-  {id:"cedit", ja:"繋ぎ・演出",   en:"editing",       gh:325, gs:"34%", mk:"mk-cedit", floor:"camera"}
+  {id:"cedit", ja:"繋ぎ・演出",   en:"editing",       gh:325, gs:"34%", mk:"mk-cedit", floor:"camera"},
+
+  /* ---- 3F：アニメの基礎 ---- */
+  {id:"prin",  ja:"12の原則",   en:"12 principles",  gh:16,  gs:"58%", mk:"mk-prin", floor:"anime"},
+  {id:"drill", ja:"基礎練習",   en:"exercises",      gh:200, gs:"50%", mk:"mk-drill",floor:"anime"},
+  {id:"craft", ja:"作画の考え方",en:"drawing craft", gh:275, gs:"40%", mk:"mk-craft",floor:"anime"},
+  {id:"tool",  ja:"デジタル・技術",en:"tools",       gh:140, gs:"40%", mk:"mk-tool", floor:"anime"}
 ];
 GENRES.forEach(g=>{ if(!g.floor) g.floor = "body"; });
 
 const FLOORS = [
   {id:"body",   ja:"体の動き",    en:"body movement", ic:"ic-body"},
-  {id:"camera", ja:"カメラワーク", en:"camera work",  ic:"ic-cam"}
+  {id:"camera", ja:"カメラワーク", en:"camera work",  ic:"ic-cam"},
+  {id:"anime",  ja:"アニメの基礎", en:"fundamentals", ic:"ic-anim"}
 ];
 
 /* ============================================================
@@ -2157,7 +2271,193 @@ const DATA = [
  mean:"止まる時間の設計。動かない間があるから、次の動きが効く。",
  res:"演技の間の解説、名場面の沈黙、リアクションの遅らせ方。",
  tip:"アニメの「タメ」と同じ。反応を1テンポ遅らせるだけで芝居に見える。",
- alt:["comedic timing pause acting","silence in acting scene"]}
+ alt:["comedic timing pause acting","silence in acting scene"]},
+
+/* ================= 3F：アニメの基礎 ================= */
+/* ---- 12の原則 ---- */
+{id:"squash",g:"prin",ja:"潰しと伸ばし",en:"squash and stretch animation",kana:"スカッシュ アンド ストレッチ",tag:"原則",
+ mean:"力がかかると潰れ、勢いがつくと伸びる。柔らかさと重さの表現。",
+ res:"ボールでの解説、潰し伸ばしの作例、体積を保つ考え方。",
+ tip:"潰しても伸ばしても**体積は変えない**のが鉄則。崩れると別の物に見える。",
+ alt:["squash and stretch ball exercise","volume preservation animation"]},
+{id:"antic",g:"prin",ja:"予備動作",en:"anticipation animation principle",kana:"アンティシペーション",tag:"原則",
+ mean:"動く前に逆へ引く。跳ぶ前にしゃがむ、殴る前に引く。",
+ res:"予備動作の作例、大きさと効果の関係、無い場合との比較。",
+ tip:"予備動作が大きいほど、次の動きが速く見える。",
+ alt:["anticipation animation examples","wind up motion animation"]},
+{id:"staging",g:"prin",ja:"ステージング",en:"staging animation principle",kana:"ステージング",tag:"原則",
+ mean:"何を見せたいかを明確にする。配置・構図・タイミングの整理。",
+ res:"ステージングの解説、良い例と悪い例、見せたいものへの誘導。",
+ tip:"1カットに1つの主題。詰め込むと何も伝わらなくなる。",
+ alt:["staging in animation examples","clear staging composition"]},
+{id:"straight",g:"prin",ja:"ストレートアヘッド／ポーズトゥポーズ",en:"straight ahead vs pose to pose",kana:"ストレート アヘッド ブイエス ポーズ トゥ ポーズ",tag:"原則",
+ mean:"頭から順に描くか、キーポーズを先に決めて間を割るか。2つの作り方。",
+ res:"両手法の比較、使い分けの解説、実演。",
+ tip:"炎や水はストレートアヘッド、演技はポーズトゥポーズが基本。",
+ alt:["straight ahead animation method","pose to pose workflow"]},
+{id:"follow",g:"prin",ja:"フォロースルー",en:"follow through and overlapping action",kana:"フォロー スルー アンド オーバーラッピング アクション",tag:"原則",
+ mean:"体が止まっても髪や服は遅れて動き続ける。部位ごとの時間差。",
+ res:"フォロースルーの作例、遅れの付け方、尻尾や布での練習。",
+ tip:"付け根から先端へ順に遅れる。全部同時に止めると死んだ絵になる。",
+ alt:["overlapping action exercise","drag and follow through animation"]},
+{id:"slowin",g:"prin",ja:"スローイン・スローアウト",en:"slow in slow out animation",kana:"スロー イン スロー アウト",tag:"原則",
+ mean:"動き出しと止まり際は詰め、中間は速い。等間隔は機械の動き。",
+ res:"詰めと割りの解説、スペーシングの図、等速との比較。",
+ tip:"間隔（スペーシング）が速度そのもの。コマ数ではなく間隔で調整する。",
+ alt:["easing spacing animation","timing and spacing explained"]},
+{id:"arcs",g:"prin",ja:"アーク（軌道）",en:"arcs animation principle",kana:"アークス",tag:"原則",
+ mean:"生き物の動きは弧を描く。直線的な軌道はロボットの動き。",
+ res:"軌道の可視化、腕の振りのアーク、直線との比較。",
+ tip:"軌道を線で描いてから中を割ると崩れない。motion path で可視化する。",
+ alt:["arcs in animation examples","motion path arc drawing"]},
+{id:"second",g:"prin",ja:"セカンダリーアクション",en:"secondary action animation",kana:"セカンダリー アクション",tag:"原則",
+ mean:"主の動きに添える副次的な動き。歩きながら髪を触る等。",
+ res:"副次動作の作例、主動作との関係、足し方の解説。",
+ tip:"主役を食わない程度に。目立ちすぎると何を見せたいか分からなくなる。",
+ alt:["secondary action examples animation","supporting action animation"]},
+{id:"timing",g:"prin",ja:"タイミング",en:"timing in animation",kana:"タイミング イン アニメーション",tag:"原則",
+ mean:"何コマかけるか。同じ動きでもコマ数で重さと性格が変わる。",
+ res:"コマ数別の比較、重い物と軽い物、タイミングチャート。",
+ tip:"コマを増やせば重く鈍く、減らせば軽く速く見える。",
+ alt:["timing chart animation","weight through timing"]},
+{id:"exagg",g:"prin",ja:"誇張",en:"exaggeration animation principle",kana:"エグザジャレーション",tag:"原則",
+ mean:"実写のまま写すと逆に嘘に見える。本質を強調して初めて伝わる。",
+ res:"誇張の作例、実写との比較、どこまで誇張するかの判断。",
+ tip:"リファレンスは出発点。そのままトレースすると動きが死ぬ。",
+ alt:["exaggeration in animation examples","pushing poses animation"]},
+{id:"solid",g:"prin",ja:"ソリッドドローイング",en:"solid drawing animation principle",kana:"ソリッド ドローイング",tag:"原則",
+ mean:"立体として破綻なく描く。どの角度でも同じ体積に見えること。",
+ res:"立体感の解説、パースと構造、ボリュームの保ち方。",
+ tip:"ツインズ（左右対称の硬いポーズ）を避けるのもこの原則の一部。",
+ alt:["solid drawing volume animation","avoiding twinning pose"]},
+{id:"appeal",g:"prin",ja:"アピール",en:"appeal animation principle",kana:"アピール",tag:"原則",
+ mean:"見ていて魅力的か。デザイン・ポーズ・シルエットの総合。",
+ res:"アピールの解説、キャラデザインの分析、良いポーズの条件。",
+ tip:"「可愛い」ではなく「目を引く」こと。悪役にもアピールは要る。",
+ alt:["appeal in character animation","character design appeal"]},
+/* ---- 基礎練習 ---- */
+{id:"ball",g:"drill",ja:"バウンシングボール",en:"bouncing ball animation exercise",kana:"バウンシング ボール アニメーション エクササイズ",tag:"練習",
+ mean:"最初にやる課題。弧・詰め・潰し伸ばしが全部入っている。",
+ res:"バウンシングボールの作り方、良い例と悪い例、コマ割りの図解。",
+ tip:"跳ね際が最速で最も詰まる。頂点は最も間隔が空く。これが全ての土台。",
+ alt:["bouncing ball animation tutorial","ball bounce spacing chart"]},
+{id:"ballw",g:"drill",ja:"重いボール・軽いボール",en:"heavy vs light ball animation",kana:"ヘビー ブイエス ライト ボール",tag:"練習",
+ mean:"同じ形でもコマ数と跳ね方で重さが変わる。ボウリング球と風船。",
+ res:"重さ別の比較、跳ね方の違い、素材ごとの反応。",
+ tip:"重い＝跳ねない・潰れない・落下が速い。軽い＝よく跳ねて空気に流される。",
+ alt:["weight in animation ball","bowling ball vs balloon animation"]},
+{id:"pendulum",g:"drill",ja:"振り子",en:"pendulum animation exercise",kana:"ペンデュラム アニメーション エクササイズ",tag:"練習",
+ mean:"振り子の課題。端で詰まり中央で速い、というスローイン・アウトの基本。",
+ res:"振り子の作り方、オーバーラップ付きの振り子、コマ割り。",
+ tip:"紐に節を作ると overlapping の練習になる。次は尻尾へ進む。",
+ alt:["pendulum animation tutorial","overlapping pendulum exercise"]},
+{id:"tail",g:"drill",ja:"尻尾・鞭",en:"tail whip overlapping animation",kana:"テイル ウィップ オーバーラッピング",tag:"練習",
+ mean:"連なった部位が順に遅れて動く。付け根から先端へ波が伝わる。",
+ res:"尻尾の動かし方、鞭のしなり、連結オブジェクトの練習。",
+ tip:"先端ほど遅れて、大きく振れる。ドラッグ（引きずり）の代表的な課題。",
+ alt:["tail animation overlapping tutorial","whip drag animation exercise"]},
+{id:"flag",g:"drill",ja:"旗・布",en:"flag cloth animation exercise",kana:"フラッグ クロス アニメーション エクササイズ",tag:"練習",
+ mean:"布のなびき。波が付け根から端へ抜けていく繰り返し。",
+ res:"旗のアニメーション課題、布のたなびき、波の作り方。",
+ tip:"波は必ず一方向へ流れる。往復させると水中のように見える。",
+ alt:["flag waving animation tutorial","cloth simulation reference"]},
+{id:"hair",g:"drill",ja:"髪の揺れ",en:"hair animation overlapping",kana:"ヘアー アニメーション オーバーラッピング",tag:"練習",
+ mean:"髪の遅れと戻り。房ごとに時間差をつけると生きて見える。",
+ res:"髪の揺らし方、房の分け方、アニメでの処理。",
+ tip:"房を2〜3グループに分けて時間差をつける。全部同じだとカツラに見える。",
+ alt:["anime hair animation tutorial","hair overlap secondary motion"]},
+{id:"lift",g:"drill",ja:"重い物を持ち上げる",en:"weight lift animation exercise",kana:"ウェイト リフト アニメーション エクササイズ",tag:"練習",
+ mean:"重さを見せる課題。予備動作・踏ん張り・持ち上げ後のバランス取り。",
+ res:"重量挙げの課題、重さの表現、実写との比較。",
+ tip:"重さは物ではなく**キャラの反応**で伝える。持つ前と後の姿勢差が命。",
+ alt:["lifting heavy box animation exercise","showing weight animation"]},
+{id:"lipsync",g:"drill",ja:"リップシンク",en:"lip sync animation exercise",kana:"リップ シンク アニメーション エクササイズ",tag:"練習",
+ mean:"口の形を音に合わせる。母音の形と閉じ音が基本。",
+ res:"口形チャート、音素ごとの形、リップシンクの手順。",
+ tip:"日本語はアイウエオ＋閉じの6形でほぼ足りる。英語は phoneme chart を見る。",
+ alt:["mouth shapes chart lip sync","phoneme animation guide"]},
+{id:"panto",g:"drill",ja:"パントマイム",en:"pantomime animation exercise",kana:"パントマイム アニメーション エクササイズ",tag:"練習",
+ mean:"セリフなしで状況を伝える課題。演技力が丸裸になる。",
+ res:"パントマイムの実演、無い物を扱う技術、演技課題の作例。",
+ tip:"手が「見えない物の形」を保てているかが全て。object work で探す。",
+ alt:["pantomime object work","acting without dialogue animation"]},
+{id:"dialogue",g:"drill",ja:"二人の芝居",en:"two character dialogue animation",kana:"ツー キャラクター ダイアログ アニメーション",tag:"練習",
+ mean:"2人の掛け合い。聞いている側の芝居が難しく、差が出る。",
+ res:"会話シーンの課題、リアクションの作り方、視線のやり取り。",
+ tip:"喋っていない側をどう動かすかで力量が出る。listening acting で探す。",
+ alt:["listening acting animation","two character scene animation"]},
+/* ---- 作画の考え方 ---- */
+{id:"lineact",g:"craft",ja:"ライン・オブ・アクション",en:"line of action drawing",kana:"ライン オブ アクション",tag:"考え方",
+ mean:"ポーズを貫く1本の流れ線。これが弱いとポーズが死ぬ。",
+ res:"ラインオブアクションの解説、ポーズの直し方、C・Sカーブ。",
+ tip:"CカーブかSカーブのどちらかに乗せる。まっすぐは避ける。",
+ alt:["line of action gesture drawing","C curve S curve pose"]},
+{id:"silhou",g:"craft",ja:"シルエット",en:"silhouette readability animation",kana:"シルエット リーダビリティ",tag:"考え方",
+ mean:"黒く塗りつぶしても何をしているか分かるか。ポーズの読みやすさ。",
+ res:"シルエットテストの解説、良い例と悪い例、キャラデザでの活用。",
+ tip:"迷ったら塗り潰して確認。腕が体に重なると一気に読めなくなる。",
+ alt:["silhouette test character design","readable pose animation"]},
+{id:"keypose",g:"craft",ja:"キーポーズと中割り",en:"key poses breakdown inbetween",kana:"キー ポーズ ブレイクダウン インビトウィーン",tag:"考え方",
+ mean:"キー→ブレイクダウン→中割りの3段階。作画の基本の進め方。",
+ res:"作画工程の解説、ブレイクダウンの役割、中割りの取り方。",
+ tip:"ブレイクダウンが動きの性格を決める。ここを機械的に割ると凡庸になる。",
+ alt:["breakdown drawing animation","inbetweening tutorial"]},
+{id:"spacing",g:"craft",ja:"タイムチャート",en:"timing chart spacing animation",kana:"タイミング チャート スペーシング",tag:"考え方",
+ mean:"コマの間隔を指定する図。詰め・割りを数字で管理する。",
+ res:"タイムシートの読み方、チャートの書き方、間隔と速度の関係。",
+ tip:"日本のアニメはタイムシート（X sheet）で管理する。書き方から覚える。",
+ alt:["animation timing chart tutorial","x sheet exposure sheet"]},
+{id:"smear",g:"craft",ja:"スメア（残像）",en:"smear frames animation",kana:"スメア フレームズ アニメーション",tag:"考え方",
+ mean:"速い動きの1〜2コマを引き伸ばす。目には残像として自然に見える。",
+ res:"スメアの作例、種類（引き伸ばし・多重・ぼかし）、名作の分析。",
+ tip:"止めて見ると異様な絵でいい。動いて見えれば正解。",
+ alt:["smear frames examples","multiple limb smear animation"]},
+{id:"mblur",g:"craft",ja:"モーションブラー",en:"motion blur animation",kana:"モーション ブラー アニメーション",tag:"考え方",
+ mean:"速度に応じたブレ。実写とアニメで正解が違う。",
+ res:"モーションブラーの解説、コマ打ちとの関係、付けすぎの例。",
+ tip:"2コマ打ちの絵に強いブラーを乗せると気持ち悪くなる。相性がある。",
+ alt:["motion blur vs smear animation","shutter angle animation"]},
+{id:"loopmk",g:"craft",ja:"ループの作り方",en:"seamless loop animation tutorial",kana:"シームレス ループ アニメーション",tag:"考え方",
+ mean:"継ぎ目なく繰り返す作り方。最初と最後のコマを重ねない。",
+ res:"ループの作り方、サイクルアニメの手順、繋ぎ目の消し方。",
+ tip:"最終コマ＝1コマ目にすると1コマ止まる。最終コマは1つ手前まで。",
+ alt:["cycle animation tutorial","perfect loop animation tips"]},
+{id:"gesture",g:"craft",ja:"クロッキー",en:"gesture drawing practice",kana:"ジェスチャー ドローイング プラクティス",tag:"考え方",
+ mean:"短時間で動きの本質だけを掴む練習。形より流れを取る。",
+ res:"30秒〜2分のクロッキー実演、姿勢のとらえ方、練習サイト。",
+ tip:"線を綺麗にしようとした瞬間に失敗する。流れだけを追う。",
+ alt:["30 second gesture drawing","quick pose practice"]},
+/* ---- デジタル・技術 ---- */
+{id:"graph",g:"tool",ja:"グラフエディタ",en:"graph editor animation curves",kana:"グラフ エディタ アニメーション カーブ",tag:"技術",
+ mean:"動きを曲線で編集する。詰め・割りを数値で操作する現代の主流。",
+ res:"カーブの読み方、イーズの付け方、よくある失敗の直し方。",
+ tip:"曲線の傾き＝速度。平らな所は止まっている。まずこれだけ覚える。",
+ alt:["animation curves tutorial","ease in ease out graph editor"]},
+{id:"ikfk",g:"tool",ja:"IK / FK",en:"ik vs fk animation",kana:"アイケー ブイエス エフケー",tag:"技術",
+ mean:"手足の動かし方の2方式。接地はIK、振りはFKが得意。",
+ res:"IKとFKの違いの解説、切り替えのタイミング、使い分け。",
+ tip:"足が地面に着くならIK、腕を大きく振るならFK。切り替えも普通に使う。",
+ alt:["ik fk switching animation","rigging ik fk explained"]},
+{id:"rig",g:"tool",ja:"リグの基礎",en:"character rigging basics",kana:"キャラクター リギング ベーシックス",tag:"技術",
+ mean:"骨とコントローラの仕組み。動かす側として最低限の理解が要る。",
+ res:"リグの入門解説、コントローラの種類、壊れる原因。",
+ tip:"何が動かせて何が動かせないかを知ると、無理な要求をしなくなる。",
+ alt:["rigging basics for animators","control rig explained"]},
+{id:"onion",g:"tool",ja:"オニオンスキン",en:"onion skin animation",kana:"オニオン スキン アニメーション",tag:"技術",
+ mean:"前後のコマを透かして見る機能。軌道と間隔の確認に使う。",
+ res:"オニオンスキンの使い方、軌道チェック、ソフト別の設定。",
+ tip:"軌道が弧になっているかの確認に最適。アークの原則とセットで使う。",
+ alt:["onion skin arc check","animation ghosting tool"]},
+{id:"mocapfix",g:"tool",ja:"モーキャップの整え方",en:"mocap cleanup animation",kana:"モーキャップ クリーンアップ アニメーション",tag:"技術",
+ mean:"生データのノイズを取り、誇張を足して作品の絵に寄せる。",
+ res:"モーキャップ修正の手順、足の滑り取り、誇張の足し方。",
+ tip:"生データそのままは眠い動き。原則を足して初めて作品になる。",
+ alt:["mocap cleanup workflow","foot sliding fix animation"]},
+{id:"ablock",g:"tool",ja:"ブロッキング",en:"blocking animation workflow",kana:"ブロッキング アニメーション ワークフロー",tag:"技術",
+ mean:"キーポーズだけを段階的に置いていく3Dの作り方。",
+ res:"ブロッキングの手順、ステップドとスプラインの違い、進め方。",
+ tip:"最初はステップド（カクカク）で作る。滑らかにするのは最後。",
+ alt:["blocking to spline workflow","stepped keys animation"]}
 ];
 
 /* ============================================================
@@ -2880,7 +3180,119 @@ shy:[["自己接触行動","self soothing gestures nervous"],
  ["体を小さくする","closed body language shy"]],
 pause:[["間のコメディ","comedic timing pause"],
  ["沈黙の名場面","powerful silence film scene"],
- ["リアクションを遅らせる","delayed reaction comedy timing"]]
+ ["リアクションを遅らせる","delayed reaction comedy timing"]],
+
+squash:[["体積を保つ潰し","volume preservation squash stretch"],
+ ["ボールでの基礎練習","squash stretch ball exercise"],
+ ["顔の潰し伸ばし","facial squash and stretch"]],
+antic:[["予備動作の大きさと効果","anticipation size timing animation"],
+ ["予備動作なしとの比較","animation without anticipation"],
+ ["逆方向への引き","wind up motion animation"]],
+staging:[["良い例と悪い例","good vs bad staging animation"],
+ ["視線誘導","directing the eye animation"],
+ ["1カット1主題","clear staging principle"]],
+straight:[["両手法の比較","straight ahead vs pose to pose comparison"],
+ ["エフェクト作画はストレートアヘッド","effects animation straight ahead"],
+ ["演技はポーズトゥポーズ","pose to pose acting workflow"]],
+follow:[["ドラッグ（引きずり）","drag animation principle"],
+ ["部位ごとの時間差","offset timing overlapping action"],
+ ["布・髪での練習","cloth hair follow through exercise"]],
+slowin:[["スペーシングの図解","spacing chart animation explained"],
+ ["等速との比較","linear vs eased animation"],
+ ["イーズの付け方","how to ease animation curves"]],
+arcs:[["軌道の可視化","motion arc visualization animation"],
+ ["直線的な動きの直し方","fixing linear motion arcs"],
+ ["腕の振りのアーク","arm swing arc animation"]],
+second:[["主動作との関係","primary vs secondary action"],
+ ["足しすぎの失敗例","too much secondary action"],
+ ["小道具での副次動作","prop secondary animation"]],
+timing:[["コマ数別の比較","frame count timing comparison"],
+ ["タイミングチャート","animation timing chart"],
+ ["重さとコマ数","weight through timing animation"]],
+exagg:[["実写と誇張の比較","live action vs animated exaggeration"],
+ ["ポーズを押す","pushing poses animation"],
+ ["どこまで誇張するか","how far to exaggerate animation"]],
+solid:[["ツインズの回避","avoiding twinning animation"],
+ ["立体としての整合","construction drawing animation"],
+ ["パースとボリューム","perspective volume character drawing"]],
+appeal:[["アピールの条件","appeal in animation explained"],
+ ["悪役のアピール","villain design appeal"],
+ ["シルエットとアピール","silhouette and appeal design"]],
+
+ball:[["跳ねの間隔の図解","bouncing ball spacing chart"],
+ ["よくある失敗","common bouncing ball mistakes"],
+ ["転がりながら跳ねる","rolling bouncing ball exercise"]],
+ballw:[["重い球と軽い球","bowling ball vs balloon animation"],
+ ["素材ごとの跳ね方","different materials bounce animation"],
+ ["空気抵抗のある物","floaty object animation"]],
+pendulum:[["振り子の基本","pendulum animation tutorial"],
+ ["節をつけた振り子","segmented pendulum overlapping"],
+ ["止まるまでの減衰","pendulum settle animation"]],
+tail:[["尻尾の作り方","tail animation tutorial"],
+ ["鞭のしなり","whip animation overlapping"],
+ ["連結物のドラッグ","chain drag animation exercise"]],
+flag:[["旗の課題","flag waving animation exercise"],
+ ["布の波の作り方","cloth wave animation tutorial"],
+ ["マントの動き","cape animation reference"]],
+hair:[["アニメの髪の揺れ","anime hair movement animation"],
+ ["房分けの考え方","hair clumps animation"],
+ ["振り向き時の髪","hair turn animation reference"]],
+lift:[["重さの見せ方","showing weight in animation"],
+ ["持ち上げ前後の姿勢差","before after lifting posture"],
+ ["踏ん張りの表現","struggle animation weight"]],
+lipsync:[["口形チャート","mouth shapes chart animation"],
+ ["日本語のリップシンク","japanese lip sync animation"],
+ ["閉じ音の重要性","closed mouth shapes lip sync"]],
+panto:[["無い物を扱う","pantomime object work"],
+ ["セリフなしの演技","silent acting animation exercise"],
+ ["状況を伝える","storytelling without dialogue"]],
+dialogue:[["聞いている側の芝居","listening acting animation"],
+ ["視線のやり取り","eyeline exchange dialogue animation"],
+ ["会話の間","dialogue timing animation"]],
+
+lineact:[["ラインオブアクションの取り方","line of action drawing tutorial"],
+ ["CカーブとSカーブ","c curve s curve pose drawing"],
+ ["ポーズの直し方","fixing weak poses line of action"]],
+silhou:[["シルエットテスト","silhouette test animation pose"],
+ ["読みやすいポーズ","readable pose design"],
+ ["キャラデザのシルエット","character design silhouette"]],
+keypose:[["ブレイクダウンの役割","breakdown drawing explained"],
+ ["中割りの取り方","inbetweening tutorial animation"],
+ ["キーポーズの決め方","choosing key poses animation"]],
+spacing:[["タイムシートの書き方","x sheet exposure sheet tutorial"],
+ ["チャートの読み方","timing chart reading animation"],
+ ["間隔と速度の関係","spacing equals speed animation"]],
+smear:[["スメアの種類","types of smear frames"],
+ ["多重残像","multiple limb smear animation"],
+ ["名作のスメア分析","smear frames analysis anime"]],
+mblur:[["ブラーとスメアの違い","motion blur vs smear animation"],
+ ["シャッター角度","shutter angle motion blur"],
+ ["2コマ打ちとの相性","motion blur on twos problem"]],
+loopmk:[["サイクルの作り方","cycle animation tutorial"],
+ ["繋ぎ目を消す","seamless loop animation tips"],
+ ["ループの長さ設計","loop length animation design"]],
+gesture:[["30秒クロッキー","30 second gesture drawing"],
+ ["流れを取る練習","gesture drawing flow practice"],
+ ["ポーズの本質を掴む","quick pose capture drawing"]],
+
+graph:[["カーブの読み方","animation graph editor tutorial"],
+ ["イーズの付け方","ease in ease out curves"],
+ ["よくあるカーブの失敗","common animation curve mistakes"]],
+ikfk:[["IKとFKの違い","ik vs fk explained animation"],
+ ["切り替えのタイミング","ik fk switching workflow"],
+ ["接地の扱い","foot ik contact animation"]],
+rig:[["リグの入門","rigging basics for animators"],
+ ["コントローラの種類","animation controls explained"],
+ ["リグが壊れる原因","common rigging problems"]],
+onion:[["軌道の確認","onion skin arc checking"],
+ ["ソフト別の設定","onion skin settings tutorial"],
+ ["間隔の確認に使う","spacing check onion skin"]],
+mocapfix:[["足の滑り取り","fixing foot sliding mocap"],
+ ["ノイズ除去","mocap noise cleanup"],
+ ["誇張の足し方","adding exaggeration to mocap"]],
+ablock:[["ステップドで組む","stepped blocking animation"],
+ ["スプラインへの移行","blocking to spline workflow"],
+ ["ブロッキングの粒度","blocking plus workflow animation"]]
 };
 
 const ADDWORDS = [
@@ -2932,7 +3344,13 @@ ccolor:["hardsoft","lowkey","highkey","colortemp","tealorange","bounce","practic
         "shadow","golden","night","fire","rays"],
 ctime:["slowmo","fastmo","highspeed","freeze","reversem","lapse","steps","bullet"],
 caction:["fightcam","chase","shaky","tocam","ramp","hitstop","impact","oner","fpv","explosion","animecam"],
-cedit:["reverse","line180","pacing","dissolve","fade","wipe","match","cjump","jlcut","parallel","montage"]
+cedit:["reverse","line180","pacing","dissolve","fade","wipe","match","cjump","jlcut","parallel","montage"],
+
+prin:["squash","antic","slowin","arcs","timing","follow","second","exagg","staging",
+      "straight","solid","appeal"],
+drill:["ball","ballw","pendulum","tail","flag","hair","lift","lipsync","panto","dialogue"],
+craft:["lineact","silhou","keypose","spacing","gesture","smear","mblur","loopmk"],
+tool:["graph","onion","ikfk","ablock","rig","mocapfix"]
 };
 function ordered(list, gid){
   const o = ORDER[gid]; if(!o) return list;
@@ -3056,7 +3474,30 @@ ematch:{c:"a-ematch",b:1,bnofig:1,cap:"人はそのまま、背景だけ別の�
 eline:{c:"a-eline",two:1,ov:"line",two2:1,cap:"線を越えると左右が入れ替わる"},
 emontage:{c:"a-emontage",b:1,cap:"短いカットを次々に積む"},
 ejl:{c:"a-ejl",b:1,fg:"jl",cap:"音だけ先に切り替わる（画より早い）"},
-ldistort:{lens:"grid",cap:"直線が樽型に膨らむ"}
+ldistort:{lens:"grid",cap:"直線が樽型に膨らむ"},
+
+/* --- アニメの基礎（ボールのステージ） --- */
+pball:{ball:1,c:"a-ball",cap:"落ちて潰れて、また跳ぶ"},
+psquash:{ball:1,c:"a-squash",cap:"潰れても伸びても体積は同じ"},
+pantic:{ball:1,c:"a-antic",cap:"跳ぶ前に一度沈む"},
+pslowin:{ball:1,c:"a-slowin",trail:1,cap:"端は詰まり、中間は間隔が開く"},
+peven:{ball:1,c:"a-even",trail:"even",cap:"等間隔＝機械の動き（比較用）"},
+parcs:{ball:1,c:"a-arcs",path:1,cap:"弧を描いて動く"},
+ptiming:{ball:1,c:"a-timing",two:1,cap:"同じ距離でもコマ数で速さが変わる"},
+pweight:{ball:1,c:"a-weight",two:1,cap:"重い球はよく落ち、軽い球はよく跳ねる"},
+pexagg:{ball:1,c:"a-exagg",two:1,cap:"控えめな動きと、押した動き"},
+pfollow:{ball:1,c:"a-follow",chain:1,noground:1,cap:"付け根から先へ順に遅れる"},
+psecond:{ball:1,c:"a-second",two:1,cap:"主の動きに小さな動きを添える"},
+ppend:{ball:1,c:"a-pend",pend:1,noground:1,cap:"端で詰まり、中央で速い"},
+ptail:{ball:1,c:"a-tail",chain:1,noground:1,cap:"先端ほど遅れて大きく振れる"},
+pflag:{ball:1,c:"a-flag",chain:1,noground:1,cap:"波が端へ抜けていく"},
+phair:{ball:1,c:"a-hair",chain:1,noground:1,cap:"房ごとに時間差をつける"},
+ploop:{ball:1,c:"a-loop",cap:"継ぎ目なく繰り返す"},
+psmear:{ball:1,c:"a-smear",cap:"速い1コマを引き伸ばす"},
+pblock:{ball:1,c:"a-block",cap:"まずカクカクのキーだけ置く"},
+pghost:{ball:1,ghost:1,c:"a-ghost",cap:"前後のコマを透かして見る"},
+pcurve:{ball:1,curve:1,noground:1,cap:"傾き＝速度。平らな所は止まっている"},
+psheet:{ball:1,sheet:1,noground:1,cap:"コマの間隔を数字で管理する"}
 };
 
 const ANIM = {
@@ -3082,12 +3523,56 @@ const ANIM = {
  match:"ematch", cjump:"ejump", reverse:"ecut", line180:"eline", jlcut:"ejl",
  montage:"emontage", dissolve:"ediss", fade:"efade", wipe:"ewipe", parallel:"epar",
  fix:"fix", tiltshift:"ltilt", softfocus:"lsoft", diag:"cdiag", steps:"tsteps",
- hitstop:"thit", explosion:"texpl", pacing:"epace"
+ hitstop:"thit", explosion:"texpl", pacing:"epace",
+ /* アニメの基礎 */
+ ball:"pball", squash:"psquash", antic:"pantic", slowin:"pslowin", arcs:"parcs",
+ timing:"ptiming", exagg:"pexagg", follow:"pfollow", second:"psecond",
+ pendulum:"ppend", tail:"ptail", flag:"pflag", hair:"phair", ballw:"pweight",
+ loopmk:"ploop", smear:"psmear", ablock:"pblock", onion:"pghost",
+ graph:"pcurve", spacing:"psheet", straight:"peven"
 };
 
 function pvSVG(id){
   const t = ANIM[id]; if(!t) return "";
   const p = PV[t]; if(!p) return "";
+
+  /* --- アニメの基礎用：ボールのステージ --- */
+  if(p.ball){
+    const GY = 66;
+    const seg = (n,cls) => Array.from({length:n},(_,i)=>
+      `<circle class="pv-seg" cx="${66+i*26}" cy="40" r="${9-i*1.2}" style="animation-delay:${(i*0.09).toFixed(2)}s"/>`).join("");
+    let ex = "";
+    if(p.path) ex += `<path d="M26 ${GY-6} Q80 4 134 ${GY-6} Q188 12 242 ${GY-6}" fill="none"
+        stroke="var(--face-mute)" stroke-width="1.4" stroke-dasharray="4 4" opacity=".7"/>`;
+    if(p.trail) ex += (p.trail === "even"
+        ? [16,44,72,100,128,156,184,212,240]
+        : [16,22,32,50,76,110,146,180,206,224,236,244])
+        .map(x=>`<circle cx="${x}" cy="${GY-8}" r="2.6" fill="var(--face-mute)" opacity=".6"/>`).join("");
+    if(p.ghost) ex += [58,84,110].map((x,i)=>
+        `<circle cx="${x}" cy="${GY-10}" r="11" fill="var(--face-ink)" opacity="${0.1+i*0.08}"/>`).join("");
+    if(p.curve) ex += `<path d="M18 ${GY} C 70 ${GY} 76 14 136 14 C 196 14 202 ${GY} 254 ${GY}"
+        fill="none" stroke="var(--spine)" stroke-width="2.2"/>
+        <path d="M18 ${GY} L254 ${GY} M18 8 L18 ${GY}" stroke="var(--face-mute)" stroke-width="1" opacity=".5"/>`;
+    if(p.sheet) ex += `<g fill="var(--face-mute)" opacity=".7">
+        ${[10,18,30,46,66,86,102,114,122].map(y=>`<rect x="120" y="${y-2}" width="32" height="2.5"/>`).filter((_,i)=>i<9).join("")}
+        </g><path d="M110 6 L110 80" stroke="var(--face-mute)" stroke-width="1.2" opacity=".6"/>`;
+    if(p.chain) ex += `<g class="pv-chainw">${seg(5)}</g>`;
+    if(p.pend) ex += `<g class="pv-pend"><path d="M136 8 L136 52" stroke="var(--face-ink)" stroke-width="2.2"/>
+        <circle cx="136" cy="58" r="10" fill="var(--face-ink)"/></g>`;
+    const balls = p.pend || p.chain || p.curve || p.sheet ? ""
+      : p.two
+        ? `<circle class="pv-ball b1" cx="86" cy="${GY-11}" r="12"/><circle class="pv-ball b2" cx="186" cy="${GY-8}" r="9"/>`
+        : `<circle class="pv-ball" cx="40" cy="${GY-12}" r="12"/>`;
+    return `<svg class="pv ${p.c||""}" viewBox="0 0 272 86" role="img" aria-label="動きの例：${esc(p.cap||"")}">
+      <g clip-path="url(#pvclip)">
+        <rect class="pv-sky" width="272" height="86"/>
+        ${p.noground ? "" : `<path class="pv-ground" d="M0 ${GY} L272 ${GY}"/>`}
+        ${ex}${balls}
+      </g>
+      <rect class="pv-frame" x=".5" y=".5" width="271" height="85"/>
+    </svg>
+    <p class="pv-note">${esc(p.cap||"")}</p>`;
+  }
   const G = p.ground ?? 66, F = p.feet ?? G, S = p.ss ?? 1;
   const sky = p.light === "gold" ? `<rect width="272" height="86" fill="var(--sticker)" opacity=".34"/>` : "";
   const bg = p.head ? ""
@@ -3572,7 +4057,7 @@ $("#v-list").addEventListener("click", ()=>{ view="list"; $("#v-list").setAttrib
 $("#addgrid").innerHTML = ADDWORDS.map(a=>
   `<button class="addcard" data-copy="${esc(a.w)}"><b>${esc(a.w)}</b><span>${esc(a.d)}</span></button>`).join("");
 $("#subline").textContent =
-  `ANIMATION & CAMERA REFERENCE / ${FLOORS.length}フロア ${GENRES.length}棚 ${DATA.length}本 在庫中`;
+  `ANIMATION REFERENCE & FUNDAMENTALS / ${FLOORS.length}フロア ${GENRES.length}棚 ${DATA.length}本 在庫中`;
 
 render();
 </script>
