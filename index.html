@@ -166,7 +166,14 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
 .search{
   flex:1 1 200px;min-width:150px;display:flex;align-items:center;gap:8px;
   background:var(--panel);border:1px solid var(--line);border-radius:2px;padding:6px 10px;
+  transition:border-color .15s,box-shadow .15s;
 }
+.search:hover{border-color:var(--ink-2)}
+.search:focus-within{
+  border-color:var(--ink);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--sticker) 45%,transparent);
+}
+.search:focus-within svg{opacity:.9}
 .search input{
   flex:1;min-width:0;border:0;background:none;color:var(--ink);
   font:inherit;font-size:14px;outline:none;
@@ -183,10 +190,12 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
   transition:background .12s,color .12s;
 }
 .floorbtn:last-child{border-right:0}
-.floorbtn svg{width:17px;height:17px;flex:none}
+.floorbtn svg{width:17px;height:17px;flex:none;transition:transform .2s}
 .floorbtn i{font-style:normal;font-size:10.5px;opacity:.7;font-variant-numeric:tabular-nums}
-.floorbtn:hover{color:var(--ink)}
+.floorbtn:hover{background:color-mix(in srgb,var(--ink) 10%,var(--panel));color:var(--ink)}
+.floorbtn:hover svg{transform:scale(1.2) rotate(-4deg)}
 .floorbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.floorbtn[aria-pressed="true"]:hover{background:var(--ink);color:var(--bg);filter:brightness(1.25)}
 .navdiv{width:1px;align-self:stretch;background:var(--line);flex:none}
 .crossfloor{
   margin:8px 0 0;font-size:12px;color:var(--ink-2);
@@ -197,7 +206,8 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
   font-family:"DotGothic16",monospace;font-size:11.5px;
   border:1px solid var(--line);border-radius:2px;padding:2px 9px;background:var(--panel);
 }
-.crossfloor button:hover{border-color:var(--ink-2);color:var(--ink)}
+.crossfloor button{transition:border-color .14s,background .14s,color .14s,transform .14s}
+.crossfloor button:hover{border-color:var(--ink);color:var(--ink);background:var(--bg);transform:translateY(-1px)}
 
 .chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;flex:1 1 380px}
 .navlabel{
@@ -208,17 +218,35 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
   font-family:"DotGothic16",monospace;font-size:12.5px;
   padding:5px 11px;border:1px solid var(--line);border-radius:2px;
   background:var(--panel);color:var(--ink-2);white-space:nowrap;
-  transition:background .12s,color .12s,border-color .12s;
+  transition:background .15s,color .15s,border-color .15s,transform .15s,box-shadow .15s;
 }
-.chip:hover{border-color:var(--spine,var(--ink-2));color:var(--ink)}
+.chip:hover{
+  border-color:var(--spine,var(--ink));
+  color:var(--ink);
+  background:color-mix(in srgb,var(--spine,var(--ink)) 18%,var(--panel));
+  transform:translateY(-2px);
+  box-shadow:0 4px 9px -4px rgba(0,0,0,.4);
+}
+.chip:active{transform:translateY(0);box-shadow:none}
 .chip[aria-current="true"]{background:var(--spine);border-color:var(--spine);color:#fff}
+.chip[aria-current="true"]:hover{background:var(--spine);filter:brightness(1.12)}
 .chip[aria-current="true"] .dotmk{background:#fff}
 .chip[data-jump="top"]{color:var(--ink)}
 .chip[aria-disabled="true"]{opacity:.32;pointer-events:none}
-.chip .dotmk{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--spine)}
+.chip .dotmk{
+  display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;
+  vertical-align:1px;background:var(--spine);transition:transform .18s;
+}
+.chip:hover .dotmk{transform:scale(1.55)}
 .views{display:flex;border:1px solid var(--line);border-radius:2px;overflow:hidden;flex:none}
-.views button{font-family:"DotGothic16",monospace;font-size:12.5px;padding:5px 13px;background:var(--panel);color:var(--ink-2)}
+.views button{
+  font-family:"DotGothic16",monospace;font-size:12.5px;padding:5px 13px;
+  background:var(--panel);color:var(--ink-2);
+  transition:background .15s,color .15s,letter-spacing .15s;
+}
+.views button:hover{background:var(--bg);color:var(--ink);letter-spacing:.08em}
 .views button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.views button[aria-pressed="true"]:hover{background:var(--ink);color:var(--bg);filter:brightness(1.25)}
 .stock{font-family:"DotGothic16",monospace;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* ============ shelf ============ */
@@ -251,12 +279,19 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
   min-width:78px;padding:6px 9px 5px;
   border:1px solid var(--line);border-radius:2px;background:var(--panel);
-  color:var(--ink-2);transition:border-color .12s,background .12s,color .12s;
+  color:var(--ink-2);
+  transition:border-color .15s,background .15s,color .15s,transform .15s,box-shadow .15s;
 }
 .vbtn svg{width:46px;height:19px;color:var(--ink-2)}
 .vbtn span{font-family:"DotGothic16",monospace;font-size:10.5px;white-space:nowrap}
-.vbtn:hover{border-color:var(--spine);color:var(--ink)}
-.vbtn:hover svg{color:var(--spine)}
+.vbtn:hover{
+  border-color:var(--spine);color:var(--ink);
+  background:color-mix(in srgb,var(--spine) 12%,var(--panel));
+  transform:translateY(-3px);box-shadow:0 5px 12px -5px rgba(0,0,0,.4);
+}
+.vbtn:hover svg{color:var(--spine);transform:scale(1.1)}
+.vbtn:active{transform:translateY(0);box-shadow:none}
+.vbtn svg{transition:transform .18s,color .15s}
 .vbtn[aria-pressed="true"]{background:var(--face);border-color:var(--spine);color:var(--face-ink)}
 .vbtn[aria-pressed="true"] svg{color:var(--spine)}
 .vnote{
@@ -400,9 +435,12 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
 #menu .mh span{font-family:"DotGothic16",monospace;font-size:10px;color:var(--ink-2);letter-spacing:.05em}
 #menu .mi{
   display:block;width:100%;text-align:left;
-  padding:8px 13px;border-bottom:1px solid transparent;
+  padding:8px 13px;border-left:3px solid transparent;
+  transition:background .12s,border-color .12s,padding-left .12s;
 }
-#menu .mi:hover,#menu .mi:focus-visible{background:var(--bg)}
+#menu .mi:hover,#menu .mi:focus-visible{
+  background:var(--bg);border-left-color:var(--spine);padding-left:17px;
+}
 #menu .mi b{display:block;font-size:12.4px;font-weight:500;line-height:1.45}
 #menu .mi code{
   display:block;font-family:"DM Mono",monospace;font-size:11px;
@@ -441,9 +479,15 @@ tr.grp .vsel{margin:9px 0 2px}
   background:var(--bg);border:1px solid var(--line);border-radius:2px;
   padding:5px 9px;display:inline-flex;align-items:center;gap:7px;
   max-width:100%;word-break:break-word;
+  transition:border-color .14s,background .14s,transform .14s,box-shadow .14s;
   transition:border-color .12s,background .12s;
 }
-.copybtn:hover{border-color:var(--spine);background:var(--panel)}
+.copybtn:hover{
+  border-color:var(--spine);background:var(--panel);
+  transform:translateY(-2px);box-shadow:0 4px 9px -4px rgba(0,0,0,.35);
+}
+.copybtn:hover::after{color:var(--spine)}
+.copybtn:active{transform:translateY(0);box-shadow:none}
 .copybtn::after{content:"COPY";font-family:"DotGothic16",monospace;font-size:9px;color:var(--ink-2);flex:none;white-space:nowrap}
 .copybtn.small{font-size:11px;padding:3px 7px;margin:2px 4px 2px 0}
 .copybtn.small::after{content:"⧉";font-size:10px}
@@ -461,9 +505,15 @@ tr.grp .vsel{margin:9px 0 2px}
 .addcard{
   display:flex;flex-direction:column;gap:5px;align-items:flex-start;text-align:left;
   border:1px solid var(--line);border-radius:2px;padding:10px 12px;background:var(--bg);
-  transition:border-color .12s,transform .12s;
+  transition:border-color .15s,transform .15s,box-shadow .15s,background .15s;
 }
-.addcard:hover{border-color:var(--ink-2);transform:translateY(-2px)}
+.addcard:hover{
+  border-color:var(--ink);background:var(--panel);
+  transform:translateY(-4px);box-shadow:0 7px 15px -6px rgba(0,0,0,.35);
+}
+.addcard:active{transform:translateY(-1px)}
+.addcard b{transition:color .15s}
+.addcard:hover b{color:var(--ink)}
 .addcard b{font-family:"DM Mono",monospace;font-size:12.5px;font-weight:500}
 .addcard span{font-size:11.8px;color:var(--ink-2);line-height:1.55}
 
@@ -655,6 +705,12 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
     </g>
     <g id="mk-life" stroke="currentColor" fill="none" stroke-width="4.5" stroke-linejoin="round">
       <rect x="7" y="7" width="34" height="34" rx="9"/><circle cx="24" cy="24" r="3.5" fill="currentColor" stroke="none"/>
+    </g>
+    <g id="mk-act" stroke="currentColor" fill="none" stroke-width="4" stroke-linecap="round">
+      <circle cx="24" cy="24" r="19"/>
+      <circle cx="17" cy="19" r="2.6" fill="currentColor" stroke="none"/>
+      <circle cx="31" cy="19" r="2.6" fill="currentColor" stroke="none"/>
+      <path d="M15 30 Q24 37 33 30"/>
     </g>
 
     <!-- 2F カメラの棚マーク（48x48） -->
@@ -937,7 +993,8 @@ const GENRES = [
      {ja:"クロスボウ", en:"crossbow",    ic:"ic-crossbow", kind:"bow"},
      {ja:"手裏剣",     en:"shuriken",    ic:"ic-shuriken", kind:"thrown"}]},
   {id:"react", ja:"やられ",    en:"reaction",   gh:18,  gs:"30%", mk:"mk-react"},
-  {id:"life",  ja:"日常・演技", en:"acting",    gh:148, gs:"38%", mk:"mk-life"},
+  {id:"life",  ja:"日常動作",   en:"daily action", gh:148, gs:"38%", mk:"mk-life"},
+  {id:"act",   ja:"演技・感情", en:"acting",       gh:62,  gs:"48%", mk:"mk-act"},
 
   /* ---- 2F：カメラ ---- */
   {id:"cmove", ja:"カメラの動き", en:"camera moves",  gh:192, gs:"48%", mk:"mk-cmove", floor:"camera"},
@@ -1289,12 +1346,12 @@ const DATA = [
  res:"動作の分解映像、映画の入退室シーン、ドアの開け方の解説。",
  tip:"素材が少なめ。walking through door や door animation reference も併せて試す。",
  alt:["walking through door reference","door animation reference"]},
-{id:"acting",g:"life",ja:"演技",en:"acting reference for animators",kana:"アクティング リファレンス フォー アニメーターズ",tag:"流れ",
+{id:"acting",g:"act",ja:"演技",en:"acting reference for animators",kana:"アクティング リファレンス フォー アニメーターズ",tag:"流れ",
  mean:"感情を体で見せる芝居。棒立ちの会話シーンを救う資料。",
  res:"俳優の芝居素材、アニメーター向け演技講座、セリフ付きの実演クリップ。",
  tip:"animation acting reference でもほぼ同じ。11 second club で短い芝居素材が集まる。",
  alt:["animation acting reference","11 second club reference"]},
-{id:"face",g:"life",ja:"表情",en:"facial expression reference",kana:"フェイシャル エクスプレッション リファレンス",tag:"流れ",
+{id:"face",g:"act",ja:"表情",en:"facial expression reference",kana:"フェイシャル エクスプレッション リファレンス",tag:"流れ",
  mean:"喜怒哀楽での顔の変化。眉・目・口の連動を見る。",
  res:"表情筋の解説、俳優の表情集、感情ごとの比較映像。",
  tip:"CG寄りなら facial animation reference、口の形なら mouth shapes lip sync。",
@@ -1922,12 +1979,12 @@ const DATA = [
  res:"食事動作の分解、飲み込みの解析、演技としての食事。",
  tip:"意外と資料が少ない。eating animation reference も併せて試す。",
  alt:["eating animation reference","drinking motion analysis"]},
-{id:"talk",g:"life",ja:"会話の身振り",en:"conversation gestures reference",kana:"カンバセーション ジェスチャーズ リファレンス",tag:"流れ",
+{id:"talk",g:"act",ja:"会話の身振り",en:"conversation gestures reference",kana:"カンバセーション ジェスチャーズ リファレンス",tag:"流れ",
  mean:"話しながらの手振りと重心移動。棒立ちの会話を救う資料。",
  res:"会話中のジェスチャー解析、話し方の癖、講演の実演。",
  tip:"手は言葉より先に動く。gesture while speaking で解説が出る。",
  alt:["hand gestures while speaking","body language conversation analysis"]},
-{id:"hands",g:"life",ja:"手の演技",en:"hand acting reference",kana:"ハンド アクティング リファレンス",tag:"流れ",
+{id:"hands",g:"act",ja:"手の演技",en:"hand acting reference",kana:"ハンド アクティング リファレンス",tag:"流れ",
  mean:"手だけで感情や状況を語る。指先の緊張と脱力の差が出る。",
  res:"手の芝居の解説、指の動きの資料、職人の手元や手話。",
  tip:"hand gestures reference for animators が最も近い。",
@@ -1972,7 +2029,101 @@ const DATA = [
  mean:"カットの長さの設計。短く刻めば緊張、長く見せれば余韻。",
  res:"編集リズムの分析、平均カット長の比較、緩急の作り方。",
  tip:"average shot length で作品ごとのカット長の統計が見られる。",
- alt:["average shot length analysis","editing rhythm breakdown"]}
+ alt:["average shot length analysis","editing rhythm breakdown"]},
+
+/* ---- 日常動作（追加） ---- */
+{id:"pushpull",g:"life",ja:"押す・引く",en:"pushing heavy object reference",kana:"プッシング ヘビー オブジェクト リファレンス",tag:"ループ",
+ mean:"重い物を押す・引く。体を斜めに倒し、足で地面を掴む。",
+ res:"重量物の押し引き、ソリやカートの移動、力の入れ方の解説。",
+ tip:"押す時は前傾、引く時は後傾。体の角度がそのまま重さの表現になる。",
+ alt:["pulling heavy object reference","sled push technique"]},
+{id:"handover",g:"life",ja:"渡す・受け取る",en:"handing object to someone reference",kana:"ハンディング オブジェクト リファレンス",tag:"一発",
+ mean:"物を差し出し、相手が受け取るまで。2人の間（ま）が要る動作。",
+ res:"手渡しの動作、受け渡しの間の取り方、演技としての受け渡し。",
+ tip:"渡す側は手を離すタイミングを待つ。この「待ち」がないと嘘に見える。",
+ alt:["object handoff animation","passing item reference"]},
+{id:"dress",g:"life",ja:"着替える",en:"getting dressed reference",kana:"ゲッティング ドレスト リファレンス",tag:"流れ",
+ mean:"服の着脱。袖を通す・留める・整えるの連続。布と体の関係が出る。",
+ res:"着脱の分解映像、上着を羽織る、装備の着装。",
+ tip:"上着を羽織る putting on a jacket は単体で資料が多い。",
+ alt:["putting on jacket reference","armor donning reference"]},
+{id:"write",g:"life",ja:"書く・打つ",en:"writing and typing reference",kana:"ライティング アンド タイピング リファレンス",tag:"ループ",
+ mean:"筆記とタイピング。手首を固定し、指先だけが細かく動く。",
+ res:"手元のクローズアップ、書き方の分解、タイピングのスロー。",
+ tip:"体はほぼ動かず手だけが動く。肩の力の抜き方が自然さを決める。",
+ alt:["hand writing close up reference","typing hands slow motion"]},
+{id:"phone",g:"life",ja:"スマホを使う",en:"using smartphone reference",kana:"ユージング スマートフォン リファレンス",tag:"ループ",
+ mean:"スマホの操作。首が落ち、片手の親指だけが動く現代の定番姿勢。",
+ res:"操作中の姿勢、歩きスマホ、取り出してから見るまでの流れ。",
+ tip:"現代劇では必須。取り出す→見る→しまう、の一連で探すと使いやすい。",
+ alt:["texting on phone reference","phone posture analysis"]},
+{id:"sleep",g:"life",ja:"寝る・起きる",en:"getting out of bed reference",kana:"ゲッティング アウト オブ ベッド リファレンス",tag:"流れ",
+ mean:"横になる、寝返り、起き上がる。脱力から力が戻る過程が見どころ。",
+ res:"起床動作の分解、寝返りの解析、横になるまでの流れ。",
+ tip:"寝返りは rolling over in bed。脱力した体の重さの表現に効く。",
+ alt:["rolling over in bed reference","lying down motion analysis"]},
+{id:"breathe",g:"life",ja:"呼吸・息切れ",en:"out of breath exhausted reference",kana:"アウト オブ ブレス リファレンス",tag:"ループ",
+ mean:"息が上がった状態。肩で息をし、体が上下に大きく揺れる。",
+ res:"運動直後の呼吸、肩で息をする様子、疲労の演技。",
+ tip:"戦闘や全力疾走の直後に必須。待機と差をつける最短の方法。",
+ alt:["heavy breathing after running","exhausted acting reference"]},
+{id:"bow",g:"life",ja:"お辞儀・挨拶",en:"bowing greeting reference",kana:"バウイング グリーティング リファレンス",tag:"一発",
+ mean:"礼と挨拶。角度と静止の長さで敬意の度合いが変わる。",
+ res:"お辞儀の角度別解説、会釈から最敬礼まで、握手や抱擁。",
+ tip:"日本式は ojigi bowing etiquette。握手や抱擁は別ワードで探す。",
+ alt:["ojigi bowing etiquette","handshake and hug reference"]},
+{id:"car",g:"life",ja:"車の乗り降り",en:"getting in and out of car reference",kana:"ゲッティング イン アンド アウト オブ カー",tag:"流れ",
+ mean:"狭い開口部に体を入れる／出す。頭・腰・足の順序が決まっている。",
+ res:"乗降動作の分解、乗り方の指導映像、映画の降車シーン。",
+ tip:"順序を間違えると一発で嘘に見える動作。分解映像が役に立つ。",
+ alt:["car exit motion analysis","entering vehicle animation"]},
+{id:"bike",g:"life",ja:"自転車",en:"riding a bicycle reference",kana:"ライディング ア バイシクル リファレンス",tag:"ループ",
+ mean:"漕ぐ動作と車体の傾き。上半身は安定し、脚だけが回る。",
+ res:"ペダリングの解析、横からの走行、乗り降りと立ち漕ぎ。",
+ tip:"立ち漕ぎは standing pedaling。曲がる時は車体が内側へ倒れる。",
+ alt:["pedaling cycle analysis","bicycle turning lean"]},
+
+/* ---- 演技・感情（追加） ---- */
+{id:"cry",g:"act",ja:"泣く",en:"crying acting reference",kana:"クライング アクティング リファレンス",tag:"流れ",
+ mean:"泣く芝居。こらえる→崩れるの落差が本体で、涙は結果でしかない。",
+ res:"泣きの演技レッスン、こらえる表情、嗚咽の体の震え。",
+ tip:"「こらえている時間」を長く取るほど効く。sobbing で嗚咽まで出る。",
+ alt:["holding back tears acting","sobbing reference video"]},
+{id:"laugh",g:"act",ja:"笑う",en:"laughing reference video",kana:"ラフィング リファレンス ビデオ",tag:"流れ",
+ mean:"笑い。腹から息が出て体が折れる。作り笑いとは筋肉の使い方が違う。",
+ res:"本物の笑いの映像、大笑いの体の動き、作り笑いとの比較。",
+ tip:"目尻が下がるのが本物（デュシェンヌ型）。real vs fake smile で比較が出る。",
+ alt:["duchenne smile real vs fake","genuine laughter reference"]},
+{id:"angry",g:"act",ja:"怒る",en:"anger acting reference",kana:"アンガー アクティング リファレンス",tag:"流れ",
+ mean:"怒り。詰め寄る／静かに固まる／爆発する、と表現の幅が広い。",
+ res:"怒りの演技レッスン、爆発型と冷静型の比較、名場面の分析。",
+ tip:"叫ぶ怒りより「静かな怒り」の方が難しい。cold anger で探す。",
+ alt:["cold anger acting scene","rage acting reference"]},
+{id:"surprise",g:"act",ja:"驚く",en:"surprise reaction reference",kana:"サプライズ リアクション リファレンス",tag:"一発",
+ mean:"驚き。反射的に縮む→認識して開く、の2段階で起こる。",
+ res:"驚愕反射のスロー、驚いた瞬間の反応集、演技としての驚き。",
+ tip:"最初の0.2秒は縮む。いきなり大きく開くのは嘘。startle reflex を見る。",
+ alt:["startle reflex slow motion","shocked reaction compilation"]},
+{id:"fear",g:"act",ja:"恐怖",en:"fear reaction acting reference",kana:"フィアー リアクション アクティング リファレンス",tag:"流れ",
+ mean:"恐怖。体が小さくなり、呼吸が浅く速くなる。動きが止まる。",
+ res:"恐怖の演技、後ずさり、震えの表現、ホラーのリアクション。",
+ tip:"逃げるより「動けない」方が怖さが出る。震えは trembling。",
+ alt:["trembling with fear acting","horror reaction reference"]},
+{id:"think",g:"act",ja:"考える",en:"thinking pose reference",kana:"シンキング ポーズ リファレンス",tag:"ループ",
+ mean:"考えている状態。視線が外れ、手が顔や顎に行き、動きが減る。",
+ res:"思考中の仕草、視線の外し方、迷いの身振り。",
+ tip:"目線が上や横に外れるのが合図。棒立ちの間を埋める資料として優秀。",
+ alt:["thinking gestures body language","eye movement while thinking"]},
+{id:"shy",g:"act",ja:"照れ・戸惑い",en:"embarrassed nervous body language",kana:"エンバラスト ナーバス ボディ ランゲージ",tag:"流れ",
+ mean:"照れ・緊張。自分に触る、視線を逸らす、体を小さくする。",
+ res:"緊張時の仕草の解説、自己接触行動、照れの演技。",
+ tip:"髪や首を触るのは self soothing gesture という用語で資料が出る。",
+ alt:["self soothing gestures nervous","shy body language analysis"]},
+{id:"pause",g:"act",ja:"間の取り方",en:"acting pause and timing",kana:"アクティング ポーズ アンド タイミング",tag:"流れ",
+ mean:"止まる時間の設計。動かない間があるから、次の動きが効く。",
+ res:"演技の間の解説、名場面の沈黙、リアクションの遅らせ方。",
+ tip:"アニメの「タメ」と同じ。反応を1テンポ遅らせるだけで芝居に見える。",
+ alt:["comedic timing pause acting","silence in acting scene"]}
 ];
 
 /* ============================================================
@@ -2640,7 +2791,62 @@ explosion:[["実爆の撮影","practical explosion filming"],
  ["爆発VFXの分解","explosion vfx breakdown"]],
 pacing:[["平均カット長の分析","average shot length analysis"],
  ["緩急の作り方","editing rhythm pacing tutorial"],
- ["長回しと細切れの対比","long take vs fast cutting"]]
+ ["長回しと細切れの対比","long take vs fast cutting"]],
+
+pushpull:[["ソリ押し：全身で押す動作","sled push technique"],
+ ["引く動作：綱引きの体勢","tug of war body position"],
+ ["台車・カートの移動","pushing cart movement reference"]],
+handover:[["受け渡しの間","object handoff timing acting"],
+ ["両手で渡す：丁寧な所作","two handed handover etiquette"],
+ ["投げ渡す：軽い物のやり取り","tossing object to someone"]],
+dress:[["上着を羽織る","putting on jacket reference"],
+ ["装備の着装：鎧や防具","armor donning process"],
+ ["脱ぐ動作：布の抜け方","taking off clothes motion"]],
+write:[["筆記の手元","hand writing close up slow motion"],
+ ["タイピングの指","typing hands close up"],
+ ["筆・毛筆の運び","calligraphy brush stroke reference"]],
+phone:[["歩きスマホの姿勢","walking while using phone"],
+ ["取り出す→見る→しまう","phone pull out gesture"],
+ ["通話中の姿勢","talking on phone body language"]],
+sleep:[["寝返り","rolling over in bed reference"],
+ ["起き上がるまでの分解","getting up from bed motion"],
+ ["眠りに落ちる：脱力の過程","falling asleep motion reference"]],
+breathe:[["運動直後の肩呼吸","heavy breathing after exercise"],
+ ["息を整える過程","catching breath recovery"],
+ ["呼吸の待機モーション","breathing idle animation"]],
+bow:[["お辞儀の角度別","ojigi bowing angles japan"],
+ ["握手","handshake body language"],
+ ["抱擁・ハグ","hug reference animation"]],
+car:[["降車の順序","getting out of car motion breakdown"],
+ ["乗り込む動作","entering car animation reference"],
+ ["運転中の姿勢と操作","driving hands steering reference"]],
+bike:[["ペダリングの解析","pedaling technique analysis"],
+ ["立ち漕ぎ","standing pedaling cycling"],
+ ["乗り降りと発進","mounting bicycle reference"]],
+cry:[["こらえる泣き","holding back tears acting"],
+ ["嗚咽：体の震え","sobbing body movement"],
+ ["涙が出るまでの過程","emotional buildup crying scene"]],
+laugh:[["本物と作り笑いの違い","duchenne smile real vs fake"],
+ ["大笑い：体が折れる","belly laugh reference"],
+ ["こらえ笑い","suppressed laughter acting"]],
+angry:[["静かな怒り","cold anger acting scene"],
+ ["爆発する怒り","rage explosion acting reference"],
+ ["詰め寄る動き","intimidating approach body language"]],
+surprise:[["驚愕反射の2段階","startle reflex slow motion"],
+ ["驚きのリアクション集","shocked reaction compilation"],
+ ["ゆっくり気づく驚き","slow realization acting"]],
+fear:[["震えの表現","trembling fear acting"],
+ ["後ずさり","backing away in fear reference"],
+ ["凍りつく：動けない恐怖","freeze response fear"]],
+think:[["思考中の仕草","thinking gestures body language"],
+ ["視線の外れ方","eye movement while thinking"],
+ ["迷い・逡巡の表現","hesitation body language"]],
+shy:[["自己接触行動","self soothing gestures nervous"],
+ ["視線を逸らす","avoiding eye contact body language"],
+ ["体を小さくする","closed body language shy"]],
+pause:[["間のコメディ","comedic timing pause"],
+ ["沈黙の名場面","powerful silence film scene"],
+ ["リアクションを遅らせる","delayed reaction comedy timing"]]
 };
 
 const ADDWORDS = [
@@ -2676,7 +2882,9 @@ pole:["pstance","pthrust","psweep","pchop","pparry","pspin"],
 gun:["gstance","gfire","grecoil","greload","gdraw","gcover","gmove","gprone","gjam","gclear"],
 throw:["tdraw","tshoot","tquick","tknife","tgrenade"],
 react:["flinch","hit","blocked","knock","blown","fall","death","getup"],
-life:["sit","pick","carry","door","eat","talk","hands","face","acting"],
+life:["sit","pick","carry","pushpull","handover","door","eat","dress","write","phone",
+      "sleep","breathe","bow","car","bike"],
+act:["acting","face","talk","hands","laugh","cry","angry","surprise","fear","think","shy","pause"],
 
 cmove:["fix","pan","tilt","dolly","zoom","truck","pedestal","track","pushin","crane",
        "handheld","steadi","orbit","whip","croll","drone","dzoom","bodymount"],
