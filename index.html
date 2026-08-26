@@ -572,6 +572,18 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
 .a-lt3 .pv-l3{animation:pv-seq 3s ease-in-out .8s infinite}
 .a-ltglow .pv-lit{animation:pv-pulse 3s ease-in-out infinite}
 
+.pv-sharp>*{fill:var(--face-ink)}
+.a-ltilt .pv-scene{filter:blur(2.6px)}
+.a-lsoft .pv-scene{filter:blur(1.3px)}
+.a-tsteps .pv-subj{--x1:-34px;--x2:34px;animation:pv-x 2.6s steps(7) infinite alternate}
+@keyframes pv-hitstop{
+  0%{transform:translateX(-36px)} 38%{transform:translateX(-2px)}
+  48%{transform:translateX(0px)} 60%{transform:translateX(14px)} 100%{transform:translateX(36px)}}
+.a-hitstop .pv-subj{animation:pv-hitstop 2.6s cubic-bezier(.25,.9,.3,1) infinite}
+@keyframes pv-flash{0%,66%{opacity:0}72%{opacity:.95}100%{opacity:0}}
+.a-expl .pv-lit{animation:pv-flash 2.8s ease-out infinite}
+.a-expl .pv-scene{animation:pv-jit 1.2s linear infinite}
+.a-epace .pv-b{animation:pv-cut 1.1s steps(1) infinite}
 .a-ecut .pv-b{animation:pv-cut 2.4s steps(1) infinite}
 .a-ediss .pv-b{animation:pv-fadein 3s ease-in-out infinite}
 .a-ewipe .pv-b{animation:pv-wipe 2.8s ease-in-out infinite}
@@ -1790,7 +1802,172 @@ const DATA = [
  mean:"別々の場所を交互に見せる。同時進行の緊張を作る。",
  res:"並行編集の作例、クライマックスでの使用、緊張の高め方。",
  tip:"カットの間隔をだんだん短くすると緊張が上がる。定番の型。",
- alt:["parallel editing suspense","intercutting climax scene"]}
+ alt:["parallel editing suspense","intercutting climax scene"]},
+
+/* ================= 追加分 ================= */
+/* 移動 */
+{id:"swim",g:"loco",ja:"泳ぐ",en:"swimming reference",kana:"スイミング リファレンス",tag:"ループ",
+ mean:"水中・水面での推進。抵抗があるぶん動きが遅く、体が浮く。",
+ res:"各泳法の水中撮影、フォーム解説、水面と水中の両方から。",
+ tip:"泳法名で絞ると精度が高い：freestyle / breaststroke。水中は underwater を足す。",
+ alt:["underwater swimming reference","freestyle swimming technique"]},
+{id:"crawl",g:"loco",ja:"匍匐・這う",en:"crawling reference",kana:"クローリング リファレンス",tag:"ループ",
+ mean:"地面に伏せて進む、または四つん這い。手足が対角で動く。",
+ res:"軍の匍匐前進、赤ちゃんのハイハイ、四つん這いの動作解析。",
+ tip:"軍事的なものは low crawl、四つん這いは bear crawl が正式。",
+ alt:["low crawl military","bear crawl movement"]},
+{id:"stairs",g:"loco",ja:"階段",en:"walking up stairs reference",kana:"ウォーキング アップ ステアーズ リファレンス",tag:"ループ",
+ mean:"段差の昇り降り。上りは前傾、下りは着地の衝撃を吸収する。",
+ res:"階段歩行の動作解析、上りと下りの比較、リハビリ指導。",
+ tip:"下りは stairs descending。上りと下りは別物なので分けて探す。",
+ alt:["walking down stairs reference","stair climbing biomechanics"]},
+{id:"skidstop",g:"loco",ja:"急停止",en:"sudden stop deceleration reference",kana:"サドン ストップ デセラレーション",tag:"一発",
+ mean:"全力から急に止まる。上体が後ろに残り、足で踏ん張る。",
+ res:"スポーツの減速、切り返し直前のブレーキ、滑り込み停止。",
+ tip:"deceleration mechanics でスポーツ科学寄りの解析映像が出る。",
+ alt:["deceleration mechanics sports","skid stop slow motion"]},
+{id:"limp",g:"loco",ja:"よろけ・負傷",en:"injured limping walk reference",kana:"インジャード リンピング ウォーク",tag:"ループ",
+ mean:"怪我をした歩き。片足をかばい、左右のリズムが崩れる。",
+ res:"跛行の動作解析、リハビリ映像、演技としての引きずり歩き。",
+ tip:"医学用語の antalgic gait だと正確な資料が出る。酩酊は drunk walk。",
+ alt:["antalgic gait analysis","drunk stagger walk reference"]},
+/* 跳ぶ・登る */
+{id:"falling",g:"jump",ja:"落下",en:"falling through air reference",kana:"フォーリング スルー エア リファレンス",tag:"ループ",
+ mean:"空中での姿勢。手足が広がり、風圧で服と髪がはためく。",
+ res:"スカイダイビング、風洞、高所からの落下スタント。",
+ tip:"風洞（indoor skydiving）は安定して長く見られるので資料に最適。",
+ alt:["indoor skydiving wind tunnel","freefall body position"]},
+{id:"hang",g:"jump",ja:"ぶら下がり",en:"hanging and traversing reference",kana:"ハンギング アンド トラバーシング",tag:"ループ",
+ mean:"腕でぶら下がって移動する。肩と背中で体を送り出す。",
+ res:"雲梯、クライミングのトラバース、懸垂移動の実演。",
+ tip:"横移動は monkey bars / lache、壁の横断は traverse climbing。",
+ alt:["monkey bars technique","traverse climbing movement"]},
+{id:"rappel",g:"jump",ja:"ロープ降下",en:"rappelling descent reference",kana:"ラペリング ディセント リファレンス",tag:"流れ",
+ mean:"ロープで壁を降りる。足で壁を蹴りながら制動する。",
+ res:"消防・軍の降下訓練、クライミングの懸垂下降、ビル壁面の降下。",
+ tip:"前向きに降りるのは australian rappel。速降下は fast rope。",
+ alt:["australian rappel technique","fast rope descent"]},
+/* 打撃 */
+{id:"stance",g:"strike",ja:"構え",en:"fighting stance reference",kana:"ファイティング スタンス リファレンス",tag:"一発",
+ mean:"打ち合いの前の構え。重心と手の高さで流派が分かる。",
+ res:"競技別の構えの比較、ガードの高さ、足幅と体の向きの解説。",
+ tip:"boxing stance / karate stance のように競技名を足すと違いが見える。",
+ alt:["boxing stance fundamentals","martial arts stance comparison"]},
+{id:"counter",g:"strike",ja:"カウンター",en:"counter attack technique",kana:"カウンター アタック テクニック",tag:"一発",
+ mean:"相手の攻撃に合わせて返す。避けと打ちが同時に起きる。",
+ res:"カウンターの瞬間のスロー、タイミング解説、名場面集。",
+ tip:"counter punch timing で「合わせる」瞬間がコマ単位で見られる。",
+ alt:["counter punch timing slow motion","counter attack martial arts"]},
+{id:"feint",g:"strike",ja:"フェイント",en:"feint technique fighting",kana:"フェイント テクニック ファイティング",tag:"一発",
+ mean:"打つと見せかけて誘う。小さく速い予備動作がすべて。",
+ res:"フェイントの実演、相手の反応との対比、解説動画。",
+ tip:"予備動作をどこまで見せるかの資料。アニメの騙し動作に直結する。",
+ alt:["feint drills boxing","fake out technique fighting"]},
+/* 組み技 */
+{id:"choke",g:"grap",ja:"絞め技",en:"choke submission technique",kana:"チョーク サブミッション テクニック",tag:"一発",
+ mean:"首を絞めて極める。相手の抵抗から脱力への変化が見どころ。",
+ res:"柔術・柔道の絞め技解説、裸絞めのスロー、防御との攻防。",
+ tip:"rear naked choke（裸絞め）が最も一般的な名称。",
+ alt:["rear naked choke technique","judo shime waza"]},
+{id:"pin",g:"grap",ja:"押さえ込み",en:"pinning control position",kana:"ピニング コントロール ポジション",tag:"流れ",
+ mean:"上から押さえて動きを封じる。細かい重心の掛け合いが続く。",
+ res:"柔道の抑込技、柔術のポジションキープ、脱出との攻防。",
+ tip:"柔道は osaekomi、柔術は side control / mount で探す。",
+ alt:["osaekomi judo pin","side control bjj"]},
+/* 剣・刀 */
+{id:"bbind",g:"blade",ja:"鍔迫り合い",en:"blade bind clinch swordfight",kana:"ブレイド バインド クリンチ",tag:"一発",
+ mean:"刃が噛み合って押し合う。力比べと崩しの攻防になる。",
+ res:"HEMAのバインド、剣道の鍔迫り合い、映画の押し合い。",
+ tip:"HEMAでは winden / bind という技術体系がある。",
+ alt:["winden bind longsword","kendo tsubazeriai"]},
+{id:"bdual",g:"blade",ja:"二刀流",en:"dual wielding swords technique",kana:"デュアル ウィールディング ソード テクニック",tag:"流れ",
+ mean:"両手に武器。左右で受けと攻めの役割が分かれる。",
+ res:"二天一流の演武、エスクリマの二刀、映画の二刀アクション。",
+ tip:"宮本武蔵の流派は niten ichi ryu、フィリピン武術は arnis double stick。",
+ alt:["niten ichi ryu demonstration","double stick arnis"]},
+/* 長物 */
+{id:"pparry",g:"pole",ja:"受け・いなし",en:"polearm parry deflection",kana:"ポールアーム パリィ ディフレクション",tag:"一発",
+ mean:"長物で受け流す。竿の中ほどで受けて回し、そのまま返す。",
+ res:"槍術の受け、HEMAのポールアーム防御、棒術の受け技。",
+ tip:"長物は「止める」より「回して逸らす」。deflect を足すと的確。",
+ alt:["polearm defense HEMA","bo staff blocking technique"]},
+/* 銃 */
+{id:"gcover",g:"gun",ja:"遮蔽射撃",vpat:"{v} shooting from cover",kana:"シューティング フロム カバー",tag:"一発",
+ mean:"物陰から身を出して撃つ。出る→撃つ→隠れるの反復になる。",
+ res:"CQB訓練の遮蔽利用、角からの射撃、姿勢の解説。",
+ tip:"角を少しずつ覗く slicing the pie とセットで見ると位置取りが分かる。"},
+{id:"gmove",g:"gun",ja:"移動射撃",vpat:"{v} shooting while moving drill",kana:"シューティング ホワイル ムービング ドリル",tag:"流れ",
+ mean:"歩きながら撃つ。上半身を安定させ、膝で衝撃を吸収する。",
+ res:"移動射撃訓練、すり足の解説、前進・後退しながらの射撃。",
+ tip:"足はすり足気味になる。歩幅を狭くするのがコツ。"},
+/* やられ */
+{id:"flinch",g:"react",ja:"怯み",en:"flinch reaction reference",kana:"フリンチ リアクション リファレンス",tag:"一発",
+ mean:"効いていない軽い反応。体は崩れず、動きが一瞬止まるだけ。",
+ res:"軽い被弾、驚きの反応、ゲームの怯みモーション集。",
+ tip:"大きく崩れる被弾と分けて作ると、戦闘が単調にならない。",
+ alt:["flinch animation reference","startle reflex slow motion"]},
+{id:"blocked",g:"react",ja:"弾かれ",en:"blocked attack recoil",kana:"ブロックト アタック リコイル",tag:"一発",
+ mean:"防がれた側の反動。武器や腕が跳ね返され、隙ができる。",
+ res:"剣の弾かれ、ガードされた打撃、力のぶつかり合いのスロー。",
+ tip:"攻めた側の硬直＝反撃の起点。parried reaction でも出る。",
+ alt:["parried sword reaction","blocked punch recoil"]},
+/* 日常・演技 */
+{id:"eat",g:"life",ja:"食べる・飲む",en:"eating and drinking reference",kana:"イーティング アンド ドリンキング リファレンス",tag:"流れ",
+ mean:"食器を扱い口へ運ぶ。手・首・咀嚼が連動する細かい芝居。",
+ res:"食事動作の分解、飲み込みの解析、演技としての食事。",
+ tip:"意外と資料が少ない。eating animation reference も併せて試す。",
+ alt:["eating animation reference","drinking motion analysis"]},
+{id:"talk",g:"life",ja:"会話の身振り",en:"conversation gestures reference",kana:"カンバセーション ジェスチャーズ リファレンス",tag:"流れ",
+ mean:"話しながらの手振りと重心移動。棒立ちの会話を救う資料。",
+ res:"会話中のジェスチャー解析、話し方の癖、講演の実演。",
+ tip:"手は言葉より先に動く。gesture while speaking で解説が出る。",
+ alt:["hand gestures while speaking","body language conversation analysis"]},
+{id:"hands",g:"life",ja:"手の演技",en:"hand acting reference",kana:"ハンド アクティング リファレンス",tag:"流れ",
+ mean:"手だけで感情や状況を語る。指先の緊張と脱力の差が出る。",
+ res:"手の芝居の解説、指の動きの資料、職人の手元や手話。",
+ tip:"hand gestures reference for animators が最も近い。",
+ alt:["hand gestures reference for animators","finger movement reference"]},
+/* カメラ */
+{id:"fix",g:"cmove",ja:"フィックス",en:"locked off static shot",kana:"ロックト オフ スタティック ショット",tag:"基本",
+ mean:"あえて動かさない。止まった画があるから、動く画が効く。",
+ res:"フィックスの作例、動かさない演出の分析、固定カメラの構図。",
+ tip:"全部動かすと何も強調されない。止める判断も立派な技術。",
+ alt:["static shot cinematography","locked off camera scene"]},
+{id:"tiltshift",g:"clens",ja:"ティルトシフト",en:"tilt shift miniature effect",kana:"ティルト シフト ミニチュア エフェクト",tag:"応用",
+ mean:"上下だけをぼかしてミニチュアに見せる。実景が模型に見える。",
+ res:"ティルトシフトの作例、街を模型に見せる映像、作り方の解説。",
+ tip:"俯瞰と組み合わせると効果が最大。miniature faking でも出る。",
+ alt:["miniature faking effect","tilt shift timelapse"]},
+{id:"softfocus",g:"clens",ja:"ソフトフォーカス",en:"soft focus diffusion filter",kana:"ソフト フォーカス ディフュージョン フィルター",tag:"応用",
+ mean:"全体をわずかに滲ませる。回想・夢・柔らかい記憶の表現。",
+ res:"ディフュージョンフィルターの比較、滲みの作例、光の伸び方。",
+ tip:"black pro mist などフィルター名で実例が出る。",
+ alt:["black pro mist filter comparison","dreamy soft focus look"]},
+{id:"diag",g:"ccomp",ja:"対角線",en:"diagonal composition",kana:"ダイアゴナル コンポジション",tag:"応用",
+ mean:"斜めの線で躍動と不安定さを作る。水平垂直より動きが出る。",
+ res:"対角線構図の解説、動きのある構図の作例、絵画からの分析。",
+ tip:"ダッチアングルと組むと効果が強い。アクションの構図に向く。",
+ alt:["dynamic diagonal composition","dutch angle composition"]},
+{id:"steps",g:"ctime",ja:"コマ打ち",en:"animating on twos step printing",kana:"アニメーティング オン トゥーズ",tag:"アニメ向き",
+ mean:"同じ絵を2コマ・3コマ続ける。カクつきが逆に密度を生む。",
+ res:"2コマ打ちと1コマ打ちの比較、リミテッドアニメの解説。",
+ tip:"スパイダーバース以降、実写やゲームでも使われる。on twos が呼び名。",
+ alt:["on ones vs on twos comparison","spider verse frame rate"]},
+{id:"hitstop",g:"caction",ja:"ヒットストップ",en:"hit stop freeze impact",kana:"ヒット ストップ フリーズ インパクト",tag:"アニメ向き",
+ mean:"当たった瞬間に数コマ止める。それだけで衝撃の重さが跳ね上がる。",
+ res:"ヒットストップの解説、格闘ゲームの手応え設計、アニメの分析。",
+ tip:"止めるのは数フレームだけ。長いと不自然。インパクトフレームと併用。",
+ alt:["hitstop game feel","impact pause animation timing"]},
+{id:"explosion",g:"caction",ja:"爆発・破壊",en:"explosion cinematography",kana:"エクスプロージョン シネマトグラフィー",tag:"応用",
+ mean:"爆発と破壊の撮り方。閃光→衝撃波→破片→煙の順に起こる。",
+ res:"実爆の撮影、破壊のスロー、爆発シーンのメイキング。",
+ tip:"光が先、衝撃と音が後。順序を守るだけで嘘っぽさが消える。",
+ alt:["explosion slow motion practical effects","destruction vfx breakdown"]},
+{id:"pacing",g:"cedit",ja:"カットの間",en:"editing pace and rhythm",kana:"エディティング ペース アンド リズム",tag:"応用",
+ mean:"カットの長さの設計。短く刻めば緊張、長く見せれば余韻。",
+ res:"編集リズムの分析、平均カット長の比較、緩急の作り方。",
+ tip:"average shot length で作品ごとのカット長の統計が見られる。",
+ alt:["average shot length analysis","editing rhythm breakdown"]}
 ];
 
 /* ============================================================
@@ -2363,7 +2540,102 @@ wipe:[["アイリス：丸く閉じる古典技法","iris wipe transition"],
  ["ワイプの種類一覧","types of wipe transitions"]],
 parallel:[["緊張の高め方：カット間隔を詰める","accelerating cross cutting suspense"],
  ["クライマックスの同時進行","climax parallel action editing"],
- ["グリフィス以来の古典技法","cross cutting film history"]]
+ ["グリフィス以来の古典技法","cross cutting film history"]],
+
+swim:[["クロール：最も資料が多い泳法","freestyle swimming underwater"],
+ ["平泳ぎ：脚の蹴りが独特","breaststroke technique underwater"],
+ ["立ち泳ぎ：その場で浮き続ける","treading water technique"],
+ ["溺れる動き：暴れずに沈む実際の姿","drowning instinctive response"]],
+crawl:[["ロークロール：完全に伏せて進む","low crawl military technique"],
+ ["ベアクロール：四つん這いの前進","bear crawl movement drill"],
+ ["ハイハイ：赤ちゃんの這い方","baby crawling gait analysis"]],
+stairs:[["階段の上り：前傾と膝の使い方","stair ascent biomechanics"],
+ ["階段の下り：衝撃吸収","stair descent slow motion"],
+ ["駆け上がる：2段飛ばし","running up stairs reference"]],
+skidstop:[["減速の力学","deceleration mechanics analysis"],
+ ["スライディング停止","baseball slide stop slow motion"],
+ ["急停止からの切り返し","stop and cut change of direction"]],
+limp:[["跛行の種類：かばい方の違い","antalgic gait types"],
+ ["酩酊歩行：ふらつく歩き","drunk walk reference acting"],
+ ["松葉杖・杖歩行","crutch walking gait"]],
+falling:[["風洞：安定して見られる自由落下","indoor skydiving body position"],
+ ["高所落下スタント","high fall stunt slow motion"],
+ ["落下中の姿勢制御","freefall body control skydiving"]],
+hang:[["雲梯：腕の振りで前へ送る","monkey bars technique"],
+ ["ラッシュ：ぶら下がりから飛ぶ","lache parkour tutorial"],
+ ["壁の横断：トラバース","traverse climbing technique"]],
+rappel:[["オーストラリアン：前向きに降りる","australian rappel technique"],
+ ["ファストロープ：一気に滑り降りる","fast rope insertion"],
+ ["懸垂下降の基本","rappelling basics climbing"]],
+stance:[["ボクシングの構え","boxing stance fundamentals"],
+ ["オーソドックスとサウスポー","orthodox vs southpaw stance"],
+ ["競技別の構え比較","martial arts stances comparison"]],
+counter:[["カウンターのタイミング","counter punch timing slow motion"],
+ ["差し返し：同時に打ち合う","simultaneous counter exchange"],
+ ["受けてから返す","parry and riposte technique"]],
+feint:[["フェイントの種類","types of feints boxing"],
+ ["視線と肩でだます","shoulder feint technique"],
+ ["予備動作を隠す","hiding telegraphing movement"]],
+choke:[["裸絞め：最も基本の絞め","rear naked choke technique"],
+ ["三角絞め：脚で極める","triangle choke technique"],
+ ["絞めからの防御","choke defense escape"]],
+pin:[["袈裟固め・横四方固め","osaekomi judo techniques"],
+ ["サイドコントロール","side control bjj position"],
+ ["押さえ込みからの脱出","escape from pin bjj"]],
+bbind:[["ヴィンデン：バインドからの技","winden bind longsword"],
+ ["鍔迫り合いからの崩し","tsubazeriai kendo technique"],
+ ["力の逃がし方","leverage in the bind HEMA"]],
+bdual:[["二天一流：宮本武蔵の二刀","niten ichi ryu demonstration"],
+ ["アーニス：フィリピンの二刀","double stick arnis drills"],
+ ["剣と短剣：レイピア＋ダガー","rapier and dagger HEMA"]],
+pparry:[["長物の受け技","polearm defense techniques"],
+ ["回して逸らす","deflection with staff"],
+ ["石突きでの返し","butt end counter polearm"]],
+gcover:[["パイ切り：角を少しずつ覗く","slicing the pie technique"],
+ ["遮蔽物の使い方","using cover tactical training"],
+ ["低い姿勢での射撃","shooting around low cover"]],
+gmove:[["すり足の移動射撃","shooting while walking technique"],
+ ["後退しながらの射撃","backing up while shooting drill"],
+ ["移動と停止の切替","move and shoot drill"]],
+flinch:[["驚愕反射：人の反射的な縮み","startle reflex slow motion"],
+ ["軽い被弾の反応","light hit reaction reference"],
+ ["ゲームの怯みモーション","flinch animation game"]],
+blocked:[["弾かれた剣の反動","parried sword reaction"],
+ ["ガードの上からの衝撃","blocked punch impact slow motion"],
+ ["硬直＝反撃の起点","recovery frames fighting game"]],
+eat:[["食事動作の分解","eating motion analysis"],
+ ["飲み込みの仕組み","swallowing mechanism animation"],
+ ["演技としての食事","eating scene acting reference"]],
+talk:[["話しながらの手振り","hand gestures while speaking"],
+ ["ボディランゲージの読み方","body language conversation analysis"],
+ ["リップシンクの口の形","lip sync mouth shapes reference"]],
+hands:[["アニメーター向けの手の資料","hand gestures reference for animators"],
+ ["指先の演技","finger acting reference"],
+ ["職人の手元","craftsman hands working close up"]],
+fix:[["動かさない演出の分析","static shot analysis film"],
+ ["固定カメラの構図設計","locked off frame composition"],
+ ["動と静の対比","contrast static and moving shots"]],
+tiltshift:[["ミニチュア化の仕組み","miniature faking effect explained"],
+ ["ティルトシフトのタイムラプス","tilt shift timelapse city"],
+ ["あおり・シフトの光学","tilt shift lens optics"]],
+softfocus:[["フィルター比較","black pro mist filter comparison"],
+ ["回想シーンの滲み","dream sequence soft focus"],
+ ["ハレーション：光がにじむ","halation film look"]],
+diag:[["対角線で動きを作る","dynamic diagonal composition"],
+ ["斜めの線と不安定さ","diagonal lines visual tension"],
+ ["絵画の対角構図","diagonal composition painting analysis"]],
+steps:[["1コマ打ちと2コマ打ちの比較","on ones vs on twos animation"],
+ ["スパイダーバースのコマ数演出","spider verse frame rate analysis"],
+ ["リミテッドアニメの間","limited animation timing japan"]],
+hitstop:[["ゲームの手応え設計","game feel hitstop explained"],
+ ["格闘ゲームのヒットストップ","fighting game hitstop frames"],
+ ["止めとインパクトフレームの併用","impact frame with hitstop"]],
+explosion:[["実爆の撮影","practical explosion filming"],
+ ["破壊のスロー","destruction slow motion footage"],
+ ["爆発VFXの分解","explosion vfx breakdown"]],
+pacing:[["平均カット長の分析","average shot length analysis"],
+ ["緩急の作り方","editing rhythm pacing tutorial"],
+ ["長回しと細切れの対比","long take vs fast cutting"]]
 };
 
 const ADDWORDS = [
@@ -2471,6 +2743,14 @@ tslow:{c:"a-tslow",cap:"ゆっくり進む"},   tfast:{c:"a-tfast",cap:"速く�
 tfreeze:{c:"a-tfreeze",cap:"途中で止まる"}, tbullet:{c:"a-tbullet",cap:"人は止まりカメラが回る"},
 trev:{c:"a-trev",cap:"行って戻る"},
 /* 繋ぎ */
+fix:{cap:"動かさない（止まっているのが正解の時もある）"},
+ltilt:{c:"a-ltilt",sharp:1,cap:"上下がボケて模型に見える"},
+lsoft:{c:"a-lsoft",cap:"全体がわずかに滲む"},
+cdiag:{ov:"diag",cap:"斜めの線で動きを作る"},
+tsteps:{c:"a-tsteps",cap:"カクカク送る（2コマ打ち）"},
+thit:{c:"a-hitstop",cap:"当たった瞬間だけ止める"},
+texpl:{c:"a-expl",light:"expl",cap:"閃光→衝撃→煙の順"},
+epace:{c:"a-epace",b:1,cap:"カットの長さで緊張が変わる"},
 ecut:{c:"a-ecut",b:1,cap:"パッと切り替わる"},   ediss:{c:"a-ediss",b:1,cap:"重なって溶ける"},
 ewipe:{c:"a-ewipe",b:1,cap:"線が横切って入れ替わる"}, efade:{c:"a-efade",b:1,blk:1,cap:"黒を挟む"},
 ejump:{c:"a-ejump",cap:"同じ画のまま位置が飛ぶ"},   epar:{c:"a-epar",b:1,cap:"別の場所を交互に"}
@@ -2497,7 +2777,9 @@ const ANIM = {
  fightcam:"hand", chase:"track", oner:"steadi", shaky:"hand", ramp:"tslow",
  impact:"tfreeze", animecam:"dz", fpv:"fpv", tocam:"dolly",
  match:"ediss", cjump:"ejump", reverse:"ecut", line180:"ecut", jlcut:"ediss",
- montage:"ecut", dissolve:"ediss", fade:"efade", wipe:"ewipe", parallel:"epar"
+ montage:"ecut", dissolve:"ediss", fade:"efade", wipe:"ewipe", parallel:"epar",
+ fix:"fix", tiltshift:"ltilt", softfocus:"lsoft", diag:"cdiag", steps:"tsteps",
+ hitstop:"thit", explosion:"texpl", pacing:"epace"
 };
 
 function pvSVG(id){
@@ -2547,6 +2829,8 @@ function pvSVG(id){
   if(p.ov === "depth") ov = `<rect x="0" y="66" width="60" height="20" fill="var(--face-ink)" opacity=".5"/>
       <text class="pv-cap" x="6" y="80">手前</text>`;
   if(p.ov === "block") ov = `<path d="M136 ${G+4} L196 ${G+4}" stroke="var(--sticker)" stroke-width="1.2" stroke-dasharray="3 3"/>`;
+  if(p.ov === "diag") ov = `<g stroke="var(--sticker)" stroke-width="1.6" opacity=".85">
+      <path d="M0 82 L272 8"/><path d="M0 46 L150 4" opacity=".5"/></g>`;
   let light = "";
   if(p.light === "three") light = `<circle class="pv-lit pv-l1" cx="92" cy="20" r="5"/>
       <circle class="pv-lit pv-l2" cx="180" cy="26" r="5"/><circle class="pv-lit pv-l3" cx="136" cy="10" r="5"/>`;
@@ -2604,6 +2888,9 @@ function pvSVG(id){
       <ellipse class="pv-lit" cx="136" cy="${G-22}" rx="18" ry="22" opacity=".16"/>`;
   if(p.light === "bounce") light = `${lampL}<rect class="pv-lit" x="150" y="${G-6}" width="34" height="4" opacity=".8"/>
       <path class="pv-lit" d="M150 ${G-6} L146 ${G-30} L162 ${G-30} Z" opacity=".2"/>`;
+  if(p.light === "expl") light = `<circle class="pv-lit" cx="206" cy="${G-18}" r="26"/>
+      <circle class="pv-dark" cx="206" cy="${G-18}" r="13" opacity=".3"/>`;
+  const sharp = p.sharp ? figure(136, F-24*S, S, "pv-sharp") : "";
   const letterbox = p.lens === "anamo"
       ? `<rect class="pv-dark" width="272" height="12"/><rect class="pv-dark" y="74" width="272" height="12"/>` : "";
   const flare = (p.lens === "flare" || p.lens === "anamo")
@@ -2627,7 +2914,7 @@ function pvSVG(id){
       <g class="pv-scene"${rot}>
         <g class="pv-bg">${bg}</g>${ground}${subj}${subj2}
       </g>
-      ${light}${letterbox}${flare}${ov}${pov}${sceneB}${blk}${crop}
+      ${sharp}${light}${letterbox}${flare}${ov}${pov}${sceneB}${blk}${crop}
     </g>
     <rect class="pv-frame" x=".5" y=".5" width="271" height="85"/>
   </svg>
