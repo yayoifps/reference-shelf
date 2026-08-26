@@ -479,6 +479,107 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
 #toast .t2{font-family:"DM Mono",monospace;font-size:13.5px;margin:3px 0 4px;word-break:break-word;user-select:all}
 #toast .t3{font-size:11.5px;opacity:.72}
 
+/* ============ ホバー時の動きプレビュー ============ */
+.pv{
+  display:block;width:100%;height:auto;margin-bottom:9px;
+  border-radius:2px;background:var(--face);border:1px solid var(--line);
+}
+.pv-sky{fill:var(--face)}
+.pv-bg>*{fill:var(--face-mute);opacity:.28}
+.pv-ground{stroke:var(--face-mute);stroke-width:1.4;opacity:.5;fill:none}
+.pv-subj>*,.pv-subj2>*{fill:var(--face-ink)}
+.pv-subj2>*{opacity:.5}
+.pv-frame{fill:none;stroke:var(--line)}
+.pv-crop{fill:none;stroke:var(--sticker);stroke-width:2}
+.pv-lit{fill:var(--sticker)}
+.pv-dark{fill:var(--face-ink)}
+.pv-sky2{fill:var(--face-2)}
+.pv-scene,.pv-bg,.pv-subj,.pv-subj2,.pv-b,.pv-crop{transform-box:view-box;transform-origin:136px 54px}
+.pv-cap{font-family:"DotGothic16",monospace;font-size:8.5px;fill:var(--face-mute)}
+.pv-note{
+  margin:-5px 0 9px;font-family:"DotGothic16",monospace;font-size:10.5px;
+  color:var(--ink-2);letter-spacing:.03em;line-height:1.4;
+}
+
+/* 汎用キーフレーム（値は各タイプが CSS 変数で指定する） */
+@keyframes pv-x{from{transform:translateX(var(--x1,0px))}to{transform:translateX(var(--x2,0px))}}
+@keyframes pv-y{from{transform:translateY(var(--y1,0px))}to{transform:translateY(var(--y2,0px))}}
+@keyframes pv-s{from{transform:scale(var(--s1,1))}to{transform:scale(var(--s2,1))}}
+@keyframes pv-r{from{transform:rotate(var(--r1,0deg))}to{transform:rotate(var(--r2,0deg))}}
+@keyframes pv-sy{from{transform:translateY(var(--y1,0px)) scale(var(--s1,1))}
+                 to{transform:translateY(var(--y2,0px)) scale(var(--s2,1))}}
+@keyframes pv-jit{
+  0%{transform:translate(0,0) rotate(0)} 18%{transform:translate(2px,-1.5px) rotate(.7deg)}
+  36%{transform:translate(-2px,1px) rotate(-.6deg)} 54%{transform:translate(1.5px,2px) rotate(.4deg)}
+  72%{transform:translate(-1px,-2px) rotate(-.5deg)} 100%{transform:translate(0,0) rotate(0)}}
+@keyframes pv-whip{
+  0%,35%{transform:translateX(-32px)} 50%{transform:translateX(34px) skewX(-14deg)}
+  62%,100%{transform:translateX(32px)}}
+@keyframes pv-fadein{0%,30%{opacity:0}55%,100%{opacity:1}}
+@keyframes pv-cut{0%,48%{opacity:0}50%,100%{opacity:1}}
+@keyframes pv-wipe{0%,25%{clip-path:inset(0 100% 0 0)}75%,100%{clip-path:inset(0 0 0 0)}}
+@keyframes pv-blk{0%,25%{opacity:0}45%,55%{opacity:1}75%,100%{opacity:0}}
+@keyframes pv-blurA{0%,42%{filter:blur(0)}58%,100%{filter:blur(2.4px)}}
+@keyframes pv-blurB{0%,42%{filter:blur(2.4px)}58%,100%{filter:blur(0)}}
+@keyframes pv-pulse{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes pv-seq{0%,20%{opacity:0}35%,100%{opacity:1}}
+@keyframes pv-crop{0%{opacity:0;transform:scale(1.18)}30%{opacity:1}100%{opacity:1;transform:scale(1)}}
+@keyframes pv-hold{0%{transform:translateX(-34px)}45%,100%{transform:translateX(24px)}}
+@keyframes pv-rev{0%{transform:translateX(-30px)}50%{transform:translateX(30px)}100%{transform:translateX(-30px)}}
+
+.pv-crop{animation:pv-crop 1.6s ease-out both}
+.pv-b{animation-fill-mode:both}
+
+/* --- 各タイプ --- */
+.a-pan  .pv-scene{--x1:-17px;--x2:17px;animation:pv-x 3.4s ease-in-out infinite alternate}
+.a-tilt .pv-scene{--y1:-11px;--y2:11px;animation:pv-y 3.4s ease-in-out infinite alternate}
+.a-truck .pv-bg  {--x1:-6px;--x2:6px;animation:pv-x 3.4s ease-in-out infinite alternate}
+.a-truck .pv-subj{--x1:-23px;--x2:23px;animation:pv-x 3.4s ease-in-out infinite alternate}
+.a-ped  .pv-bg   {--y1:-5px;--y2:5px;animation:pv-y 3.4s ease-in-out infinite alternate}
+.a-ped  .pv-subj {--y1:-15px;--y2:15px;animation:pv-y 3.4s ease-in-out infinite alternate}
+.a-dolly .pv-subj{--s1:1;--s2:1.32;animation:pv-s 3s ease-in-out infinite alternate}
+.a-dolly .pv-bg  {--s1:1;--s2:1.06;animation:pv-s 3s ease-in-out infinite alternate}
+.a-zoom .pv-scene{--s1:1;--s2:1.3;animation:pv-s 3s ease-in-out infinite alternate}
+.a-dz   .pv-bg   {--s1:1;--s2:1.6;animation:pv-s 3.2s ease-in-out infinite alternate}
+.a-track .pv-bg  {--x1:34px;--x2:-34px;animation:pv-x 3.6s linear infinite}
+.a-track .pv-subj{--y1:0px;--y2:-2.5px;animation:pv-y .5s ease-in-out infinite alternate}
+.a-orbit .pv-bg  {--x1:36px;--x2:-36px;animation:pv-x 4s linear infinite}
+.a-orbit .pv-subj{--s1:1;--s2:.8;animation:pv-s 2s ease-in-out infinite alternate}
+.a-crane .pv-scene{--y1:-22px;--y2:8px;--s1:1.1;--s2:.96;animation:pv-sy 3.6s ease-in-out infinite alternate}
+.a-drone .pv-scene{--y1:-12px;--y2:6px;--s1:1.4;--s2:.85;animation:pv-sy 4s ease-in-out infinite alternate}
+.a-roll .pv-scene{--r1:-10deg;--r2:10deg;animation:pv-r 3.4s ease-in-out infinite alternate}
+.a-hand .pv-scene{animation:pv-jit 1.5s linear infinite}
+.a-steadi .pv-scene{--s1:1;--s2:1.18;animation:pv-s 4.5s ease-in-out infinite alternate}
+.a-whip .pv-scene{animation:pv-whip 2.6s ease-in-out infinite}
+.a-push .pv-scene{--s1:1;--s2:1.13;animation:pv-s 6s ease-in-out infinite alternate}
+.a-body .pv-bg   {animation:pv-jit 1.1s linear infinite}
+.a-fpv  .pv-scene{--s1:1;--s2:1.4;animation:pv-s 2.4s ease-in-out infinite alternate}
+.a-fpv  .pv-bg   {animation:pv-jit 1.3s linear infinite}
+
+.a-tslow .pv-subj{--x1:-38px;--x2:38px;animation:pv-x 5s linear infinite alternate}
+.a-tfast .pv-subj{--x1:-38px;--x2:38px;animation:pv-x .7s linear infinite alternate}
+.a-tfreeze .pv-subj{--x1:-34px;--x2:24px;animation:pv-hold 2.6s ease-out infinite}
+.a-tbullet .pv-bg{--x1:40px;--x2:-40px;animation:pv-x 3s linear infinite}
+.a-trev .pv-subj{animation:pv-rev 3.2s ease-in-out infinite}
+
+.a-lrack .pv-bg  {animation:pv-blurA 3.4s ease-in-out infinite alternate}
+.a-lrack .pv-subj{animation:pv-blurB 3.4s ease-in-out infinite alternate}
+.a-ldof .pv-bg{filter:blur(2.4px)}
+.a-lflare .pv-lit{animation:pv-pulse 2.6s ease-in-out infinite}
+
+.a-lt3 .pv-l1{animation:pv-seq 3s ease-in-out infinite}
+.a-lt3 .pv-l2{animation:pv-seq 3s ease-in-out .4s infinite}
+.a-lt3 .pv-l3{animation:pv-seq 3s ease-in-out .8s infinite}
+.a-ltglow .pv-lit{animation:pv-pulse 3s ease-in-out infinite}
+
+.a-ecut .pv-b{animation:pv-cut 2.4s steps(1) infinite}
+.a-ediss .pv-b{animation:pv-fadein 3s ease-in-out infinite}
+.a-ewipe .pv-b{animation:pv-wipe 2.8s ease-in-out infinite}
+.a-efade .pv-blk{animation:pv-blk 3s ease-in-out infinite}
+.a-efade .pv-b{animation:pv-cut 3s steps(1) infinite}
+.a-ejump .pv-subj{--x1:-26px;--x2:22px;animation:pv-x 1.6s steps(1) infinite alternate}
+.a-epar .pv-b{animation:pv-cut 2s steps(1) infinite}
+
 @media (max-width:640px){
   .navlabel{display:none}
   .chip{font-size:11.5px;padding:4px 9px}
@@ -499,6 +600,8 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+    <clipPath id="pvclip"><rect x="0" y="0" width="272" height="86" rx="2"/></clipPath>
+
     <!-- 棚のマーク（48x48） -->
     <g id="mk-loco" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path d="M6 34 L18 24 L6 14"/><path d="M20 34 L32 24 L20 14"/><path d="M34 34 L46 24 L34 14"/>
@@ -2186,6 +2289,163 @@ function jaSize(s){                        // 札のタイトルの文字数に�
   return n >= 8 ? "n8" : n === 7 ? "n7" : n === 6 ? "n6" : "";
 }
 
+/* ============================================================
+   ホバー時の動きプレビュー（カメラのフロアだけ）
+   1枚の簡易ステージを、タイプごとに動かして見せる
+   ============================================================ */
+const PV = {
+/* 動き */
+pan:{c:"a-pan",cap:"左右に振る"},            tilt:{c:"a-tilt",cap:"上下に振る"},
+truck:{c:"a-truck",cap:"カメラごと横へ"},     ped:{c:"a-ped",cap:"高さだけ変える"},
+dolly:{c:"a-dolly",cap:"寄る（背景の見え方が変わる）"}, zoom:{c:"a-zoom",cap:"全部が同じ倍率で拡大"},
+dz:{c:"a-dz",cap:"人物は同じ大きさ・背景だけ伸びる"},   track:{c:"a-track",cap:"並走して追う"},
+orbit:{c:"a-orbit",cap:"周りを回る"},        crane:{c:"a-crane",cap:"高く上がる"},
+drone:{c:"a-drone",cap:"上空へ引く"},        roll:{c:"a-roll",cap:"画面ごと回す"},
+hand:{c:"a-hand",cap:"細かく揺れる"},        steadi:{c:"a-steadi",cap:"滑らかに進む"},
+whip:{c:"a-whip",cap:"一気に振る"},          push:{c:"a-push",cap:"ゆっくり寄る"},
+body:{c:"a-body",cap:"人物は固定・背景が暴れる"},      fpv:{c:"a-fpv",cap:"本人の視界",pov:1},
+/* サイズ（黄色い枠＝写る範囲） */
+fwide:{crop:[4,4,264,78],cap:"場所ぜんぶ"},   ffull:{crop:[104,10,64,72],cap:"頭からつま先まで"},
+fmed:{crop:[110,16,52,50],cap:"腰から上"},    fcu:{crop:[120,22,32,30],cap:"顔だけ"},
+fecu:{crop:[127,30,18,12],cap:"目だけ"},      finsert:{crop:[122,50,30,22],cap:"手元・小物だけ"},
+ftwo:{crop:[102,10,104,72],cap:"2人を1画面に",two:1},
+fots:{crop:[96,8,112,76],cap:"相手の肩越しに",two:1},
+/* アングル（地平線の高さと大きさで見せる） */
+alevel:{ground:44,feet:70,cap:"地平線が目の高さに来る"},
+alow:{ground:80,feet:84,ss:1.35,cap:"見上げる＝大きく、地平線は下"},
+ahigh:{ground:16,feet:72,ss:.7,cap:"見下ろす＝小さく、地平線は上"}, atop:{top:1,cap:"真上から"},
+adutch:{rot:12,cap:"画面を傾ける"},           apov:{pov:1,cap:"本人の視界"},
+/* 構図 */
+cthirds:{ov:"thirds",cap:"三分割の交点に置く"}, csym:{ov:"sym",cap:"左右対称"},
+clead:{ov:"lead",cap:"線で視線を導く"},        cframe:{ov:"frame",cap:"枠の中に入れる"},
+cneg:{ov:"neg",cap:"余白を大きく空ける"},      cdepth:{ov:"depth",cap:"手前・中・奥を作る"},
+cblock:{ov:"block",two:1,cap:"人の立ち位置で語る"},
+/* レンズ */
+lwide:{lens:"wide",cap:"広く写り、パースが強い"}, ltele:{lens:"tele",cap:"奥行きが潰れる"},
+lfish:{lens:"fish",cap:"直線が曲がる"},          ldof:{c:"a-ldof",cap:"背景がボケる"},
+lrack:{c:"a-lrack",cap:"ピントを送る"},          lflare:{c:"a-lflare",lens:"flare",cap:"光の筋が出る"},
+lanamo:{c:"a-lflare",lens:"anamo",cap:"横長＋横一文字の光"},
+/* 光 */
+lt3:{c:"a-lt3",light:"three",cap:"3灯で立体を作る"}, ltback:{c:"a-ltglow",light:"back",cap:"後ろから＝輪郭が光る"},
+ltrim:{light:"rim",cap:"輪郭だけ光る"},              ltlow:{light:"low",cap:"暗部が多い"},
+lthigh:{light:"high",cap:"影が少なく明るい"},        ltprac:{c:"a-ltglow",light:"prac",cap:"画面内の光源で照らす"},
+ltgold:{light:"gold",cap:"低く長い夕の光"},          ltshadow:{light:"shadow",cap:"硬い影で見せる"},
+/* 時間 */
+tslow:{c:"a-tslow",cap:"ゆっくり進む"},   tfast:{c:"a-tfast",cap:"速く進む"},
+tfreeze:{c:"a-tfreeze",cap:"途中で止まる"}, tbullet:{c:"a-tbullet",cap:"人は止まりカメラが回る"},
+trev:{c:"a-trev",cap:"行って戻る"},
+/* 繋ぎ */
+ecut:{c:"a-ecut",b:1,cap:"パッと切り替わる"},   ediss:{c:"a-ediss",b:1,cap:"重なって溶ける"},
+ewipe:{c:"a-ewipe",b:1,cap:"線が横切って入れ替わる"}, efade:{c:"a-efade",b:1,blk:1,cap:"黒を挟む"},
+ejump:{c:"a-ejump",cap:"同じ画のまま位置が飛ぶ"},   epar:{c:"a-epar",b:1,cap:"別の場所を交互に"}
+};
+
+const ANIM = {
+ pan:"pan", tilt:"tilt", dolly:"dolly", track:"track", handheld:"hand", steadi:"steadi",
+ crane:"crane", zoom:"zoom", dzoom:"dz", orbit:"orbit", whip:"whip", pushin:"push",
+ truck:"truck", pedestal:"ped", croll:"roll", drone:"drone", bodymount:"body",
+ wide:"fwide", estab:"fwide", master:"fwide", full:"ffull", med:"fmed", cu:"fcu", ecu:"fecu",
+ ots:"fots", two:"ftwo", insert:"finsert",
+ eye:"alevel", low:"alow", high:"ahigh", top:"atop", pov:"apov", dutch:"adutch", worm:"alow",
+ thirds:"cthirds", sym:"csym", lead:"clead", frame:"cframe", neg:"cneg", depth:"cdepth", blocking:"cblock",
+ wideangle:"lwide", tele:"ltele", fisheye:"lfish", distort:"lfish", dof:"ldof", rack:"lrack",
+ flare:"lflare", anamo:"lanamo",
+ three:"lt3", backlit:"ltback", rim:"ltrim", lowkey:"ltlow", highkey:"lthigh",
+ practical:"ltprac", golden:"ltgold", shadow:"ltshadow",
+ slowmo:"tslow", highspeed:"tslow", fastmo:"tfast", lapse:"tfast", freeze:"tfreeze",
+ bullet:"tbullet", reversem:"trev",
+ fightcam:"hand", chase:"track", oner:"steadi", shaky:"hand", ramp:"tslow",
+ impact:"tfreeze", animecam:"dz", fpv:"fpv", tocam:"dolly",
+ match:"ediss", cjump:"ejump", reverse:"ecut", line180:"ecut", jlcut:"ediss",
+ montage:"ecut", dissolve:"ediss", fade:"efade", wipe:"ewipe", parallel:"epar"
+};
+
+function pvSVG(id){
+  const t = ANIM[id]; if(!t) return "";
+  const p = PV[t]; if(!p) return "";
+  const G = p.ground ?? 66, F = p.feet ?? G, S = p.ss ?? 1;
+  const sky = p.light === "gold" ? `<rect width="272" height="86" fill="var(--sticker)" opacity=".34"/>` : "";
+  const bg = p.top
+      ? `<rect x="42" y="18" width="24" height="24" rx="2"/><rect x="206" y="46" width="28" height="20" rx="2"/>`
+    : p.lens === "wide"
+      ? `<path d="M14 ${G} L40 26 L58 26 L46 ${G} Z"/><path d="M258 ${G} L232 26 L214 26 L226 ${G} Z"/>`
+    : p.lens === "tele"
+      ? `<rect x="4" y="14" width="70" height="${G-14}"/><rect x="198" y="10" width="74" height="${G-10}"/>`
+    : p.lens === "fish"
+      ? `<path d="M8 ${G} Q30 22 52 ${G} Z"/><path d="M220 ${G} Q242 22 264 ${G} Z"/>`
+      : `<rect x="18" y="${G-34}" width="26" height="34"/><rect x="52" y="${G-44}" width="18" height="44"/>
+         <rect x="204" y="${G-38}" width="30" height="38"/><rect x="240" y="${G-26}" width="20" height="26"/>`;
+  const ground = p.top ? ""
+    : p.lens === "fish"
+      ? `<path class="pv-ground" d="M0 ${G+8} Q136 ${G-10} 272 ${G+8}"/>`
+      : `<path class="pv-ground" d="M0 ${G} L272 ${G}"/>`;
+  const figure = (x,y,s,cls)=>`<g class="${cls}" style="transform-origin:${x}px ${y+16}px">
+      <circle cx="${x}" cy="${y}" r="${8*s}"/>
+      <rect x="${x-7*s}" y="${y+8*s}" width="${14*s}" height="${18*s}" rx="${4*s}"/></g>`;
+  const subj = p.top
+      ? `<g class="pv-subj"><ellipse cx="136" cy="44" rx="20" ry="16" opacity=".18"/>
+         <circle cx="136" cy="40" r="11"/><rect x="131" y="40" width="10" height="24" rx="4"/></g>`
+      : figure(136, F-24*S, S, "pv-subj");
+  const subj2 = p.two ? figure(196, F-22, .95, "pv-subj2") : "";
+  const pov = p.pov ? `<path class="pv-dark" d="M0 86 L34 86 L58 58 L44 50 Z"/>
+                       <path class="pv-dark" d="M272 86 L238 86 L214 58 L228 50 Z"/>` : "";
+  let ov = "";
+  if(p.ov === "thirds") ov = `<g stroke="var(--sticker)" stroke-width="1.2" opacity=".8">
+      <path d="M90.6 0 V86 M181.3 0 V86 M0 28.6 H272 M0 57.3 H272"/></g>
+      <circle cx="90.6" cy="28.6" r="4" fill="var(--sticker)"/>`;
+  if(p.ov === "sym") ov = `<path d="M136 0 V86" stroke="var(--sticker)" stroke-width="1.2" opacity=".8" stroke-dasharray="3 3"/>`;
+  if(p.ov === "lead") ov = `<g stroke="var(--sticker)" stroke-width="1.4" opacity=".85">
+      <path d="M0 86 L128 ${G-18}"/><path d="M272 86 L144 ${G-18}"/></g>`;
+  if(p.ov === "frame") ov = `<rect x="96" y="8" width="80" height="70" fill="none" stroke="var(--sticker)" stroke-width="2"/>`;
+  if(p.ov === "neg") ov = `<rect x="150" y="6" width="116" height="74" fill="var(--sticker)" opacity=".16"/>`;
+  if(p.ov === "depth") ov = `<rect x="0" y="66" width="60" height="20" fill="var(--face-ink)" opacity=".5"/>
+      <text class="pv-cap" x="6" y="80">手前</text>`;
+  if(p.ov === "block") ov = `<path d="M136 ${G+4} L196 ${G+4}" stroke="var(--sticker)" stroke-width="1.2" stroke-dasharray="3 3"/>`;
+  let light = "";
+  if(p.light === "three") light = `<circle class="pv-lit pv-l1" cx="92" cy="20" r="5"/>
+      <circle class="pv-lit pv-l2" cx="180" cy="26" r="5"/><circle class="pv-lit pv-l3" cx="136" cy="10" r="5"/>`;
+  if(p.light === "back") light = `<ellipse class="pv-lit" cx="136" cy="${G-24}" rx="30" ry="26" opacity=".55"/>`;
+  if(p.light === "rim") light = `<path d="M129 ${G-31} a8 8 0 0 0 0 15" stroke="var(--sticker)" stroke-width="2.6" fill="none"/>
+      <path d="M129 ${G-16} l0 17" stroke="var(--sticker)" stroke-width="2.6" fill="none"/>`;
+  if(p.light === "low") light = `<rect class="pv-dark" width="272" height="86" opacity=".62"/>
+      <path class="pv-lit" d="M110 0 L150 0 L128 86 L88 86 Z" opacity=".22"/>`;
+  if(p.light === "high") light = `<rect class="pv-lit" width="272" height="86" opacity=".14"/>`;
+  if(p.light === "prac") light = `<circle class="pv-lit" cx="70" cy="${G-14}" r="6"/>
+      <circle class="pv-lit" cx="70" cy="${G-14}" r="16" opacity=".22"/>`;
+  if(p.light === "gold") light = `<rect class="pv-dark" x="136" y="${G}" width="90" height="5" opacity=".45"/>`;
+  if(p.light === "shadow") light = `<g class="pv-dark" opacity=".5">
+      <rect x="0" y="18" width="272" height="9"/><rect x="0" y="38" width="272" height="9"/>
+      <rect x="0" y="58" width="272" height="9"/></g>`;
+  const letterbox = p.lens === "anamo"
+      ? `<rect class="pv-dark" width="272" height="12"/><rect class="pv-dark" y="74" width="272" height="12"/>` : "";
+  const flare = (p.lens === "flare" || p.lens === "anamo")
+      ? `<g class="pv-lit"><rect x="20" y="${G-40}" width="230" height="2.5" opacity=".9"/>
+         <circle cx="86" cy="${G-39}" r="7" opacity=".5"/><circle cx="170" cy="${G-39}" r="4" opacity=".4"/></g>` : "";
+  const crop = p.crop
+      ? `<rect class="pv-crop" x="${p.crop[0]}" y="${p.crop[1]}" width="${p.crop[2]}" height="${p.crop[3]}"
+           style="transform-origin:${p.crop[0]+p.crop[2]/2}px ${p.crop[1]+p.crop[3]/2}px"/>` : "";
+  const sceneB = p.b
+      ? `<g class="pv-b"><rect class="pv-sky2" width="272" height="86"/>
+         <g class="pv-bg"><rect x="24" y="${G-48}" width="44" height="48"/>
+           <rect x="186" y="${G-28}" width="52" height="28"/></g>
+         <path class="pv-ground" d="M0 ${G} L272 ${G}"/>
+         ${figure(92, G-24, 1, "pv-subj")}</g>` : "";
+  const blk = p.blk ? `<rect class="pv-blk" width="272" height="86" fill="#000"/>` : "";
+  const rot = p.rot ? ` style="transform:rotate(${p.rot}deg);transform-box:view-box;transform-origin:136px 43px"` : "";
+
+  return `<svg class="pv ${p.c||""}" viewBox="0 0 272 86" role="img" aria-label="動きの例：${esc(p.cap||"")}">
+    <g clip-path="url(#pvclip)">
+      <rect class="pv-sky" width="272" height="86"/>${sky}
+      <g class="pv-scene"${rot}>
+        <g class="pv-bg">${bg}</g>${ground}${subj}${subj2}
+      </g>
+      ${light}${letterbox}${flare}${ov}${pov}${sceneB}${blk}${crop}
+    </g>
+    <rect class="pv-frame" x=".5" y=".5" width="271" height="85"/>
+  </svg>
+  <p class="pv-note">${esc(p.cap||"")}</p>`;
+}
+
 /* ---------- copy ---------- */
 async function copyText(t){
   try{ await navigator.clipboard.writeText(t); return true; }catch(e){}
@@ -2336,6 +2596,7 @@ function showPop(btn){
   const t = term(d);
   pop.setAttribute("style", gstyle(d.g));
   pop.innerHTML = `
+    ${pvSVG(d.id)}
     <div class="p-top"><span class="p-g">${esc(g.ja)}</span><span class="p-tag">${esc(d.tag)}</span><h3>${esc(d.ja)}</h3></div>
     <p class="p-kana">${g.vars?esc(variantJa(d.g))+" の ":""}${esc(d.kana)}</p>
     <div class="p-en"><code>${esc(t)}</code><em>クリックでコピー</em></div>
