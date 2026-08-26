@@ -234,7 +234,12 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
   padding:3px 12px;border-radius:2px 2px 0 0;letter-spacing:.06em;
 }
 .plate-en{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink-2);letter-spacing:.14em;text-transform:uppercase}
-.plate-n{margin-left:auto;font-family:"DotGothic16",monospace;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.plate-order{
+  margin-left:auto;font-family:"DotGothic16",monospace;font-size:10.5px;
+  color:var(--ink-2);opacity:.75;letter-spacing:.06em;white-space:nowrap;
+}
+.plate-n{margin-left:14px;font-family:"DotGothic16",monospace;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+@media (max-width:560px){ .plate-order{display:none} }
 
 /* ---- 種類セレクター ---- */
 .vsel{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch;margin:0 0 20px}
@@ -2657,6 +2662,44 @@ const ADDWORDS = [
   {w:"free stock footage", d:"素材配布系。ダウンロードして使える映像が見つかる。"}
 ];
 
+/* ============================================================
+   棚の中の並び順。左上ほど基礎、右下ほど応用・特殊
+   ============================================================ */
+const ORDER = {
+loco:["idle","walk","run","sprint","turn","backstep","stairs","crouch","sneak",
+      "skidstop","limp","crawl","ladder","swim"],
+jump:["jump","runjump","roll","falling","vault","ledge","hang","wallrun","parkour","backflip","rappel"],
+strike:["stance","punch","combo","hook","fkick","rkick","kneeelbow","guard","dodge","counter","feint"],
+grap:["clinch","shoot","throw","pin","ground","lock","choke"],
+blade:["bstance","bcut","bthrust","bparry","bbind","bdraw","bfight","bdual"],
+pole:["pstance","pthrust","psweep","pchop","pparry","pspin"],
+gun:["gstance","gfire","grecoil","greload","gdraw","gcover","gmove","gprone","gjam","gclear"],
+throw:["tdraw","tshoot","tquick","tknife","tgrenade"],
+react:["flinch","hit","blocked","knock","blown","fall","death","getup"],
+life:["sit","pick","carry","door","eat","talk","hands","face","acting"],
+
+cmove:["fix","pan","tilt","dolly","zoom","truck","pedestal","track","pushin","crane",
+       "handheld","steadi","orbit","whip","croll","drone","dzoom","bodymount"],
+clens:["wideangle","tele","dof","rack","distort","fisheye","flare","softfocus","anamo","tiltshift"],
+cshot:["wide","estab","full","med","cu","ecu","ots","two","insert","master"],
+cangle:["eye","low","high","worm","top","dutch","pov"],
+ccomp:["thirds","sym","lead","diag","neg","frame","depth","blocking"],
+clight:["three","keylight","sidelight","rembrandt","split","butterfly","toplight",
+        "underlight","backlit","rim","catchlight"],
+ccolor:["hardsoft","lowkey","highkey","colortemp","tealorange","bounce","practical",
+        "shadow","golden","night","fire","rays"],
+ctime:["slowmo","fastmo","highspeed","freeze","reversem","lapse","steps","bullet"],
+caction:["fightcam","chase","shaky","tocam","ramp","hitstop","impact","oner","fpv","explosion","animecam"],
+cedit:["reverse","line180","pacing","dissolve","fade","wipe","match","cjump","jlcut","parallel","montage"]
+};
+function ordered(list, gid){
+  const o = ORDER[gid]; if(!o) return list;
+  return list.slice().sort((a,b)=>{
+    const ia = o.indexOf(a.id), ib = o.indexOf(b.id);
+    return (ia < 0 ? 999 : ia) - (ib < 0 ? 999 : ib);
+  });
+}
+
 /* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -2985,12 +3028,13 @@ function renderShelf(){
   if(!items.length){ host.innerHTML = `<p class="empty">該当なし。別のことばで探してみてください。</p>`; syncNav(); return; }
   let n = 0;
   host.innerHTML = GENRES.map(g=>{
-    const list = items.filter(d=>d.g===g.id);
+    const list = ordered(items.filter(d=>d.g===g.id), g.id);
     if(!list.length) return "";
     return `<section class="genre gv" id="sec-${g.id}" style="${gstyle(g.id)}">
       <div class="plate">
         <span class="plate-tab">${esc(g.ja)}</span>
         <span class="plate-en">${esc(g.en)}</span>
+        <span class="plate-order">基礎 → 応用の順</span>
         <span class="plate-n">${list.length} 本</span>
       </div>
       ${g.vars ? vselHTML(g) + `<p class="vnote">選んだ種類が検索ワードに入ります。いまは <code>${esc(chosen[g.id]||g.vdef)}</code> ＝ ${esc(variantJa(g.id))}</p>` : ""}
@@ -3029,7 +3073,7 @@ function renderList(){
       <th>どんな動画が出てくる</th><th>コツ・別の言い方</th>
     </tr></thead>
     ${GENRES.map(g=>{
-      const list = items.filter(d=>d.g===g.id);
+      const list = ordered(items.filter(d=>d.g===g.id), g.id);
       if(!list.length) return "";
       return `<tbody class="gv" id="sec-${g.id}" style="${gstyle(g.id)}">
         <tr class="grp"><td colspan="5">
