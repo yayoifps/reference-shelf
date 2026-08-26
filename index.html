@@ -1,0 +1,1643 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="アニメ・ゲーム制作用の英語リファレンス検索ワード66本。棚を眺めてクリックでコピー、YouTubeに貼り付けるだけ。">
+<meta property="og:title" content="リファレンス検索ワード棚">
+<meta property="og:description" content="アニメ・ゲーム制作用の英語リファレンス検索ワード66本。クリックでコピーしてYouTubeへ。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📼</text></svg>">
+<title>リファレンス検索ワード棚</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+/* ============ tokens : light (store, daytime) ============ */
+:root{
+  --bg:#E9E5DB;
+  --wall:#DFDACE;
+  --panel:#F4F1E9;
+  --board:#C0AF93;
+  --board-lip:#A08D6E;
+  --ink:#22262A;
+  --ink-2:#6E7176;
+  --line:#CFC8B8;
+  --sticker:#FFD400;
+  --sticker-ink:#241F00;
+  --shadow:0 10px 18px -10px rgba(40,32,18,.45);
+  --shadow-hi:0 20px 26px -12px rgba(40,32,18,.55);
+
+  /* genre color recipe — lightness/saturation only; the hue arrives per element */
+  --l-spine:40%;  --l-spine2:30%;
+  --l-face:90%;   --l-face2:83%;  --m-face:.5;
+  --s-face-ink:40%;  --l-face-ink:20%;
+  --s-face-mute:20%; --l-face-mute:38%;
+  --m-mark:.7;    --l-mark:62%;
+}
+/* declared where --gh / --gs live, so the substitution actually resolves */
+.gv{
+  --spine:hsl(var(--gh) var(--gs) var(--l-spine));
+  --spine-2:hsl(var(--gh) var(--gs) var(--l-spine2));
+  --face:hsl(var(--gh) calc(var(--gs) * var(--m-face)) var(--l-face));
+  --face-2:hsl(var(--gh) calc(var(--gs) * var(--m-face)) var(--l-face2));
+  --face-ink:hsl(var(--gh) var(--s-face-ink) var(--l-face-ink));
+  --face-mute:hsl(var(--gh) var(--s-face-mute) var(--l-face-mute));
+  --mark:hsl(var(--gh) calc(var(--gs) * var(--m-mark)) var(--l-mark));
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181C;
+    --wall:#1B1F24;
+    --panel:#1E2329;
+    --board:#3A4047;
+    --board-lip:#22272C;
+    --ink:#E7E4DC;
+    --ink-2:#9AA0A7;
+    --line:#2E343B;
+    --sticker:#FFC61A;
+    --sticker-ink:#241F00;
+    --shadow:0 10px 18px -10px rgba(0,0,0,.7);
+    --shadow-hi:0 22px 28px -12px rgba(0,0,0,.8);
+    --l-spine:56%;  --l-spine2:40%;
+    --l-face:16%;   --l-face2:12%;  --m-face:.55;
+    --s-face-ink:45%;  --l-face-ink:88%;
+    --s-face-mute:25%; --l-face-mute:66%;
+    --m-mark:.8;    --l-mark:42%;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181C;
+  --wall:#1B1F24;
+  --panel:#1E2329;
+  --board:#3A4047;
+  --board-lip:#22272C;
+  --ink:#E7E4DC;
+  --ink-2:#9AA0A7;
+  --line:#2E343B;
+  --sticker:#FFC61A;
+  --sticker-ink:#241F00;
+  --shadow:0 10px 18px -10px rgba(0,0,0,.7);
+  --shadow-hi:0 22px 28px -12px rgba(0,0,0,.8);
+  --l-spine:56%;  --l-spine2:40%;
+  --l-face:16%;   --l-face2:12%;  --m-face:.55;
+  --s-face-ink:45%;  --l-face-ink:88%;
+  --s-face-mute:25%; --l-face-mute:66%;
+  --m-mark:.8;    --l-mark:42%;
+}
+
+/* ============ base ============ */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  font-size:15px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.dot{font-family:"DotGothic16","Zen Kaku Gothic New",monospace;font-weight:400;letter-spacing:.02em}
+.mono{font-family:"DM Mono","SFMono-Regular",Consolas,monospace}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 80px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:3px solid var(--sticker);outline-offset:2px}
+
+/* ============ shop sign ============ */
+.sign{
+  background:var(--wall);
+  border-bottom:1px solid var(--line);
+  padding:26px 0 22px;
+  margin-bottom:26px;
+}
+.sign-in{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;flex-wrap:wrap;gap:18px 26px;align-items:flex-end}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{
+  width:44px;height:44px;flex:none;border-radius:3px;
+  background:var(--sticker);color:var(--sticker-ink);
+  display:grid;place-items:center;font-size:22px;
+  box-shadow:var(--shadow);
+}
+h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01em}
+.sub{margin:2px 0 0;font-size:12.5px;color:var(--ink-2);letter-spacing:.06em}
+.howto{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto}
+.step{
+  display:flex;gap:8px;align-items:baseline;font-size:12.5px;color:var(--ink-2);
+  flex:0 1 205px;min-width:172px;line-height:1.5;margin:0;
+}
+.step strong{color:var(--ink);font-weight:700}
+.step b{
+  flex:none;width:19px;height:19px;border-radius:50%;
+  background:var(--ink);color:var(--bg);
+  display:grid;place-items:center;font-size:11px;font-weight:400;
+  font-family:"DotGothic16",monospace;
+  transform:translateY(2px);
+}
+
+/* ============ counter (controls) ============ */
+.counter{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  margin:0 -20px 22px;padding:10px 20px;
+}
+.counter-in{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.search{
+  flex:1 1 200px;min-width:150px;display:flex;align-items:center;gap:8px;
+  background:var(--panel);border:1px solid var(--line);border-radius:2px;padding:6px 10px;
+}
+.search input{
+  flex:1;min-width:0;border:0;background:none;color:var(--ink);
+  font:inherit;font-size:14px;outline:none;
+}
+.search svg{flex:none;opacity:.5}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.navlabel{
+  font-family:"DotGothic16",monospace;font-size:11px;color:var(--ink-2);
+  letter-spacing:.1em;padding-right:2px;white-space:nowrap;
+}
+.chip{
+  font-family:"DotGothic16",monospace;font-size:12.5px;
+  padding:5px 11px;border:1px solid var(--line);border-radius:2px;
+  background:var(--panel);color:var(--ink-2);white-space:nowrap;
+  transition:background .12s,color .12s,border-color .12s;
+}
+.chip:hover{border-color:var(--spine,var(--ink-2));color:var(--ink)}
+.chip[aria-current="true"]{background:var(--spine);border-color:var(--spine);color:#fff}
+.chip[aria-current="true"] .dotmk{background:#fff}
+.chip[data-jump="top"]{color:var(--ink)}
+.chip[aria-disabled="true"]{opacity:.32;pointer-events:none}
+.chip .dotmk{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--spine)}
+.views{display:flex;border:1px solid var(--line);border-radius:2px;overflow:hidden;flex:none}
+.views button{font-family:"DotGothic16",monospace;font-size:12.5px;padding:5px 13px;background:var(--panel);color:var(--ink-2)}
+.views button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.stock{font-family:"DotGothic16",monospace;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ============ shelf ============ */
+.genre{margin:0 0 44px}
+.plate{
+  display:flex;align-items:center;gap:12px;
+  border-bottom:2px solid var(--spine);
+  padding-bottom:7px;margin-bottom:16px;
+}
+.plate-tab{
+  background:var(--spine);color:#fff;
+  font-family:"DotGothic16",monospace;font-size:13px;
+  padding:3px 12px;border-radius:2px 2px 0 0;letter-spacing:.06em;
+}
+.plate-en{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink-2);letter-spacing:.14em;text-transform:uppercase}
+.plate-n{margin-left:auto;font-family:"DotGothic16",monospace;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+
+/* ---- 種類セレクター ---- */
+.vsel{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch;margin:0 0 20px}
+.vlabel{
+  font-family:"DotGothic16",monospace;font-size:10.5px;color:var(--ink-2);
+  align-self:center;padding-right:4px;white-space:nowrap;letter-spacing:.06em;
+}
+.vbtn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  min-width:78px;padding:6px 9px 5px;
+  border:1px solid var(--line);border-radius:2px;background:var(--panel);
+  color:var(--ink-2);transition:border-color .12s,background .12s,color .12s;
+}
+.vbtn svg{width:46px;height:19px;color:var(--ink-2)}
+.vbtn span{font-family:"DotGothic16",monospace;font-size:10.5px;white-space:nowrap}
+.vbtn:hover{border-color:var(--spine);color:var(--ink)}
+.vbtn:hover svg{color:var(--spine)}
+.vbtn[aria-pressed="true"]{background:var(--face);border-color:var(--spine);color:var(--face-ink)}
+.vbtn[aria-pressed="true"] svg{color:var(--spine)}
+.vnote{
+  font-size:11.5px;color:var(--ink-2);margin:-12px 0 18px;line-height:1.6;
+}
+.vnote code{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink)}
+
+.rack{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(136px,1fr));
+  column-gap:22px;row-gap:36px;
+  padding:0 0 24px;
+  /* 各行の足元に棚板を1本ずつ通す（1行の高さ 200 + 36 = 236px） */
+  background-image:repeating-linear-gradient(to bottom,
+    transparent 0 205px,
+    var(--board) 205px 214px,
+    var(--board-lip) 214px 216px,
+    transparent 216px 236px);
+}
+.case{
+  position:relative;height:200px;display:block;text-align:left;
+  -webkit-tap-highlight-color:transparent;
+}
+.body{
+  position:relative;height:100%;width:100%;
+  display:flex;overflow:hidden;
+  border-radius:2px;
+  box-shadow:var(--shadow);
+  transition:transform .16s cubic-bezier(.2,.8,.3,1),box-shadow .16s;
+  will-change:transform;
+}
+.case:hover .body,.case:focus-visible .body{transform:translateY(-14px) rotate(-.4deg);box-shadow:var(--shadow-hi)}
+.case:active .body{transform:translateY(-6px) scale(.985)}
+.spine{
+  flex:none;width:13px;background:linear-gradient(90deg,var(--spine-2),var(--spine));
+  display:flex;align-items:center;justify-content:center;
+}
+.spine span{
+  writing-mode:vertical-rl;font-family:"DM Mono",monospace;font-size:7.5px;
+  color:rgba(255,255,255,.82);letter-spacing:.1em;text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;max-height:170px;
+}
+.face{
+  flex:1;min-width:0;position:relative;
+  background:linear-gradient(165deg,var(--face),var(--face-2));
+  padding:10px 10px 0;display:flex;flex-direction:column;
+}
+.face::before{ /* 上部の帯 */
+  content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--spine);
+}
+.face::after{ /* 右上の折り返し＝右クリックで技名メニューが出る目印 */
+  content:"";position:absolute;top:4px;right:0;
+  border-top:13px solid var(--spine);border-left:13px solid transparent;
+  opacity:.6;
+}
+.mk{
+  position:absolute;right:-14px;bottom:44px;width:96px;height:96px;
+  color:var(--mark);opacity:.5;pointer-events:none;
+}
+.tag{
+  align-self:flex-start;background:var(--sticker);color:var(--sticker-ink);
+  font-family:"DotGothic16",monospace;font-size:10px;line-height:1;
+  padding:4px 6px;border-radius:1px;margin-top:2px;
+}
+.ja{
+  position:relative;margin-top:auto;font-size:19px;font-weight:700;
+  color:var(--face-ink);line-height:1.25;letter-spacing:.02em;
+}
+.en{
+  position:relative;font-family:"DM Mono",monospace;font-size:9.5px;line-height:1.35;
+  color:var(--face-mute);margin-top:4px;word-break:break-word;
+}
+.barcode{
+  position:relative;margin:8px -10px 0;padding:5px 10px 6px;
+  border-top:1px solid color-mix(in srgb,var(--face-ink) 14%,transparent);
+  display:flex;align-items:center;gap:7px;
+}
+.bars{
+  flex:1;height:13px;opacity:.6;
+  background:repeating-linear-gradient(90deg,
+    var(--face-ink) 0 1px,transparent 1px 3px,
+    var(--face-ink) 3px 5px,transparent 5px 6px,
+    var(--face-ink) 6px 7px,transparent 7px 10px);
+}
+.no{font-family:"DM Mono",monospace;font-size:8px;color:var(--face-mute);font-variant-numeric:tabular-nums}
+
+/* ============ POP (hover card) ============ */
+#pop{
+  position:fixed;z-index:60;width:300px;max-width:calc(100vw - 24px);
+  background:var(--panel);border:1px solid var(--line);
+  border-top:4px solid var(--spine);
+  border-radius:3px;box-shadow:var(--shadow-hi);
+  padding:11px 14px 12px;
+  pointer-events:none;opacity:0;transform:translateY(4px);
+  transition:opacity .13s,transform .13s;
+}
+#pop.on{opacity:1;transform:none}
+#pop .p-top{display:flex;align-items:baseline;gap:8px;margin-bottom:5px}
+#pop .p-g{font-family:"DotGothic16",monospace;font-size:10.5px;color:#fff;background:var(--spine);padding:1px 7px;border-radius:2px}
+#pop .p-tag{font-family:"DotGothic16",monospace;font-size:10.5px;color:var(--ink-2);border:1px solid var(--line);padding:0 6px;border-radius:2px}
+#pop .p-kana{font-family:"DotGothic16",monospace;font-size:10.5px;color:var(--ink-2);margin:0 0 7px;line-height:1.4}
+#pop h3{margin:0 0 0 2px;font-size:17px;line-height:1.25}
+#pop .p-en{
+  display:flex;align-items:center;gap:8px;
+  background:var(--bg);border:1px dashed var(--line);border-radius:2px;
+  padding:6px 9px;margin-bottom:9px;
+}
+#pop .p-en code{font-family:"DM Mono",monospace;font-size:12px;line-height:1.4;word-break:break-word;flex:1}
+#pop .p-en em{font-family:"DotGothic16",monospace;font-style:normal;font-size:9px;color:var(--sticker-ink);background:var(--sticker);padding:2px 5px;border-radius:1px;white-space:nowrap}
+#pop dl{margin:0;display:grid;gap:6px}
+#pop dt{font-family:"DotGothic16",monospace;font-size:10px;color:var(--ink-2);letter-spacing:.05em}
+#pop dd{margin:0;font-size:12.2px;line-height:1.55}
+#pop .p-alt{margin-top:8px;padding-top:7px;border-top:1px solid var(--line);font-size:10.8px;color:var(--ink-2);line-height:1.6}
+#pop .p-alt code{font-family:"DM Mono",monospace;font-size:11px;color:var(--ink)}
+#pop .p-pro{
+  margin-top:8px;padding-top:7px;border-top:1px solid var(--line);
+  font-family:"DotGothic16",monospace;font-size:10.5px;color:var(--ink-2);
+  display:flex;align-items:center;gap:6px;
+}
+#pop .p-pro b{color:var(--ink);font-weight:400}
+
+/* ============ right-click : 専門ワード menu ============ */
+#menu{
+  position:fixed;z-index:90;width:326px;max-width:calc(100vw - 20px);
+  max-height:min(60vh,460px);overflow-y:auto;
+  background:var(--panel);border:1px solid var(--line);
+  border-top:4px solid var(--spine);
+  border-radius:3px;box-shadow:var(--shadow-hi);
+  padding:0 0 5px;
+}
+#menu .mh{
+  position:sticky;top:0;background:var(--panel);
+  border-bottom:1px solid var(--line);
+  padding:9px 13px 8px;
+}
+#menu .mh b{font-size:13px;display:block;line-height:1.35}
+#menu .mh span{font-family:"DotGothic16",monospace;font-size:10px;color:var(--ink-2);letter-spacing:.05em}
+#menu .mi{
+  display:block;width:100%;text-align:left;
+  padding:8px 13px;border-bottom:1px solid transparent;
+}
+#menu .mi:hover,#menu .mi:focus-visible{background:var(--bg)}
+#menu .mi b{display:block;font-size:12.4px;font-weight:500;line-height:1.45}
+#menu .mi code{
+  display:block;font-family:"DM Mono",monospace;font-size:11px;
+  color:var(--spine);margin-top:2px;word-break:break-word;
+}
+#menu .mf{
+  padding:7px 13px 2px;font-family:"DotGothic16",monospace;
+  font-size:10px;color:var(--ink-2);border-top:1px solid var(--line);margin-top:4px;
+}
+
+/* ============ list view ============ */
+.listhint{margin:0 0 9px;font-size:11.5px;color:var(--ink-2);letter-spacing:.03em}
+.listwrap{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:1060px;font-size:13px;table-layout:fixed}
+col.c1{width:120px} col.c2{width:150px} col.c3{width:290px} col.c4{width:230px} col.c5{width:270px}
+thead th{
+  background:var(--ink);color:var(--bg);
+  font-family:"DotGothic16",monospace;font-weight:400;font-size:12px;
+  text-align:left;padding:8px 12px;white-space:nowrap;letter-spacing:.05em;
+}
+tbody td{padding:11px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.6}
+tbody tr:hover{background:var(--bg)}
+tr.grp td{
+  background:var(--bg);border-top:2px solid var(--spine);
+  font-family:"DotGothic16",monospace;font-size:12.5px;padding:10px 12px;
+}
+tr.grp:hover{background:none}
+tr.grp .g-tab{background:var(--spine);color:#fff;padding:2px 10px;border-radius:2px;margin-right:10px}
+tr.grp .g-en{color:var(--ink-2);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+tr.grp .vsel{margin:9px 0 2px}
+.t-ja{white-space:nowrap;font-weight:700}
+.t-ja i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--spine);margin-right:7px;font-style:normal}
+.t-kana{font-family:"DotGothic16",monospace;font-size:11.5px;color:var(--ink-2);line-height:1.5}
+.copybtn{
+  font-family:"DM Mono",monospace;font-size:12px;text-align:left;
+  background:var(--bg);border:1px solid var(--line);border-radius:2px;
+  padding:5px 9px;display:inline-flex;align-items:center;gap:7px;
+  max-width:100%;word-break:break-word;
+  transition:border-color .12s,background .12s;
+}
+.copybtn:hover{border-color:var(--spine);background:var(--panel)}
+.copybtn::after{content:"COPY";font-family:"DotGothic16",monospace;font-size:9px;color:var(--ink-2);flex:none;white-space:nowrap}
+.copybtn.small{font-size:11px;padding:3px 7px;margin:2px 4px 2px 0}
+.copybtn.small::after{content:"⧉";font-size:10px}
+.t-tip{color:var(--ink-2);font-size:12.2px}
+.t-res{font-size:12.5px}
+
+/* ============ addword panel ============ */
+.addword{
+  margin-top:52px;background:var(--panel);border:1px solid var(--line);border-radius:3px;
+  padding:22px 24px 24px;
+}
+.addword h2{margin:0 0 4px;font-size:17px}
+.addword p{margin:0 0 18px;font-size:12.8px;color:var(--ink-2)}
+.addgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:10px}
+.addcard{
+  display:flex;flex-direction:column;gap:5px;align-items:flex-start;text-align:left;
+  border:1px solid var(--line);border-radius:2px;padding:10px 12px;background:var(--bg);
+  transition:border-color .12s,transform .12s;
+}
+.addcard:hover{border-color:var(--ink-2);transform:translateY(-2px)}
+.addcard b{font-family:"DM Mono",monospace;font-size:12.5px;font-weight:500}
+.addcard span{font-size:11.8px;color:var(--ink-2);line-height:1.55}
+
+.empty{padding:60px 0;text-align:center;color:var(--ink-2);font-family:"DotGothic16",monospace}
+footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;line-height:1.9}
+
+/* ============ toast ============ */
+#toast{
+  position:fixed;left:50%;bottom:26px;z-index:80;
+  transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  background:var(--ink);color:var(--bg);
+  border-radius:2px;padding:12px 18px;max-width:min(420px,calc(100vw - 32px));
+  box-shadow:var(--shadow-hi);
+  transition:opacity .18s,transform .18s;
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#toast .t1{font-family:"DotGothic16",monospace;font-size:12px;color:var(--sticker);letter-spacing:.06em}
+#toast .t2{font-family:"DM Mono",monospace;font-size:13.5px;margin:3px 0 4px;word-break:break-word;user-select:all}
+#toast .t3{font-size:11.5px;opacity:.72}
+
+@media (max-width:640px){
+  .navlabel{display:none}
+  .chip{font-size:11.5px;padding:4px 9px}
+  .counter{padding:8px 20px}
+  .counter-in{gap:8px;margin-bottom:7px}
+  #menu{width:auto;left:8px!important;right:8px}
+  #pop{left:8px!important;right:8px;top:auto!important;bottom:8px;width:auto}
+  .vbtn{min-width:70px;padding:5px 7px}
+  .vbtn svg{width:40px;height:17px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .case:hover .body,.case:focus-visible .body{transform:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 棚のマーク（48x48） -->
+    <g id="mk-loco" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 34 L18 24 L6 14"/><path d="M20 34 L32 24 L20 14"/><path d="M34 34 L46 24 L34 14"/>
+    </g>
+    <g id="mk-jump" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round">
+      <path d="M5 42 Q24 -1 43 42"/><circle cx="24" cy="9" r="3.5" fill="currentColor" stroke="none"/>
+    </g>
+    <g id="mk-strike" fill="currentColor" stroke="none">
+      <path d="M24 1 L28.5 17 L44 10 L33 24 L44 38 L28.5 31 L24 47 L19.5 31 L4 38 L15 24 L4 10 L19.5 17 Z"/>
+    </g>
+    <g id="mk-grap" stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round">
+      <path d="M8 30 A11 11 0 0 1 24 14"/><path d="M40 18 A11 11 0 0 1 24 34"/>
+    </g>
+    <g id="mk-blade" stroke="currentColor" fill="none" stroke-linecap="round">
+      <path d="M6 42 L42 6" stroke-width="7"/><path d="M18 44 L44 18" stroke-width="2.5" opacity=".8"/>
+    </g>
+    <g id="mk-pole" stroke="currentColor" fill="none" stroke-linecap="round">
+      <path d="M4 44 L34 14" stroke-width="5"/>
+      <path d="M31 4 L46 17 L28 21 Z" fill="currentColor" stroke="none"/>
+    </g>
+    <g id="mk-gun" fill="currentColor" stroke="none">
+      <rect x="10" y="14" width="32" height="8" rx="1"/>
+      <path d="M12 22 h9 l-5 16 h-9 z"/>
+      <rect x="22" y="22" width="9" height="4"/>
+    </g>
+    <g id="mk-throw" stroke="currentColor" fill="none" stroke-linecap="round">
+      <path d="M32 4 Q46 24 32 44" stroke-width="5"/>
+      <path d="M32 4 L32 44" stroke-width="2"/>
+      <path d="M6 24 L40 24" stroke-width="4"/>
+    </g>
+    <g id="mk-react" stroke="currentColor" fill="none" stroke-width="4.5" stroke-linecap="round">
+      <path d="M18 10 A16 16 0 0 1 18 38"/><path d="M30 6 A22 22 0 0 1 30 42"/>
+      <circle cx="9" cy="24" r="4" fill="currentColor" stroke="none"/>
+    </g>
+    <g id="mk-life" stroke="currentColor" fill="none" stroke-width="4.5" stroke-linejoin="round">
+      <rect x="7" y="7" width="34" height="34" rx="9"/><circle cx="24" cy="24" r="3.5" fill="currentColor" stroke="none"/>
+    </g>
+
+    <!-- 武器の種類アイコン（64x26） -->
+    <g id="ic-any" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="32" cy="13" r="7"/><path d="M32 9.5v7M28.5 13h7"/>
+    </g>
+    <g id="ic-pistol" fill="currentColor">
+      <rect x="22" y="6" width="26" height="6" rx="1"/>
+      <path d="M22 12 h7 l-4 11 h-7 z"/>
+      <rect x="29" y="12" width="7" height="3"/>
+    </g>
+    <g id="ic-revolver" fill="currentColor">
+      <rect x="24" y="6" width="24" height="5" rx="1"/>
+      <circle cx="31" cy="13" r="4.5"/>
+      <path d="M26 16 h6 l-4 8 h-6 z"/>
+    </g>
+    <g id="ic-smg" fill="currentColor">
+      <rect x="16" y="7" width="30" height="6" rx="1"/>
+      <path d="M18 13 h6 l-3 9 h-6 z"/>
+      <rect x="28" y="13" width="5" height="10" rx="1"/>
+      <rect x="8" y="8" width="9" height="4"/>
+    </g>
+    <g id="ic-rifle" fill="currentColor">
+      <rect x="12" y="8" width="46" height="5" rx="1"/>
+      <path d="M26 13 h6 l-3 10 h-6 z"/>
+      <path d="M4 8 h9 v7 l-9 3 z"/>
+      <rect x="34" y="13" width="8" height="3"/>
+    </g>
+    <g id="ic-shotgun" fill="currentColor">
+      <rect x="14" y="8" width="46" height="4" rx="1"/>
+      <rect x="30" y="12" width="12" height="4" rx="1"/>
+      <path d="M4 9 l10 -1 v7 l-10 3 z"/>
+    </g>
+    <g id="ic-sniper" fill="currentColor">
+      <rect x="10" y="11" width="50" height="4" rx="1"/>
+      <rect x="26" y="4" width="18" height="4" rx="1"/>
+      <rect x="32" y="8" width="3" height="3"/>
+      <path d="M24 15 h6 l-3 9 h-6 z"/>
+      <path d="M2 12 h9 v7 l-9 2 z"/>
+    </g>
+    <g id="ic-katana" fill="none" stroke="currentColor" stroke-linecap="round">
+      <path d="M22 17 Q42 6 60 4" stroke-width="3"/>
+      <path d="M18 8 L18 20" stroke-width="2.5"/>
+      <path d="M6 21 L18 16" stroke-width="4"/>
+    </g>
+    <g id="ic-longsword" fill="currentColor">
+      <rect x="20" y="11" width="40" height="3" rx="1.5"/>
+      <rect x="16" y="5" width="3" height="15" rx="1"/>
+      <rect x="7" y="11" width="9" height="3"/>
+      <circle cx="5" cy="12.5" r="3"/>
+    </g>
+    <g id="ic-arming" fill="currentColor">
+      <rect x="30" y="11" width="30" height="3" rx="1.5"/>
+      <rect x="26" y="6" width="3" height="13" rx="1"/>
+      <rect x="19" y="11" width="7" height="3"/>
+      <path d="M4 4 h14 v9 q0 6 -7 9 q-7 -3 -7 -9 z" opacity=".55"/>
+    </g>
+    <g id="ic-rapier" fill="none" stroke="currentColor">
+      <path d="M22 13 L60 13" stroke-width="1.8"/>
+      <path d="M18 6 Q24 13 18 20" stroke-width="2"/>
+      <path d="M8 13 L18 13" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+    <g id="ic-greatsword" fill="currentColor">
+      <path d="M22 7 h32 l6 6 l-6 6 h-32 z"/>
+      <rect x="17" y="3" width="4" height="20" rx="1"/>
+      <rect x="6" y="11" width="11" height="4" rx="1"/>
+    </g>
+    <g id="ic-knife" fill="currentColor">
+      <path d="M30 10 h20 l6 3 l-6 3 h-20 z"/>
+      <rect x="14" y="10" width="16" height="6" rx="2" opacity=".55"/>
+    </g>
+    <g id="ic-spear" fill="currentColor">
+      <rect x="2" y="12" width="48" height="3" rx="1.5"/>
+      <path d="M48 7 L62 13.5 L48 20 Z"/>
+    </g>
+    <g id="ic-naginata" fill="currentColor">
+      <rect x="2" y="14" width="44" height="3" rx="1.5"/>
+      <path d="M44 17 Q56 12 62 2 Q60 14 52 20 Z"/>
+    </g>
+    <g id="ic-bo" fill="currentColor">
+      <rect x="2" y="11" width="60" height="4" rx="2"/>
+    </g>
+    <g id="ic-axe" fill="currentColor">
+      <rect x="6" y="11" width="46" height="3" rx="1.5"/>
+      <path d="M42 3 Q58 6 58 13 Q58 20 42 23 Q47 13 42 3 Z"/>
+    </g>
+    <g id="ic-mace" fill="currentColor">
+      <rect x="4" y="11" width="42" height="3" rx="1.5"/>
+      <circle cx="52" cy="12.5" r="8"/>
+    </g>
+    <g id="ic-bow" fill="none" stroke="currentColor" stroke-linecap="round">
+      <path d="M44 3 Q56 13 44 23" stroke-width="3"/>
+      <path d="M44 3 L44 23" stroke-width="1.5"/>
+      <path d="M14 13 L52 13" stroke-width="2"/>
+    </g>
+    <g id="ic-yumi" fill="none" stroke="currentColor" stroke-linecap="round">
+      <path d="M30 1 Q46 12 34 25" stroke-width="3"/>
+      <path d="M30 1 L34 25" stroke-width="1.5"/>
+      <path d="M8 14 L42 14" stroke-width="2"/>
+    </g>
+    <g id="ic-crossbow" fill="none" stroke="currentColor" stroke-linecap="round">
+      <path d="M10 13 L58 13" stroke-width="3"/>
+      <path d="M36 2 Q46 13 36 24" stroke-width="2.5"/>
+      <path d="M36 2 L36 24" stroke-width="1.4"/>
+    </g>
+    <g id="ic-shuriken" fill="currentColor">
+      <path d="M32 1 L37 11 L47 13 L37 15 L32 25 L27 15 L17 13 L27 11 Z"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="sign">
+  <div class="sign-in">
+    <div class="logo">
+      <div class="logo-mark">📼</div>
+      <div>
+        <h1>リファレンス検索ワード棚</h1>
+        <p class="sub dot" id="subline">ANIMATION REFERENCE</p>
+      </div>
+    </div>
+    <div class="howto">
+      <p class="step"><b>1</b><span>カーソルを合わせると、何が出てくるか日本語で出ます</span></p>
+      <p class="step"><b>2</b><span>クリックで英語の検索ワードをコピー</span></p>
+      <p class="step"><b>3</b><span>YouTubeの検索欄に貼り付け（Ctrl+V / ⌘V）</span></p>
+      <p class="step"><b>4</b><span><strong>右クリック</strong>（スマホは長押し）でプロが使う技名メニュー</span></p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="counter">
+    <div class="counter-in">
+      <label class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
+        <input id="q" type="search" placeholder="日本語でも英語でも検索（例：斬る / reload / ショットガン）" aria-label="検索ワードを絞り込む">
+      </label>
+      <div class="views" role="group" aria-label="表示切替">
+        <button id="v-shelf" aria-pressed="true">棚</button>
+        <button id="v-list" aria-pressed="false">一覧表</button>
+      </div>
+      <span class="stock dot" id="stock"></span>
+    </div>
+    <nav class="chips" id="genrechips" aria-label="棚案内"></nav>
+  </div>
+
+  <main id="shelf"></main>
+  <div id="list" hidden></div>
+
+  <section class="addword">
+    <h2>もう1語足すと、出てくる動画が変わる</h2>
+    <p>上の英語ワードの<strong>後ろに半角スペースを空けて</strong>くっつけて使います。例：<code class="mono">punch reference slow motion</code></p>
+    <div class="addgrid" id="addgrid"></div>
+  </section>
+
+  <footer>
+    英語ワードは YouTube・Pinterest・Vimeo のどれでもそのまま使えます。<br>
+    日本語で探すなら「歩き 作画 参考」のように<strong>動作＋作画／モーション＋参考</strong>で組むと当たりやすいです。
+  </footer>
+</div>
+
+<div id="pop" class="gv" role="tooltip" aria-hidden="true"></div>
+<div id="menu" class="gv" role="menu" aria-label="専門ワード" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   棚（ジャンル）。vars を持つ棚は「種類」で検索ワードが変わる
+   ============================================================ */
+const GENRES = [
+  {id:"loco",  ja:"移動",      en:"locomotion", gh:205, gs:"52%", mk:"mk-loco"},
+  {id:"jump",  ja:"跳ぶ・登る", en:"acrobatics", gh:32,  gs:"68%", mk:"mk-jump"},
+  {id:"strike",ja:"打撃",      en:"striking",   gh:356, gs:"60%", mk:"mk-strike"},
+  {id:"grap",  ja:"組み技",    en:"grappling",  gh:268, gs:"38%", mk:"mk-grap"},
+  {id:"blade", ja:"剣・刀",    en:"blade",      gh:318, gs:"42%", mk:"mk-blade",
+   vlabel:"刀剣の種類", vdef:"sword", vars:[
+     {ja:"指定なし", en:"sword",        ic:"ic-any"},
+     {ja:"日本刀",   en:"katana",       ic:"ic-katana"},
+     {ja:"両手剣",   en:"longsword",    ic:"ic-longsword"},
+     {ja:"片手剣＋盾",en:"sword and shield", ic:"ic-arming"},
+     {ja:"レイピア", en:"rapier",       ic:"ic-rapier"},
+     {ja:"大剣",     en:"greatsword",   ic:"ic-greatsword"},
+     {ja:"ナイフ",   en:"knife",        ic:"ic-knife"}]},
+  {id:"pole",  ja:"長物・鈍器", en:"polearm",   gh:172, gs:"42%", mk:"mk-pole",
+   vlabel:"得物の種類", vdef:"polearm", vars:[
+     {ja:"指定なし", en:"polearm",  ic:"ic-any"},
+     {ja:"槍",       en:"spear",    ic:"ic-spear",    kind:"point"},
+     {ja:"薙刀",     en:"naginata", ic:"ic-naginata", kind:"point"},
+     {ja:"棒",       en:"bo staff", ic:"ic-bo",       kind:"point"},
+     {ja:"斧",       en:"axe",      ic:"ic-axe",      kind:"blunt"},
+     {ja:"メイス",   en:"mace",     ic:"ic-mace",     kind:"blunt"}]},
+  {id:"gun",   ja:"銃",        en:"firearms",   gh:212, gs:"12%", mk:"mk-gun",
+   vlabel:"銃の種類", vdef:"gun", vars:[
+     {ja:"指定なし",     en:"gun",            ic:"ic-any"},
+     {ja:"ハンドガン",   en:"pistol",         ic:"ic-pistol",  kind:"handgun"},
+     {ja:"リボルバー",   en:"revolver",       ic:"ic-revolver",kind:"handgun"},
+     {ja:"サブマシンガン",en:"submachine gun", ic:"ic-smg",     kind:"long"},
+     {ja:"アサルトライフル",en:"assault rifle",ic:"ic-rifle",   kind:"long"},
+     {ja:"ショットガン", en:"shotgun",        ic:"ic-shotgun", kind:"long"},
+     {ja:"狙撃銃",       en:"sniper rifle",   ic:"ic-sniper",  kind:"long"}]},
+  {id:"throw", ja:"弓・投擲",  en:"ranged",     gh:95,  gs:"42%", mk:"mk-throw",
+   vlabel:"飛び道具の種類", vdef:"bow", vars:[
+     {ja:"指定なし",   en:"bow",         ic:"ic-any"},
+     {ja:"洋弓",       en:"recurve bow", ic:"ic-bow",      kind:"bow"},
+     {ja:"和弓",       en:"kyudo yumi",  ic:"ic-yumi",     kind:"bow"},
+     {ja:"クロスボウ", en:"crossbow",    ic:"ic-crossbow", kind:"bow"},
+     {ja:"手裏剣",     en:"shuriken",    ic:"ic-shuriken", kind:"thrown"}]},
+  {id:"react", ja:"やられ",    en:"reaction",   gh:18,  gs:"30%", mk:"mk-react"},
+  {id:"life",  ja:"日常・演技", en:"acting",    gh:148, gs:"38%", mk:"mk-life"}
+];
+
+/* ============================================================
+   カード。vpat がある物は {v} に「種類」が入る
+   ============================================================ */
+const DATA = [
+/* ---- 移動 ---- */
+{id:"walk",g:"loco",ja:"歩き",en:"walk cycle reference",kana:"ウォーク サイクル リファレンス",tag:"ループ",
+ mean:"歩行の1歩ぶんを、繰り返し再生できる形にまとめた動き。",
+ res:"真横から撮った等速の歩き、コマ送り解説、ループGIF、CGモデルの歩行。",
+ tip:"うしろに side view を足すと真横固定の素材が出る。24fps で作画用のコマ割り解説が増える。",
+ alt:["walk animation reference","walk cycle side view"]},
+{id:"run",g:"loco",ja:"走り",en:"run cycle reference",kana:"ラン サイクル リファレンス",tag:"ループ",
+ mean:"走行の1歩ぶんのループ。歩きより前傾が強く、両足が地面から離れる瞬間がある。",
+ res:"ランニングマシン上の走り、横視点のループ、実写とCGの比較動画。",
+ tip:"treadmill を足すと体が前後に動かず、足の運びだけが綺麗に見える。",
+ alt:["run cycle treadmill","running animation reference"]},
+{id:"sprint",g:"loco",ja:"全力疾走",en:"sprint slow motion",kana:"スプリント スロー モーション",tag:"ループ",
+ mean:"全速力。歩幅が広く、腕の振りも大きい。走りとは別物の動き。",
+ res:"陸上短距離のスロー映像、100m走を真横から追ったカメラ。",
+ tip:"100m sprint slow motion にすると、世界最高レベルの疾走がじっくり見られる。",
+ alt:["100m sprint slow motion","sprinting form analysis"]},
+{id:"sneak",g:"loco",ja:"忍び足",en:"sneak walk reference",kana:"スニーク ウォーク リファレンス",tag:"ループ",
+ mean:"音を立てないよう腰を落として進む歩き。潜入シーンの定番。",
+ res:"ゲーム向けの実演、腰を落とした歩行、つま先から着地する歩き方の解説。",
+ tip:"stealth walk でもほぼ同じ。銃を持ったまま進むなら tactical walk。",
+ alt:["stealth walk reference","tactical walk shooting"]},
+{id:"crouch",g:"loco",ja:"しゃがみ歩き",en:"crouch walk reference",kana:"クラウチ ウォーク リファレンス",tag:"ループ",
+ mean:"腰を深く落としたまま進む移動。遮蔽物ぞいの前進など。",
+ res:"低い姿勢での前進、ゲーム向けの実演、軍の低姿勢移動訓練。",
+ tip:"duck walk だとアヒル歩きの筋トレが混ざる。crouch の方が確実。",
+ alt:["low crouch movement","crouching walk animation"]},
+{id:"turn",g:"loco",ja:"振り向き",en:"turn around reference",kana:"ターン アラウンド リファレンス",tag:"一発",
+ mean:"立ち止まっての回頭や、走りながらの方向転換。足の踏み替えが要。",
+ res:"180度ターン、切り返しの足運び、方向転換のスポーツ解説。",
+ tip:"注意：turnaround と1語にすると、キャラの三面図（設定画）ばかり出る。必ず2語で。",
+ alt:["180 degree turn animation","pivot turn reference"]},
+{id:"backstep",g:"loco",ja:"後ずさり",en:"walking backwards reference",kana:"ウォーキング バックワーズ リファレンス",tag:"ループ",
+ mean:"後ろ向きに下がる移動。つま先から着地し、目線は前に残る。",
+ res:"後退の歩行解析、格闘技のバックステップ、リハビリ指導の後ろ歩き。",
+ tip:"戦闘中の下がりなら backpedaling footwork の方が実戦的な映像になる。",
+ alt:["backpedaling footwork","retreat step boxing"]},
+{id:"ladder",g:"loco",ja:"はしご登り",en:"climbing ladder reference",kana:"クライミング ラダー リファレンス",tag:"ループ",
+ mean:"はしご・壁をよじ登る上下方向の移動。",
+ res:"消防士の訓練映像、クライミングジムの登り、軍の障害物訓練。",
+ tip:"壁のよじ登りは climbing wall reference、縁につかまって上がるのは ledge climb。",
+ alt:["climbing wall reference","rope climbing technique"]},
+{id:"idle",g:"loco",ja:"待機",en:"idle animation reference",kana:"アイドル アニメーション リファレンス",tag:"ループ",
+ mean:"何もしていない時の呼吸・体重移動・小さな揺れ。棒立ちにしないための資料。",
+ res:"ゲームの待機モーション集、立ち姿の重心移動、構えたままの呼吸。",
+ tip:"実写が欲しければ standing idle、戦闘の構えなら fighting stance idle。",
+ alt:["standing idle reference","combat idle stance"]},
+
+/* ---- 跳ぶ・登る ---- */
+{id:"jump",g:"jump",ja:"ジャンプ",en:"jump reference",kana:"ジャンプ リファレンス",tag:"一発",
+ mean:"しゃがんで溜め→跳躍→着地の3段構え。溜めと着地の潰れが命。",
+ res:"垂直跳びのスロー、真横からの跳躍、ゲームのジャンプ実演。",
+ tip:"slow motion を足すと、溜めの沈み込みと着地の潰れがコマ単位で見える。",
+ alt:["vertical jump slow motion","jump animation reference"]},
+{id:"runjump",g:"jump",ja:"助走ジャンプ",en:"running jump reference",kana:"ランニング ジャンプ リファレンス",tag:"一発",
+ mean:"走り込みからの跳躍。踏み切り足が1本になり、体が前に伸びる。",
+ res:"走幅跳びの試技、障害物を跳び越える実演、スタントの飛び移り。",
+ tip:"long jump slow motion が素材として一番きれい。",
+ alt:["long jump slow motion","leap over gap parkour"]},
+{id:"roll",g:"jump",ja:"着地の受け身",en:"landing roll reference",kana:"ランディング ロール リファレンス",tag:"一発",
+ mean:"着地の衝撃を前転で逃がす動き。高所から降りた直後の定番。",
+ res:"パルクールの着地練習、空挺降下の訓練、スタントの受け身。",
+ tip:"parkour roll / safety roll もほぼ同義。柔道の受け身は breakfall。",
+ alt:["parkour roll tutorial","breakfall reference"]},
+{id:"ledge",g:"jump",ja:"よじ登り",en:"ledge climb up reference",kana:"レッジ クライム アップ リファレンス",tag:"一発",
+ mean:"縁につかまって、体を引き上げて乗り越えるまで。腕→肘→腰の順。",
+ res:"パルクールのマッスルアップ、壁の乗り越え、クライミングのマントリング。",
+ tip:"mantle climbing technique だと岩場での乗り上げが出る。",
+ alt:["muscle up wall climb","mantle climbing technique"]},
+{id:"parkour",g:"jump",ja:"パルクール",en:"parkour reference",kana:"パルクール リファレンス",tag:"流れ",
+ mean:"壁・柵・段差を越えて走り抜ける、移動アクションの総合。",
+ res:"実演の連続技、練習風景、POV映像、失敗集。",
+ tip:"parkour reference no music にするとBGMなしで、コマ送りしやすい素材が残る。",
+ alt:["parkour reference no music","freerunning slow motion"]},
+{id:"backflip",g:"jump",ja:"バク宙",en:"backflip slow motion",kana:"バック フリップ スロー モーション",tag:"一発",
+ mean:"後方宙返り。溜め→踏み切り→抱え込み→着地。",
+ res:"体操・トリッキングのスロー、多方向から撮った分解映像。",
+ tip:"slow motion は必須。tricking を足すと派手な複合技が出る。",
+ alt:["tricking slow motion","frontflip slow motion"]},
+{id:"vault",g:"jump",ja:"飛び越え",en:"vault reference",kana:"ヴォールト リファレンス",tag:"一発",
+ mean:"手をついて柵や台を越える動き。技ごとに形が違う。",
+ res:"speed vault / kong vault などの技別チュートリアル、街中の実演。",
+ tip:"技名で絞ると精度が上がる：kong vault（両手台越え）、speed vault（横抜け）。",
+ alt:["kong vault tutorial","speed vault slow motion"]},
+{id:"wallrun",g:"jump",ja:"壁走り",en:"wall run reference",kana:"ウォール ラン リファレンス",tag:"一発",
+ mean:"壁を数歩駆け上がる／壁面を横に走る。重力に逆らう2〜3歩が勝負。",
+ res:"パルクールの実演、壁を登るチュートリアル、スタント現場の映像。",
+ tip:"wall climb は上方向、wall run は横方向。目的で使い分ける。",
+ alt:["wall climb parkour","wall flip reference"]},
+
+/* ---- 打撃 ---- */
+{id:"punch",g:"strike",ja:"パンチ",en:"punch reference",kana:"パンチ リファレンス",tag:"一発",
+ mean:"拳の打撃。腕ではなく、踏み込みと腰の回転から力が伝わる。",
+ res:"ボクシングのスロー、サンドバッグ、ミット打ち、フォーム解説。",
+ tip:"boxing punch slow motion が最も素材として質が高い。",
+ alt:["boxing punch slow motion","straight punch form"]},
+{id:"combo",g:"strike",ja:"連打",en:"boxing combo reference",kana:"ボクシング コンボ リファレンス",tag:"流れ",
+ mean:"ジャブ→ストレートのように、技をつなげた連続攻撃。",
+ res:"シャドーボクシング、コンビネーション解説、ミットでの連打。",
+ tip:"shadow boxing は相手がいないぶん全身がよく見えて、モーション作りに向く。",
+ alt:["shadow boxing slow motion","punch combination drill"]},
+{id:"hook",g:"strike",ja:"フック・アッパー",en:"hook and uppercut reference",kana:"フック アンド アッパーカット リファレンス",tag:"一発",
+ mean:"横から回すフックと、下から突き上げるアッパー。体の捻りが大きい。",
+ res:"フォーム解説、サンドバッグでのスロー、ミット打ちの連続。",
+ tip:"別々に検索した方が精度が高い：hook punch technique / uppercut slow motion。",
+ alt:["hook punch technique","uppercut slow motion"]},
+{id:"rkick",g:"strike",ja:"回し蹴り",en:"roundhouse kick reference",kana:"ラウンドハウス キック リファレンス",tag:"一発",
+ mean:"弧を描いて当てる蹴り。軸足のかかとの返しがポイント。",
+ res:"ムエタイ・空手・テコンドーのスロー、フォーム解説。",
+ tip:"muay thai を足すと軸足の返しと腰の入れ方がはっきり分かる。",
+ alt:["muay thai kick slow motion","spinning kick reference"]},
+{id:"fkick",g:"strike",ja:"前蹴り",en:"front kick reference",kana:"フロント キック リファレンス",tag:"一発",
+ mean:"膝を上げてから真っ直ぐ突き出す蹴り。距離を作る技。",
+ res:"空手・ムエタイの実演、フォーム解説、ミットへの蹴り込み。",
+ tip:"ムエタイの押し込む前蹴りは teep、空手の突き刺す前蹴りは mae geri。",
+ alt:["teep push kick muay thai","mae geri karate"]},
+{id:"kneeelbow",g:"strike",ja:"膝・肘",en:"knee and elbow strike reference",kana:"ニー アンド エルボー ストライク リファレンス",tag:"一発",
+ mean:"至近距離の打撃。首を掴んでの膝、振り下ろす肘など。",
+ res:"ムエタイの首相撲からの膝、肘打ちの角度別解説。",
+ tip:"muay thai clinch knee で首相撲の膝、elbow strike slow motion で肘。",
+ alt:["muay thai clinch knee","elbow strike slow motion"]},
+{id:"dodge",g:"strike",ja:"回避",en:"dodge reference",kana:"ドッジ リファレンス",tag:"一発",
+ mean:"攻撃をよける動き。上体を反らす・沈める・横にずれる。",
+ res:"ボクシングの防御練習、ダッキングやスウェーの解説。",
+ tip:"head movement boxing の方が、具体的で質の高い映像が出る。",
+ alt:["head movement boxing drill","dodge and counter reference"]},
+{id:"guard",g:"strike",ja:"ガード",en:"blocking guard reference",kana:"ブロッキング ガード リファレンス",tag:"一発",
+ mean:"腕や脚で受け止める防御。当たった瞬間に体がわずかに沈む。",
+ res:"ガードの上から打たれる映像、受けの解説、蹴りを脛で受けるチェック。",
+ tip:"蹴りを脛で止めるのは checking kicks muay thai。",
+ alt:["checking kicks muay thai","boxing block parry drill"]},
+
+/* ---- 組み技 ---- */
+{id:"shoot",g:"grap",ja:"タックル",en:"double leg takedown reference",kana:"ダブル レッグ テイクダウン リファレンス",tag:"一発",
+ mean:"相手の脚を取って倒す組みつき。潜る→抱える→持ち上げるの3段。",
+ res:"レスリング・MMAの実演、スロー分解、ドリル練習。",
+ tip:"片脚なら single leg takedown。組み合いからの入りは shot entry。",
+ alt:["single leg takedown","wrestling shot drill"]},
+{id:"throw",g:"grap",ja:"投げ",en:"judo throw reference",kana:"ジュードー スロー リファレンス",tag:"一発",
+ mean:"崩して背負う・刈るなどして相手を宙に投げる技。",
+ res:"柔道の一本集、技別の解説、スロー再生の分解映像。",
+ tip:"技名が最強：ippon seoi nage（一本背負い）、osoto gari（大外刈り）。",
+ alt:["ippon seoi nage slow motion","osoto gari technique"]},
+{id:"ground",g:"grap",ja:"寝技",en:"ground grappling reference",kana:"グラウンド グラップリング リファレンス",tag:"流れ",
+ mean:"倒れた状態での攻防。移動が這うような独特の動きになる。",
+ res:"柔術のスパーリング、ポジション移動の解説、MMAの寝技。",
+ tip:"bjj sparring で本気の攻防、guard passing で上からの攻めに絞れる。",
+ alt:["bjj sparring reference","guard passing technique"]},
+{id:"lock",g:"grap",ja:"関節技",en:"joint lock submission reference",kana:"ジョイント ロック サブミッション リファレンス",tag:"一発",
+ mean:"関節を極める技。極まる瞬間に相手の体が硬直する。",
+ res:"柔術・合気道の技解説、腕十字や膝十字のスロー。",
+ tip:"armbar / kimura など技名で引くと分かりやすい実演が出る。",
+ alt:["armbar technique slow motion","aikido joint lock demonstration"]},
+{id:"clinch",g:"grap",ja:"組み合い",en:"clinch fighting reference",kana:"クリンチ ファイティング リファレンス",tag:"流れ",
+ mean:"密着した押し合い。重心のぶつかり合いで、常に小さく動き続ける。",
+ res:"ムエタイの首相撲、レスリングの手の取り合い、MMAの壁際。",
+ tip:"muay thai clinch は首の取り合い、pummeling drill は腕の差し合い。",
+ alt:["muay thai clinch drill","pummeling wrestling drill"]},
+
+/* ---- 剣・刀（種類あり） ---- */
+{id:"bstance",g:"blade",ja:"構え",vpat:"{v} guard stance reference",kana:"ガード スタンス リファレンス",tag:"一発",
+ mean:"斬り合いの前の構え。流派・武器ごとに重心と剣先の高さが違う。",
+ res:"各流派の基本の構えの解説、上段・中段・下段の比較。",
+ tip:"日本刀を選ぶと kendo kamae（構え）系、両手剣だと HEMA の4つの構えが出る。"},
+{id:"bcut",g:"blade",ja:"斬る",vpat:"{v} cutting technique slow motion",kana:"カッティング テクニック スロー モーション",tag:"一発",
+ mean:"一振りの軌道。振りかぶり（溜め）→斬撃→振り抜き。",
+ res:"試し斬り、素振り、藁束を斬るスロー、刃筋の解説。",
+ tip:"日本刀を選ぶと tameshigiri（試し斬り）系の切れ味重視の映像が増える。"},
+{id:"bfight",g:"blade",ja:"斬り合い",vpat:"{v} sparring reference",kana:"スパーリング リファレンス",tag:"流れ",
+ mean:"実際の攻防。間合いの詰め方とリズムが見える。",
+ res:"HEMA（西洋剣術）の試合、剣道の稽古、スタントの殺陣。",
+ tip:"演出なしの本気の動きが見たいなら、これに HEMA tournament を足す。"},
+{id:"bdraw",g:"blade",ja:"抜刀",vpat:"{v} draw reference",kana:"ドロー リファレンス",tag:"一発",
+ mean:"鞘や鞘帯から抜いて構えるまで。抜き際に斬る流派もある。",
+ res:"居合の抜き付け、抜刀術、腰から抜くまでの分解映像。",
+ tip:"日本刀なら iaido / battojutsu で本格的な演武が出る。"},
+{id:"bparry",g:"blade",ja:"受け流し",vpat:"{v} parry and counter reference",kana:"パリィ アンド カウンター リファレンス",tag:"一発",
+ mean:"相手の斬撃を受け止める・逸らす、そこから返す。",
+ res:"HEMAの受けの解説、剣道の応じ技、映画殺陣の受け方。",
+ tip:"逸らして流すのは deflection、真っ向から止めるのは block。"},
+{id:"bthrust",g:"blade",ja:"突き",vpat:"{v} thrust technique reference",kana:"スラスト テクニック リファレンス",tag:"一発",
+ mean:"刃先を真っ直ぐ突き入れる技。踏み込みと同時に体が伸びる。",
+ res:"レイピア・フェンシングの突き、剣道の突き、HEMAの解説。",
+ tip:"レイピアを選ぶと lunge（踏み込み突き）の綺麗な素材が出る。"},
+
+/* ---- 長物・鈍器（種類あり） ---- */
+{id:"pstance",g:"pole",ja:"構え",vpat:"{v} stance and grip reference",kana:"スタンス アンド グリップ リファレンス",tag:"一発",
+ mean:"長い得物の持ち方と構え。手幅と体の向きで攻め方が変わる。",
+ res:"槍術・棒術の基本の構え、握りの解説、演武の始まり。",
+ tip:"握りだけ見たいなら grip を、全身を見たいなら stance を強調する。"},
+{id:"pthrust",g:"pole",ja:"突き・打ち込み",vpat:"{v} thrust technique reference",
+ vpatBy:{blunt:"{v} strike technique reference"},
+ kana:"スラスト テクニック（鈍器はストライク）",tag:"一発",
+ mean:"長さを活かした刺突。斧やメイスなら、まっすぐ叩き込む一撃。",
+ res:"槍術の突き、HEMAのポールアーム、斧・メイスの打ち込み。",
+ tip:"斧・メイスを選ぶと自動で「突き」ではなく「打撃」の検索に切り替わります。"},
+{id:"psweep",g:"pole",ja:"薙ぎ払い",vpat:"{v} sweeping strike slow motion",kana:"スウィーピング ストライク スロー モーション",tag:"一発",
+ mean:"横に薙ぐ大振り。遠心力で先端が最も速くなる。",
+ res:"薙刀の演武、棒の横薙ぎ、斧の薙ぎ払いのスロー。",
+ tip:"足を刈る低い薙ぎは leg sweep strike を足すと出やすい。"},
+{id:"pspin",g:"pole",ja:"振り回し",vpat:"{v} spinning technique reference",kana:"スピニング テクニック リファレンス",tag:"流れ",
+ mean:"体の周りで回す連続動作。手の中で滑らせる持ち替えが要。",
+ res:"棒回し、中国棍術の演武、トリッキングの回転技。",
+ tip:"見栄え重視なら staff spinning、実戦寄りなら kata / form を足す。"},
+{id:"pchop",g:"pole",ja:"打ち下ろし",vpat:"{v} overhead strike slow motion",kana:"オーバーヘッド ストライク スロー モーション",tag:"一発",
+ mean:"頭上から叩きつける重い一撃。全体重が乗る。",
+ res:"斧・メイスの叩きつけ、薪割り、HEMAのポールアーム打撃。",
+ tip:"重さの表現を見るなら axe splitting wood のスローが分かりやすい。"},
+
+/* ---- 銃（種類あり） ---- */
+{id:"gstance",g:"gun",ja:"構え",vpat:"{v} shooting stance reference",kana:"シューティング スタンス リファレンス",tag:"一発",
+ mean:"銃を構えた姿勢。肩・肘・足の位置で反動の受け方が変わる。",
+ res:"射撃訓練の基本姿勢解説、立ち／膝／伏せの比較。",
+ tip:"照準を覗く動作だけなら sight picture aiming を足す。"},
+{id:"gfire",g:"gun",ja:"撃つ",vpat:"{v} firing slow motion",kana:"ファイアリング スロー モーション",tag:"一発",
+ mean:"発砲の瞬間。銃口の跳ね上がりと薬莢の排出が同時に起こる。",
+ res:"ハイスピードカメラの発砲映像、排莢のスロー、銃口炎。",
+ tip:"1000fps などの超スローは high speed camera を足すと見つかる。"},
+{id:"greload",g:"gun",ja:"リロード",vpat:"{v} reload reference",kana:"リロード リファレンス",tag:"一発",
+ mean:"弾倉や弾を入れ替える動作。手元だけでなく銃全体が動く。",
+ res:"リロード実演、速さ比較、種類別の装填手順の解説。",
+ tip:"速度重視は speed reload、弾倉を残す方式は tactical reload。"},
+{id:"gdraw",g:"gun",ja:"抜く・構える",vpat:"{v} draw and ready slow motion",
+ vpatBy:{handgun:"{v} draw from holster slow motion", long:"{v} sling to shoulder transition"},
+ kana:"ドロー アンド レディ（長物はスリング トランジション）",tag:"一発",
+ mean:"収納状態から構えて撃てる状態にするまで。拳銃は腰から、長物は肩に担いだ状態から。",
+ res:"ホルスターからの抜き撃ち、タイムを競う競技、長物の担ぎからの構え直し。",
+ tip:"ハンドガンを選ぶとホルスター抜き、長物を選ぶとスリングからの構えに自動で切り替わります。"},
+{id:"gjam",g:"gun",ja:"ジャム除去",vpat:"{v} malfunction clearance drill",kana:"マルファンクション クリアランス ドリル",tag:"一発",
+ mean:"弾詰まりを直す動作。叩く・引く・確認するの手順が決まっている。",
+ res:"訓練映像、故障の種類別の対処、タップ＆ラックの実演。",
+ tip:"tap rack bang が一番定番の手順名。"},
+{id:"gclear",g:"gun",ja:"室内戦",vpat:"{v} cqb room clearing",kana:"シー キュー ビー ルーム クリアリング",tag:"流れ",
+ mean:"狭い屋内での進み方。角の覗き方と銃口の向きが決まっている。",
+ res:"CQB訓練、部屋への進入、角を切る動きの解説。",
+ tip:"角を少しずつ覗くのは slicing the pie（パイ切り）。"},
+{id:"gprone",g:"gun",ja:"伏せ撃ち",vpat:"{v} prone shooting position",kana:"プローン シューティング ポジション",tag:"一発",
+ mean:"地面に伏せての射撃姿勢。足の開き方と依託の作り方がある。",
+ res:"伏射の姿勢解説、狙撃の据銃、依託射撃の作り方。",
+ tip:"狙撃銃を選ぶと sniper hide や据銃の細かい解説が出る。"},
+{id:"grecoil",g:"gun",ja:"反動",vpat:"{v} recoil slow motion",kana:"リコイル スロー モーション",tag:"一発",
+ mean:"発砲後の跳ね上がりと戻り。腕・肩・全身に波が伝わる。",
+ res:"反動の比較映像、体の揺れのスロー、口径別の跳ね上がり。",
+ tip:"recoil comparison にすると銃種ごとの違いが一度に見られる。"},
+
+/* ---- 弓・投擲（種類あり） ---- */
+{id:"tdraw",g:"throw",ja:"構え・引き",vpat:"{v} draw and aim reference",
+ vpatBy:{thrown:"{v} grip and stance reference"},
+ kana:"ドロー アンド エイム リファレンス",tag:"一発",
+ mean:"狙いを定めるまで。弓なら弦を引き絞り、投擲物なら握りと構えを作る。",
+ res:"アーチェリーのフォーム解説、弓道の引き分け、手裏剣の構え。",
+ tip:"和弓を選ぶと kyudo hassetsu（八節）という所作の分解が出る。"},
+{id:"tshoot",g:"throw",ja:"射つ・放つ",vpat:"{v} release slow motion",
+ vpatBy:{thrown:"{v} throwing slow motion"},
+ kana:"リリース スロー モーション",tag:"一発",
+ mean:"放つ瞬間。離れの反動で弓と体が大きく動く。",
+ res:"離れのハイスピード映像、矢のしなり、残心までの流れ。",
+ tip:"矢の飛び方まで見るなら arrow flight slow motion を足す。"},
+{id:"tquick",g:"throw",ja:"速射",vpat:"{v} rapid shooting technique",
+ vpatBy:{thrown:"{v} rapid throwing technique"},
+ kana:"ラピッド シューティング テクニック",tag:"流れ",
+ mean:"素早く連続で放つ技法。次を用意する手が忙しく動く。",
+ res:"速射の実演、騎射、連続で射つ古式の技法解説。",
+ tip:"馬上からの射は horseback archery / yabusame。"},
+{id:"tknife",g:"throw",ja:"投げナイフ",en:"knife throwing slow motion",kana:"ナイフ スローイング スロー モーション",tag:"一発",
+ mean:"刃物を投げる動作。回転を合わせるため腕の抜き方が独特。",
+ res:"投擲のスロー、回転数の解説、無回転投法の実演。",
+ tip:"無回転で投げる方法は no spin knife throwing。",
+ alt:["no spin knife throwing","axe throwing slow motion"]},
+{id:"tgrenade",g:"throw",ja:"手榴弾",en:"grenade throw reference",kana:"グレネード スロー リファレンス",tag:"一発",
+ mean:"ピンを抜いて投げるまで。野球の投球とは腕の振りが違う。",
+ res:"軍の投擲訓練、伏せた状態からの投擲、フォーム解説。",
+ tip:"物を投げる動き全般が見たいなら overhand throwing motion。",
+ alt:["overhand throwing motion analysis","military grenade training"]},
+
+/* ---- やられ ---- */
+{id:"hit",g:"react",ja:"被弾",en:"hit reaction reference",kana:"ヒット リアクション リファレンス",tag:"一発",
+ mean:"攻撃を受けた瞬間の反応。当たった部位で仰け反り方が変わる。",
+ res:"スタントのリアクション練習、ボクシングの被弾スロー、格闘技のKO直前。",
+ tip:"stunt reaction を足すと、見せるための大げさなリアクションが出る。",
+ alt:["stunt hit reaction","getting punched slow motion"]},
+{id:"knock",g:"react",ja:"ダウン",en:"knockdown reference",kana:"ノックダウン リファレンス",tag:"一発",
+ mean:"打撃で崩れ落ちる／吹っ飛んで倒れる。力の抜け方が難しい。",
+ res:"KO集、スタントの倒れ方、格闘技のダウンシーン。",
+ tip:"getting knocked down / stunt fall backwards でも同系統が出る。",
+ alt:["stunt fall backwards","knockout slow motion"]},
+{id:"blown",g:"react",ja:"吹っ飛び",en:"knockback stunt reference",kana:"ノックバック スタント リファレンス",tag:"一発",
+ mean:"爆風や強打で後方に飛ばされる。ゲームのやられに直結する動き。",
+ res:"ワイヤーで引かれるスタント、爆破シーンの吹っ飛び、メイキング。",
+ tip:"ワイヤーで引く仕掛けは air ram stunt / wire pull stunt。",
+ alt:["air ram stunt","wire pull stunt behind the scenes"]},
+{id:"fall",g:"react",ja:"転倒",en:"stunt fall reference",kana:"スタント フォール リファレンス",tag:"一発",
+ mean:"安全に倒れる・落ちる技術。派手に見せつつ怪我をしない動き。",
+ res:"高所落下、階段落ち、スタントマンの練習風景と解説。",
+ tip:"stair fall stunt で階段落ち、high fall stunt で高所落下。",
+ alt:["high fall stunt","stair fall stunt"]},
+{id:"death",g:"react",ja:"やられ",en:"death animation reference",kana:"デス アニメーション リファレンス",tag:"一発",
+ mean:"力が抜けて崩れ落ちる終わり方。膝→腰→上体の順に落ちる。",
+ res:"ゲームのやられモーション集、スタントの倒れ方、映画の分析。",
+ tip:"実写素材が欲しい時は stunt death fall。ゲーム内映像が多いので注意。",
+ alt:["stunt death fall","ragdoll death animation"]},
+{id:"getup",g:"react",ja:"起き上がり",en:"get up from ground reference",kana:"ゲット アップ フロム グラウンド リファレンス",tag:"一発",
+ mean:"倒れた状態から立ち上がるまで。手をつく・膝を立てるの順序が要。",
+ res:"格闘技の立ち技復帰、受け身からの起立、体幹トレーニング。",
+ tip:"technical stand up が格闘技での正式名称。狙うならこちらが早い。",
+ alt:["technical stand up bjj","kip up tutorial"]},
+
+/* ---- 日常・演技 ---- */
+{id:"sit",g:"life",ja:"座る",en:"sit to stand reference",kana:"シット トゥ スタンド リファレンス",tag:"一発",
+ mean:"椅子への着席と、そこからの起立。重心が前に出てから立ち上がる。",
+ res:"動作解析の映像、リハビリ指導、正しい立ち上がり方の解説。",
+ tip:"sit down animation reference より sit to stand の方が動作解析寄りで精度が高い。",
+ alt:["sitting down animation reference","standing up from chair"]},
+{id:"pick",g:"life",ja:"拾う",en:"pick up object reference",kana:"ピック アップ オブジェクト リファレンス",tag:"一発",
+ mean:"床の物を拾う・持ち上げる。重さで屈み方がまるで変わる。",
+ res:"動作訓練、重量物の正しい持ち上げ方、作業動作の解説。",
+ tip:"重い物なら lifting heavy object、軽い物なら picking up item animation。",
+ alt:["lifting heavy object technique","picking up item animation"]},
+{id:"carry",g:"life",ja:"運ぶ",en:"carrying heavy object reference",kana:"キャリング ヘビー オブジェクト リファレンス",tag:"ループ",
+ mean:"重い物を持ったまま歩く。歩幅が狭くなり、上体が反る。",
+ res:"重量物の運搬、荷物を抱えた歩行、消防士の人搬送。",
+ tip:"人を担ぐのは fireman carry。両手がふさがった歩きは carrying box walk。",
+ alt:["fireman carry technique","carrying box walk cycle"]},
+{id:"door",g:"life",ja:"ドア",en:"opening door reference",kana:"オープニング ドア リファレンス",tag:"流れ",
+ mean:"扉を開けて通り抜ける一連。押す・引く・体の入れ方。",
+ res:"動作の分解映像、映画の入退室シーン、ドアの開け方の解説。",
+ tip:"素材が少なめ。walking through door や door animation reference も併せて試す。",
+ alt:["walking through door reference","door animation reference"]},
+{id:"acting",g:"life",ja:"演技",en:"acting reference for animators",kana:"アクティング リファレンス フォー アニメーターズ",tag:"流れ",
+ mean:"感情を体で見せる芝居。棒立ちの会話シーンを救う資料。",
+ res:"俳優の芝居素材、アニメーター向け演技講座、セリフ付きの実演クリップ。",
+ tip:"animation acting reference でもほぼ同じ。11 second club で短い芝居素材が集まる。",
+ alt:["animation acting reference","11 second club reference"]},
+{id:"face",g:"life",ja:"表情",en:"facial expression reference",kana:"フェイシャル エクスプレッション リファレンス",tag:"流れ",
+ mean:"喜怒哀楽での顔の変化。眉・目・口の連動を見る。",
+ res:"表情筋の解説、俳優の表情集、感情ごとの比較映像。",
+ tip:"CG寄りなら facial animation reference、口の形なら mouth shapes lip sync。",
+ alt:["facial animation reference","mouth shapes lip sync chart"]}
+];
+
+/* ============================================================
+   右クリックで出る「プロが使う技名」。[説明, 検索ワード]
+   ============================================================ */
+const PRO = {
+walk:[["12コマ歩き：作画の標準コマ数での歩行","walk cycle 12 frames"],
+ ["ダブルバウンス：1歩で2回上下する漫画的な歩き","double bounce walk cycle"],
+ ["歩行解析：かかと接地→つま先離れの正確な分解","gait analysis heel strike toe off"],
+ ["性格づけ歩き：怒り・落胆など感情別の歩き分け","personality walk cycle acting"],
+ ["疲れた歩き：足が上がらない引きずる歩行","tired walk reference"]],
+run:[["8コマ走り：ゲーム・作画で多い高速ループ","run cycle 8 frames"],
+ ["フォアフット着地：つま先寄りで接地する走法","forefoot strike running slow motion"],
+ ["走行解析：接地時間と重心の上下を数値で見る","running gait analysis"],
+ ["長距離の走り：短距離と別物の省エネフォーム","distance running form analysis"]],
+sprint:[["クラウチングスタート：静止からの爆発的な1歩目","block start sprint slow motion"],
+ ["加速局面：前傾のまま徐々に起き上がる区間","sprint drive phase acceleration"],
+ ["最高速局面：真下に叩きつける接地","top speed sprint mechanics"],
+ ["Aスキップ：走りの分解ドリル、脚の軌道が分かる","a skip drill slow motion"]],
+sneak:[["フォックスウォーク：足の外側から静かに着地","fox walk silent movement"],
+ ["コンバットグライド：銃を構えたまま滑るように歩く","combat glide walk shooting"],
+ ["忍び歩き（歩法）：日本の古流の静かな足運び","shinobi ashi ninja walking"],
+ ["ストーキング：獲物に近づく狩人の歩き","stalking walk hunting silent"]],
+crouch:[["ダックウォーク：完全にしゃがんだままの前進","duck walk movement"],
+ ["低姿勢前進：軍の遮蔽物ぞいの移動","low profile tactical movement"],
+ ["四つ這い：手をついて進む最も低い移動","bear crawl low crawl reference"]],
+turn:[["ピボットターン：軸足を残しての回頭","pivot turn footwork drill"],
+ ["クロスオーバーステップ：足を交差させる方向転換","crossover step change of direction"],
+ ["カット動作：全力から90〜180度切り返す","180 degree cut sports science"],
+ ["スピンムーブ：相手をかわす回転","spin move slow motion"]],
+backstep:[["バックペダル：正面を向いたまま速く下がる","backpedal drill footwork"],
+ ["サークリング：円を描いて回り込む下がり方","circling out boxing footwork"],
+ ["後ろ歩き解析：前歩きとの体の使い方の違い","backward walking gait analysis"]],
+ladder:[["三点支持：常に3点で体を支える登り方","three points of contact climbing"],
+ ["マントリング：縁に乗り上げて体を引き上げる","mantle climbing technique"],
+ ["ダイノ：跳びついて掴む動的ムーブ","dyno climbing move slow motion"],
+ ["消防はしご：装備を持ったままの登り","firefighter ladder climb training"]],
+idle:[["重心移動：立ったままの左右の体重の預け替え","weight shift standing reference"],
+ ["呼吸の待機：胸と肩だけが動く最小の待機","breathing idle animation reference"],
+ ["手持ち無沙汰：髪を触る等の小さな癖の動き","fidget animation reference"],
+ ["戦闘待機：武器を構えたままの微動","combat ready stance idle"]],
+
+jump:[["反動跳び：しゃがみ→跳躍を連続で行う跳び方","countermovement jump analysis"],
+ ["スクワットジャンプ：溜めから静止せず跳ぶ","squat jump slow motion"],
+ ["立ち幅跳び：前方への静止跳躍","standing broad jump slow motion"],
+ ["着地衝撃：膝と足首の潰れ方の解析","landing mechanics knee slow motion"]],
+runjump:[["はさみ跳び：空中で足を掻く幅跳びの技法","hitch kick long jump technique"],
+ ["そり跳び：体を反らせて滞空を稼ぐ","hang technique long jump"],
+ ["プレシジョン：狙った所へ正確に着地する跳躍","precision jump parkour"],
+ ["ギャップジャンプ：ビルの隙間を跳び越える","gap jump parkour slow motion"]],
+roll:[["ショルダーロール：肩から斜めに入る前転","shoulder roll parkour tutorial"],
+ ["空挺五点着地：足→ふくらはぎ→尻→背の順で逃がす","parachute landing fall PLF training"],
+ ["柔道の受け身：前・後・横の3種","ukemi breakfall judo tutorial"],
+ ["ダイブロール：跳び込んでからの前転","dive roll technique"]],
+ledge:[["マッスルアップ：懸垂から一気に押し上げる","muscle up technique slow motion"],
+ ["キャットリープからの登り：壁に付いた状態から上がる","cat leap to climb up parkour"],
+ ["トップアウト：クライミングで岩の上に乗る瞬間","topping out climbing technique"]],
+parkour:[["キャットリープ：壁に飛びついてしがみつく","cat leap parkour tutorial"],
+ ["ティックタック：壁を蹴って方向を変える","tic tac parkour"],
+ ["アンダーバー：バーの下をくぐり抜ける","underbar parkour tutorial"],
+ ["ラッシュ：バーにぶら下がって振り飛ぶ","lache parkour slow motion"]],
+backflip:[["ゲイナー：前に進みながら後方宙返り","gainer flip tutorial"],
+ ["コーク：斜めの軸で回る立体的な宙返り","cork tricking slow motion"],
+ ["ノーハンド側転（エアリアル）：手をつかない側方回転","aerial cartwheel no hands slow motion"],
+ ["バタフライツイスト：低い姿勢からの横回転","butterfly twist tutorial"]],
+vault:[["コングボルト：両手をついて台の上を通す","kong vault slow motion"],
+ ["ダッシュボルト：足から入り手で押し抜ける","dash vault tutorial"],
+ ["シーフボルト：片手片足を残して抜ける","thief vault tutorial"],
+ ["リバースボルト：体を回転させて越える","reverse vault tutorial"]],
+wallrun:[["ティックタック：壁を1〜2歩蹴って跳ぶ","tic tac wall parkour"],
+ ["壁走り→キャットリープ：登って縁を掴むまで","wall run to cat leap"],
+ ["ウォールフリップ：壁を蹴って後方宙返り","wall flip tutorial slow motion"]],
+
+punch:[["クロス（右ストレート）：後ろ足から腰で打つ","cross punch technique slow motion"],
+ ["レバーブロー：脇腹への左ボディフック","liver shot body hook slow motion"],
+ ["オーバーハンド：上から回して被せる打ち","overhand right slow motion"],
+ ["コークスクリュー：拳を捻り込むパンチ","corkscrew punch technique"],
+ ["体重移動：拳より先に腰が回る仕組み","hip rotation punching power analysis"]],
+combo:[["ワンツー：ジャブ→ストレートの基本形","one two combination slow motion"],
+ ["チェックフック：下がりながら当てるフック","check hook boxing technique"],
+ ["フィリーシェル：肩で守りながら打つ構え","philly shell defense counter"],
+ ["コンビネーションドリル：3〜5発の型稽古","boxing combination drills slow motion"]],
+hook:[["フック：肘を90度に畳んで回す","hook punch technique slow motion"],
+ ["アッパー：膝の伸びで下から突き上げる","uppercut technique slow motion"],
+ ["ショベルフック：斜め下から抉る中間の打ち","shovel hook boxing"],
+ ["振り抜きの重心：軸足に体重が乗る瞬間","punch weight transfer analysis"]],
+rkick:[["ムエタイのミドル：脛で薙ぐように当てる","muay thai roundhouse kick slow motion"],
+ ["クエスチョンマーク：前蹴りと見せて上段へ","question mark kick tutorial"],
+ ["後ろ回し蹴り：背を向けて回る大技","spinning back kick slow motion"],
+ ["かかと落とし：上から踵を落とす","axe kick slow motion"],
+ ["ローキック：太腿を刈る低い蹴り","low kick technique slow motion"]],
+fkick:[["ティープ：押し込んで距離を作る前蹴り","teep push kick muay thai"],
+ ["前蹴り（空手）：腰を入れて突き刺す","mae geri karate slow motion"],
+ ["サイドキック：横向きに踏み込む蹴り","side kick technique slow motion"],
+ ["オブリークキック：膝を狙う低い前蹴り","oblique kick technique"]],
+kneeelbow:[["首相撲の膝：首を掴んで引き落として当てる","muay thai clinch knee slow motion"],
+ ["飛び膝：跳び込んで当てる大技","flying knee slow motion"],
+ ["水平肘：横から真っ直ぐ振る肘","horizontal elbow strike muay thai"],
+ ["振り下ろし肘：上から叩き落とす肘","downward elbow strike"]],
+dodge:[["スリッピング：上体を捻ってパンチを外す","slipping punches drill slow motion"],
+ ["ボブ＆ウィーブ：沈んで弧を描いて避ける","bob and weave drill"],
+ ["プルカウンター：仰け反って避けて即打ち返す","pull counter boxing"],
+ ["マトリックス：極端に上体を倒す回避","matrix lean dodge slow motion"]],
+guard:[["ハイガード：額の前で腕を固める防御","high guard boxing defense"],
+ ["パリィ：手のひらで軌道を逸らす","parry drill boxing"],
+ ["チェック：蹴りを脛で受け止める","checking leg kicks muay thai"],
+ ["ロングガード：腕を伸ばして距離を作る","long guard muay thai"]],
+
+shoot:[["ダブルレッグ：両脚を抱えて倒す","double leg takedown slow motion"],
+ ["シングルレッグ：片脚を取って崩す","single leg takedown technique"],
+ ["スプロール：タックルを潰す防御","sprawl defense drill"],
+ ["ブラストダブル：走り込んで持ち上げる","blast double leg wrestling"]],
+throw:[["一本背負い：背負って前に投げる","ippon seoi nage slow motion"],
+ ["大外刈り：後ろに足を刈って倒す","osoto gari technique"],
+ ["内股：内側から跳ね上げる","uchi mata slow motion"],
+ ["巴投げ：自分が寝ながら投げる","tomoe nage technique"]],
+ground:[["ガードパス：相手の脚を越えて上を取る","guard passing technique bjj"],
+ ["マウント移行：馬乗りへの入り方","mount transition bjj drill"],
+ ["エスケープ：下から抜け出す動き","bjj escape drill reference"],
+ ["シュリンプ：腰を切って横に逃げる基礎動作","shrimping drill bjj"]],
+lock:[["腕十字：腕を伸ばして肘を極める","armbar technique slow motion"],
+ ["キムラ：肩を捻り上げる","kimura lock technique"],
+ ["三角絞め：脚で首と腕を挟む","triangle choke technique"],
+ ["合気道の小手返し：手首を返して崩す","kote gaeshi aikido demonstration"]],
+clinch:[["首相撲：首を取り合って崩す","muay thai clinch battle"],
+ ["パメリング：腕を交互に差し込む練習","pummeling drill wrestling"],
+ ["アンダーフック：脇の下から差して制する","underhook control drill"],
+ ["壁際の攻防：ケージに押し付けての組み","cage clinch work mma"]],
+
+bstance:[["中段の構え：最も基本の構え（剣道）","kendo chudan no kamae"],
+ ["西洋剣術の四つの構え：オックス・プラウなど","longsword four guards HEMA"],
+ ["八相・脇構え：刀を立てる／隠す構え","hasso no kamae waki gamae"],
+ ["構えの移り変わり：構えから構えへ流れる稽古","guard transitions HEMA drill"]],
+bcut:[["袈裟斬り：肩から斜めに斬り下ろす","kesagiri cut tameshigiri"],
+ ["素振り：剣道・居合の基本の振り","suburi kendo practice"],
+ ["ツォルンハウ：ドイツ剣術の怒りの斬撃","zornhau oberhau longsword"],
+ ["刃筋：刃の向きと軌道が揃う瞬間の解説","blade alignment cutting analysis"]],
+bfight:[["HEMAの試合：防具ありの本気の斬り合い","HEMA longsword tournament"],
+ ["ハーフソード：刃を握って突く甲冑戦の技法","half swording technique"],
+ ["モルドハウ：柄と鍔で殴る打撃技","mordhau strike technique"],
+ ["剣道の試合：竹刀での実戦的な打突","kendo shiai high level"]],
+bdraw:[["抜き付け：抜くと同時に斬る最初の一手","nukitsuke iaido technique"],
+ ["抜刀術：実戦的な抜き打ちの流派","battojutsu draw cut demonstration"],
+ ["納刀：見ないで鞘に収める所作","noto sheathing katana slow motion"],
+ ["無双直伝英信流：代表的な居合の流派","muso jikiden eishin ryu"]],
+bparry:[["受け流し：滑らせて軌道を逸らす","deflection parry longsword"],
+ ["応じ技：受けた瞬間に返す剣道の技","kendo oji waza demonstration"],
+ ["バインド：刃が噛み合った状態からの攻防","bind winden longsword HEMA"],
+ ["映画の受け：見せるための受け止め方","sword fight choreography parry"]],
+bthrust:[["ランジ：フェンシングの踏み込み突き","fencing lunge slow motion"],
+ ["突き（剣道）：喉元への一本","kendo tsuki technique"],
+ ["ハーフソードの突き：甲冑の隙間を狙う","half sword thrust armored combat"],
+ ["フレッシュ：走り込んで突き抜ける","fleche attack fencing"]],
+
+pstance:[["中段の構え（槍）：穂先を相手に向ける","sojutsu chudan stance"],
+ ["ポールアームの構え：西洋の長物の基本形","polearm guards HEMA tutorial"],
+ ["握り替え：手を滑らせて間合いを変える","polearm grip change drill"]],
+pthrust:[["繰り込み：手を滑らせて一気に伸ばす突き","spear sliding thrust technique"],
+ ["連続突き：中国槍の高速な突き","chinese spear rapid thrust"],
+ ["槍術の型：日本の槍の伝統的な形","sojutsu kata demonstration"]],
+psweep:[["薙ぎ払い：薙刀の横一線","naginata sweeping strike"],
+ ["足払い：低く払って足を刈る","leg sweep polearm strike"],
+ ["石突き打ち：柄の端で打つ","butt end strike polearm"]],
+pspin:[["棒回し：見栄え重視のスピニング","staff spinning tutorial slow motion"],
+ ["棍術の型：中国武術の棒の演武","gun shu chinese staff form"],
+ ["沖縄棒術：周氏の棍などの型","bojutsu kata okinawa"]],
+pchop:[["振り下ろし：全体重を乗せた一撃","overhead axe strike slow motion"],
+ ["薪割り：重さの伝わり方が分かりやすい","splitting wood axe slow motion"],
+ ["メイスの打撃：鈍器の衝撃と反動","mace strike armored combat"]],
+
+gstance:[["ウィーバー／アイソセレス：2大構えの違い","weaver vs isosceles stance"],
+ ["サイトピクチャー：照準を覗く目と手の関係","sight picture aiming explained"],
+ ["膝射：片膝をついた射撃姿勢","kneeling shooting position"],
+ ["リコイル制御：構えで反動を殺す仕組み","recoil control stance explained"]],
+gfire:[["超スロー発砲：1000fpsで見る撃発の瞬間","high speed camera gun firing 1000fps"],
+ ["排莢：薬莢が飛び出る軌道","ejecting brass slow motion"],
+ ["銃口炎：マズルフラッシュの形","muzzle flash slow motion"],
+ ["トリガーコントロール：指だけを動かす引き方","trigger control technique"]],
+greload:[["スピードリロード：弾倉を捨てて最速で入れる","speed reload drill"],
+ ["タクティカルリロード：弾倉を残したまま交換","tactical reload drill"],
+ ["移動しながらのリロード：走りながら装填","reload while moving drill"],
+ ["ショットガンの装填：1発ずつ押し込む","shotgun shell loading technique"]],
+gdraw:[["ドローストローク：抜きから発砲までの5段階","draw stroke fundamentals"],
+ ["コンシールドキャリー：服の下から抜く","concealed carry draw slow motion"],
+ ["スリングトランジション：長物から拳銃へ持ち替え","sling transition rifle to pistol"]],
+gjam:[["タップ＆ラック：叩いて引く基本の対処","tap rack bang drill"],
+ ["ダブルフィード：二重装填の除去手順","double feed clearance drill"],
+ ["ストーブパイプ：薬莢が挟まった状態","stovepipe malfunction clearance"]],
+gclear:[["パイ切り：角を少しずつ覗いていく","slicing the pie technique"],
+ ["ドア進入：入り口を抜ける瞬間の動き","door entry technique cqb"],
+ ["スタック：複数人で並んで進む隊形","stack movement tactical training"],
+ ["マズルディシプリン：銃口の向きの管理","muzzle discipline explained"]],
+gprone:[["伏射：地面に伏せた射撃姿勢","prone shooting position technique"],
+ ["据銃・依託：バイポッドや土嚢で支える","sniper bipod support shooting"],
+ ["匍匐前進：伏せたまま進む","low crawl movement military"]],
+grecoil:[["反動比較：口径別の跳ね上がりの違い","recoil comparison different calibers"],
+ ["フォロースルー：撃った後に照準へ戻す","follow through recoil recovery"],
+ ["フルオート：連射時の銃口の跳ね上がり","full auto muzzle climb slow motion"]],
+
+tdraw:[["八節：弓道の8段階の所作","kyudo hassetsu explanation"],
+ ["モンゴル式：親指で弦を引く速射向きの引き方","thumb draw archery technique"],
+ ["アンカーポイント：頬に当てる引き止め位置","anchor point archery form"],
+ ["バックテンション：背中で引く感覚の解説","back tension archery explained"]],
+tshoot:[["離れ：指が弦から離れる瞬間のスロー","archery release slow motion"],
+ ["残心：射った後に残る姿勢","zanshin kyudo follow through"],
+ ["矢のしなり：飛び出す矢の波打ち","arrow paradox slow motion"]],
+tquick:[["速射：連射に特化した現代の弓術","fast archery lars andersen"],
+ ["流鏑馬：走る馬上からの射","yabusame horseback archery"],
+ ["クロスボウの再装填：足で踏んで引く","crossbow spanning reload"]],
+tknife:[["無回転投法：回転させずに刺す","no spin knife throwing"],
+ ["回転投法：距離で回転数を合わせる","spin knife throwing tutorial"],
+ ["手裏剣術：直打法と反転打法","shurikenjutsu demonstration"],
+ ["斧投げ：重い刃物の投擲","axe throwing slow motion"]],
+tgrenade:[["投擲訓練：伏せた状態からの投げ方","grenade throwing training military"],
+ ["オーバーハンド投擲：肩越しに投げる腕の使い方","overhand throwing motion analysis"],
+ ["野球の投球：最も研究された投げの動作","baseball pitching mechanics slow motion"]],
+
+hit:[["舞台の被弾芝居：当たったように見せる技術","selling a punch stage combat"],
+ ["ナップ：打撃音を自分で作る手法","knap stage combat technique"],
+ ["首の返り：頭が飛ぶ被弾の瞬間","head snap knockout slow motion"],
+ ["部位別リアクション：腹・脚・背中で反応を変える","body shot reaction slow motion"]],
+knock:[["フラッシュダウン：効いていないのに崩れる","flash knockdown boxing"],
+ ["遅れて倒れる：立ったまま数秒後に落ちる","delayed reaction knockout"],
+ ["足払い：下を刈って倒す","sweep takedown slow motion"],
+ ["投げ技：一本背負い等で背中から落とす","judo ippon throw slow motion"]],
+blown:[["エアラム：踏むと吹っ飛ぶ仕掛け","air ram stunt behind the scenes"],
+ ["ワイヤープル：引かれて飛ぶスタント","wire pull stunt slow motion"],
+ ["爆風のリアクション：爆発に合わせて飛ぶ","explosion stunt reaction"],
+ ["デセレレーター：高所から引き戻される装置","descender stunt rig"]],
+fall:[["ハイフォール：エアバッグへの高所落下","high fall stunt airbag"],
+ ["階段落ち：段差を転がり落ちる","stair fall stunt breakdown"],
+ ["火だるま：全身火災スタント","fire burn stunt behind the scenes"],
+ ["カーヒット：車に当たって飛ばされる","car hit stunt slow motion"]],
+death:[["崩れ落ちる芝居：膝→腰→上体の順に落ちる","collapse to floor acting"],
+ ["ラグドール比較：物理演算と手付けの違い","ragdoll vs animation comparison"],
+ ["舞台での死：見せるための倒れ方","stage death scene technique"]],
+getup:[["テクニカルスタンドアップ：手をつき警戒したまま立つ","technical stand up bjj"],
+ ["キップアップ：反動で跳ね起きる","kip up tutorial slow motion"],
+ ["グランビーロール：肩越しに回って抜ける","granby roll wrestling"],
+ ["シットアウト：座り姿勢から回って立つ","sit out escape wrestling"]],
+
+sit:[["動作解析：重心が前に出てから立つ仕組み","sit to stand biomechanics analysis"],
+ ["正座から立つ：日本式の座り方からの起立","seiza standing up technique"],
+ ["あぐら・床から立つ：手を使わない起立","cross legged floor to stand"],
+ ["介助・リハビリ：ゆっくりで分解しやすい","chair transfer rehabilitation"]],
+pick:[["ヒップヒンジ：腰ではなく股関節から曲げる","hip hinge deadlift form"],
+ ["スクワット持ち上げ：膝を曲げて正面で持つ","squat lifting technique"],
+ ["片手で拾う：軽い物をさっと取る日常動作","picking up small object one hand"]],
+carry:[["ファーマーズウォーク：重い物を提げて歩く","farmers walk carry technique"],
+ ["ファイヤーマンキャリー：人を肩に担ぐ","fireman carry technique"],
+ ["前抱え：箱を胸で抱えた歩行","front loaded carry walk"]],
+door:[["突入：ドアを蹴破る・開けて入る戦術動作","door breach tactical entry"],
+ ["重い扉：全身で押し開ける","opening heavy door reference"],
+ ["舞台での扉：見せるための扉の扱い","door work stage acting"]],
+acting:[["ラバン動作分析：動きの質を8種に分類、アニメーター定番","laban movement analysis efforts"],
+ ["心理的ジェスチャー：感情を体の形に翻訳する手法","michael chekhov psychological gesture"],
+ ["感情エクササイズ：喜怒哀楽を体で出す稽古","emotion acting exercises"],
+ ["パントマイム：無い物を扱う演技","pantomime object work"],
+ ["11秒クラブ：短い芝居素材の定番アーカイブ","11 second club animation reference"]],
+face:[["FACS：表情を筋肉単位で分類したコード体系","FACS action units explained"],
+ ["微表情：一瞬だけ出る本音の表情","micro expressions analysis"],
+ ["口形（フォニーム）：セリフに合わせた口の形","phoneme mouth shapes chart animation"],
+ ["視線の動き：目だけが先に動く仕組み","eye darts saccades animation reference"]]
+};
+
+const ADDWORDS = [
+  {w:"reference",     d:"「参考用」の動画に絞り込める万能ワード。まず付けておく。"},
+  {w:"slow motion",   d:"スロー再生。溜め・衝撃・潰れの瞬間がコマ単位で見える。"},
+  {w:"side view",     d:"真横から撮った映像。歩き・走りの当たりを取るならこれ。"},
+  {w:"front view",    d:"正面から。左右のブレや肩の入れ替わりが分かる。"},
+  {w:"3/4 view",      d:"斜め45度。実際の絵に一番近い角度で確認できる。"},
+  {w:"no music",      d:"BGMなし。コマ送りしながら見る時に邪魔が入らない。"},
+  {w:"60fps",         d:"滑らかな映像。コマを抜いて使う素材向き。"},
+  {w:"24fps",         d:"作画のコマ数に合わせた解説が出やすくなる。"},
+  {w:"loop",          d:"繰り返し再生できる素材。サイクル系と相性が良い。"},
+  {w:"animation reference", d:"アニメーター向けに撮られた実写素材に絞れる。"},
+  {w:"mocap",         d:"モーションキャプチャの生データ映像。骨の動きが見える。"},
+  {w:"rotoscope",     d:"トレース用に撮られた、背景がシンプルな素材が出やすい。"},
+  {w:"breakdown",     d:"動きを分解して解説する動画。仕組みから理解したい時に。"},
+  {w:"tutorial",      d:"やり方の解説。技の名前と一緒に使うと当たりやすい。"},
+  {w:"behind the scenes", d:"撮影の裏側。仕掛けやワイヤーの使い方が見える。"},
+  {w:"free stock footage", d:"素材配布系。ダウンロードして使える映像が見つかる。"}
+];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const gmap = Object.fromEntries(GENRES.map(g=>[g.id,g]));
+const gstyle = g => `--gh:${gmap[g].gh};--gs:${gmap[g].gs}`;
+
+/* 種類つきカードの既定ワードを先に作っておく（検索とPROの見出し用） */
+DATA.forEach(d=>{ if(d.vpat && !d.en) d.en = d.vpat.replace("{v}", gmap[d.g].vdef); });
+
+let query = "", view = "shelf";
+const chosen = {};                       // {棚id: 選んだ種類の英単語}
+function curVar(gid){
+  const g = gmap[gid]; if(!g.vars) return null;
+  const en = chosen[gid] || g.vdef;
+  return g.vars.find(v=>v.en === en) || {en, ja:"指定なし"};
+}
+function term(d){
+  if(!d.vpat) return d.en;
+  const v = curVar(d.g);
+  /* 種類によって文型が変わる物（例：抜き撃ち→長物ならスリングから構える）*/
+  const pat = (d.vpatBy && v && v.kind && d.vpatBy[v.kind]) || d.vpat;
+  return pat.replace("{v}", v.en);
+}
+function variantJa(gid){ const v = curVar(gid); return v ? v.ja : ""; }
+
+/* ---------- copy ---------- */
+async function copyText(t){
+  try{ await navigator.clipboard.writeText(t); return true; }catch(e){}
+  const ta=document.createElement("textarea");
+  ta.value=t; ta.setAttribute("readonly","");
+  ta.style.cssText="position:fixed;top:-1000px;left:0;opacity:0";
+  document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0,t.length);
+  let ok=false; try{ ok=document.execCommand("copy"); }catch(e){}
+  ta.remove(); return ok;
+}
+let toastT;
+async function doCopy(t){
+  const ok = await copyText(t);
+  const el = $("#toast");
+  el.innerHTML = ok
+    ? `<div class="t1">コピーしました</div><div class="t2">${esc(t)}</div><div class="t3">YouTubeの検索欄に貼り付け（Ctrl+V / ⌘V）</div>`
+    : `<div class="t1">自動コピーできませんでした</div><div class="t2">${esc(t)}</div><div class="t3">↑ここを選択して手動でコピーしてください</div>`;
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(()=>el.classList.remove("on"), ok?2600:7000);
+}
+
+/* ---------- filter ---------- */
+function match(d){
+  if(!query) return true;
+  const g = gmap[d.g];
+  const hay = [d.ja,term(d),d.en,d.kana,d.mean,d.res,d.tip,g.ja,
+               ...(d.alt||[]),
+               ...(g.vars||[]).map(v=>v.ja+" "+v.en),
+               ...(PRO[d.id]||[]).flat()].join(" ").toLowerCase();
+  return hay.includes(query);
+}
+
+/* ---------- 種類セレクター ---------- */
+function vselHTML(g){
+  const cur = chosen[g.id] || g.vdef;
+  return `<div class="vsel" role="group" aria-label="${esc(g.vlabel)}" data-g="${g.id}">
+    <span class="vlabel">${esc(g.vlabel)}</span>
+    ${g.vars.map(v=>`<button class="vbtn" data-g="${g.id}" data-v="${esc(v.en)}" aria-pressed="${v.en===cur}">
+      <svg viewBox="0 0 64 26" aria-hidden="true"><use href="#${v.ic}"/></svg>
+      <span>${esc(v.ja)}</span></button>`).join("")}
+  </div>`;
+}
+
+/* ---------- shelf ---------- */
+function renderShelf(){
+  const host = $("#shelf");
+  const items = DATA.filter(match);
+  if(!items.length){ host.innerHTML = `<p class="empty">該当なし。別のことばで探してみてください。</p>`; syncNav(); return; }
+  let n = 0;
+  host.innerHTML = GENRES.map(g=>{
+    const list = items.filter(d=>d.g===g.id);
+    if(!list.length) return "";
+    return `<section class="genre gv" id="sec-${g.id}" style="${gstyle(g.id)}">
+      <div class="plate">
+        <span class="plate-tab">${esc(g.ja)}</span>
+        <span class="plate-en">${esc(g.en)}</span>
+        <span class="plate-n">${list.length} 本</span>
+      </div>
+      ${g.vars ? vselHTML(g) + `<p class="vnote">選んだ種類が検索ワードに入ります。いまは <code>${esc(chosen[g.id]||g.vdef)}</code> ＝ ${esc(variantJa(g.id))}</p>` : ""}
+      <div class="rack">${list.map(d=>{
+        const i = DATA.indexOf(d); n++;
+        const t = term(d);
+        return `<button class="case gv" data-i="${i}" style="${gstyle(d.g)}" aria-label="${esc(d.ja)} — ${esc(t)} をコピー">
+          <span class="body">
+            <span class="spine"><span>${esc(t)}</span></span>
+            <span class="face">
+              <span class="tag">${esc(d.tag)}</span>
+              <svg class="mk" viewBox="0 0 48 48" aria-hidden="true"><use href="#${g.mk}"/></svg>
+              <span class="ja">${esc(d.ja)}</span>
+              <span class="en">${esc(t)}</span>
+              <span class="barcode"><span class="bars"></span><span class="no">${String(i+1).padStart(3,"0")}</span></span>
+            </span>
+          </span>
+        </button>`;
+      }).join("")}</div>
+    </section>`;
+  }).join("");
+  $("#stock").textContent = `${n} / ${DATA.length} 本`;
+  syncNav();
+}
+
+/* ---------- list ---------- */
+function renderList(){
+  const items = DATA.filter(match);
+  $("#stock").textContent = `${items.length} / ${DATA.length} 本`;
+  if(!items.length){ $("#list").innerHTML = `<p class="empty">該当なし。別のことばで探してみてください。</p>`; syncNav(); return; }
+  $("#list").innerHTML = `<p class="listhint dot">行を右クリック（スマホは長押し）すると、その動きの専門ワードが出ます</p>
+    <div class="listwrap"><table>
+    <colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"></colgroup>
+    <thead><tr>
+      <th>動き</th><th>読み方</th><th>検索ワード（クリックでコピー）</th>
+      <th>どんな動画が出てくる</th><th>コツ・別の言い方</th>
+    </tr></thead>
+    ${GENRES.map(g=>{
+      const list = items.filter(d=>d.g===g.id);
+      if(!list.length) return "";
+      return `<tbody class="gv" id="sec-${g.id}" style="${gstyle(g.id)}">
+        <tr class="grp"><td colspan="5">
+          <span class="g-tab">${esc(g.ja)}</span><span class="g-en">${esc(g.en)}</span>
+          ${g.vars ? vselHTML(g) : ""}
+        </td></tr>
+        ${list.map(d=>`<tr data-i="${DATA.indexOf(d)}">
+          <td class="t-ja"><i></i>${esc(d.ja)}</td>
+          <td class="t-kana">${esc(d.kana)}</td>
+          <td><button class="copybtn" data-copy="${esc(term(d))}">${esc(term(d))}</button>
+              <div style="font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.6">${esc(d.mean)}</div></td>
+          <td class="t-res">${esc(d.res)}</td>
+          <td class="t-tip">${esc(d.tip)}
+              <div style="margin-top:6px">${(d.alt||[]).map(a=>`<button class="copybtn small mono" data-copy="${esc(a)}">${esc(a)}</button>`).join("")}</div></td>
+        </tr>`).join("")}
+      </tbody>`;
+    }).join("")}
+    </table></div>`;
+  syncNav();
+}
+
+function render(){
+  /* 隠す方は中身も消す。同じ id の棚が2つ残るとジャンプ先を間違える */
+  if(view==="shelf"){
+    $("#list").innerHTML=""; $("#list").hidden=true; $("#shelf").hidden=false; renderShelf();
+  }else{
+    $("#shelf").innerHTML=""; $("#shelf").hidden=true; $("#list").hidden=false; renderList();
+  }
+  hidePop();
+}
+
+/* ---------- pop ---------- */
+const pop = $("#pop");
+let popT;
+function showPop(btn){
+  const d = DATA[+btn.dataset.i]; if(!d) return;
+  const g = gmap[d.g];
+  const t = term(d);
+  pop.setAttribute("style", gstyle(d.g));
+  pop.innerHTML = `
+    <div class="p-top"><span class="p-g">${esc(g.ja)}</span><span class="p-tag">${esc(d.tag)}</span><h3>${esc(d.ja)}</h3></div>
+    <p class="p-kana">${g.vars?esc(variantJa(d.g))+" の ":""}${esc(d.kana)}</p>
+    <div class="p-en"><code>${esc(t)}</code><em>クリックでコピー</em></div>
+    <dl>
+      <div><dt>どんな動き</dt><dd>${esc(d.mean)}</dd></div>
+      <div><dt>検索するとこう出る</dt><dd>${esc(d.res)}</dd></div>
+      <div><dt>コツ</dt><dd>${esc(d.tip)}</dd></div>
+    </dl>
+    ${(d.alt||[]).length?`<p class="p-alt">別の言い方：${d.alt.map(a=>`<code>${esc(a)}</code>`).join(" ／ ")}</p>`:""}
+    ${(PRO[d.id]||[]).length?`<p class="p-pro">▸ <b>右クリック</b>で ${PRO[d.id].length}件の専門ワード（技名）</p>`:""}`;
+  pop.classList.add("on"); pop.setAttribute("aria-hidden","false");
+  position(btn);
+}
+function position(btn){
+  if(window.innerWidth<=640) return;               // bottom sheet
+  const r = btn.getBoundingClientRect();
+  const w = pop.offsetWidth, h = pop.offsetHeight, pad = 10, gap = 30;
+  let left = r.left + r.width/2 - w/2;
+  left = Math.max(pad, Math.min(left, window.innerWidth - w - pad));
+  /* 上に大きく逃がす。下に回すのは上がどうしても足りない時だけ */
+  let top = r.top - h - gap;
+  if(top < pad){
+    const below = r.bottom + gap;
+    top = (below + h <= window.innerHeight - pad) ? below : pad;
+  }
+  pop.style.left = left+"px"; pop.style.top = top+"px";
+}
+function hidePop(){ pop.classList.remove("on"); pop.setAttribute("aria-hidden","true"); }
+
+/* ---------- 専門ワードメニュー（右クリック / 長押し） ---------- */
+const menu = $("#menu");
+let menuOpen = false;
+function openMenu(d, x, y){
+  const list = PRO[d.id] || [];
+  if(!list.length) return;
+  hidePop();
+  menu.setAttribute("style", gstyle(d.g));
+  menu.innerHTML =
+    `<div class="mh"><b>${esc(d.ja)}｜プロが使う技名で探す</b><span>${esc(term(d))}</span></div>` +
+    list.map(([ja,en])=>`<button class="mi" role="menuitem" data-copy="${esc(en)}">
+        <b>${esc(ja)}</b><code>${esc(en)}</code></button>`).join("") +
+    `<p class="mf">クリックでコピー → YouTubeに貼り付け</p>`;
+  menu.hidden = false; menuOpen = true;
+  const w = menu.offsetWidth, h = menu.offsetHeight, pad = 8;
+  menu.style.left = Math.max(pad, Math.min(x, window.innerWidth  - w - pad)) + "px";
+  menu.style.top  = Math.max(pad, Math.min(y, window.innerHeight - h - pad)) + "px";
+  menu.querySelector(".mi")?.focus({preventScroll:true});
+}
+function closeMenu(){ if(!menuOpen) return; menu.hidden = true; menuOpen = false; }
+
+function itemOf(el){
+  const c = el.closest?.(".case,tr[data-i]");
+  return c ? DATA[+c.dataset.i] : null;
+}
+document.addEventListener("contextmenu", e=>{
+  const d = itemOf(e.target); if(!d) return;
+  e.preventDefault();
+  openMenu(d, e.clientX, e.clientY);
+});
+
+/* スマホ用：長押しで同じメニュー */
+let lpTimer = null, lpFired = false;
+document.addEventListener("pointerdown", e=>{
+  if(e.pointerType !== "touch") return;
+  const d = itemOf(e.target); if(!d) return;
+  lpFired = false;
+  lpTimer = setTimeout(()=>{ lpFired = true; openMenu(d, e.clientX, e.clientY); }, 520);
+}, {passive:true});
+["pointerup","pointercancel","pointermove"].forEach(ev=>
+  document.addEventListener(ev, ()=>clearTimeout(lpTimer), {passive:true}));
+
+/* ---------- events ---------- */
+document.addEventListener("pointerover", e=>{
+  if(menuOpen) return;
+  const c = e.target.closest?.(".case");
+  if(c){ clearTimeout(popT); showPop(c); }
+});
+document.addEventListener("pointerout", e=>{
+  if(e.target.closest?.(".case")){ popT = setTimeout(hidePop,110); }
+});
+document.addEventListener("focusin", e=>{
+  if(menuOpen) return;
+  const c = e.target.closest?.(".case");
+  if(c){ clearTimeout(popT); showPop(c); } else hidePop();
+});
+document.addEventListener("click", e=>{
+  if(lpFired){ lpFired = false; return; }          // 長押し直後のクリックは無視
+  const v = e.target.closest?.(".vbtn");
+  if(v){                                            // 武器の種類を切り替える
+    chosen[v.dataset.g] = v.dataset.v;
+    const keep = window.scrollY;
+    render();
+    window.scrollTo(0, keep);
+    return;
+  }
+  const b = e.target.closest?.("[data-copy]");
+  if(b){ doCopy(b.dataset.copy); closeMenu(); return; }
+  if(menuOpen){ closeMenu(); return; }              // メニュー外クリックは閉じるだけ
+  const c = e.target.closest?.(".case");
+  if(c){
+    const d = DATA[+c.dataset.i];
+    showPop(c); clearTimeout(popT); popT = setTimeout(hidePop, 3200);
+    doCopy(term(d));
+  }
+});
+window.addEventListener("scroll", ()=>{ hidePop(); closeMenu(); spy(); }, {passive:true});
+window.addEventListener("resize", ()=>{ hidePop(); closeMenu(); measure(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ hidePop(); closeMenu(); } });
+
+/* ---------- 棚案内（ジャンプ）---------- */
+const nav = $("#genrechips"), counter = document.querySelector(".counter");
+nav.innerHTML =
+  `<span class="navlabel">棚案内</span>` +
+  `<button class="chip" data-jump="top">▲ 先頭</button>` +
+  GENRES.map(g=>`<button class="chip gv" data-jump="${g.id}" style="${gstyle(g.id)}"><span class="dotmk"></span>${esc(g.ja)}</button>`).join("");
+
+let stickyH = 90;
+function measure(){ stickyH = counter.getBoundingClientRect().height + 10; }
+const smooth = !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+nav.addEventListener("click", e=>{
+  const b = e.target.closest(".chip"); if(!b) return;
+  measure();
+  if(b.dataset.jump === "top"){
+    window.scrollTo({top:0, behavior: smooth?"smooth":"auto"}); return;
+  }
+  const sec = document.getElementById("sec-"+b.dataset.jump); if(!sec) return;
+  const y = sec.getBoundingClientRect().top + window.scrollY - stickyH;
+  window.scrollTo({top:Math.max(0,y), behavior: smooth?"smooth":"auto"});
+});
+/* 表示中の棚を光らせる */
+function spy(){
+  let cur = null;
+  for(const g of GENRES){
+    const sec = document.getElementById("sec-"+g.id); if(!sec) continue;
+    if(sec.getBoundingClientRect().top - stickyH - 24 <= 0) cur = g.id;
+  }
+  nav.querySelectorAll(".chip").forEach(c=>{
+    if(c.dataset.jump === "top") return;
+    c.setAttribute("aria-current", String(c.dataset.jump === cur));
+  });
+}
+function syncNav(){
+  nav.querySelectorAll(".chip").forEach(c=>{
+    if(c.dataset.jump === "top") return;
+    c.setAttribute("aria-disabled", String(!document.getElementById("sec-"+c.dataset.jump)));
+  });
+  measure(); spy();
+}
+
+$("#q").addEventListener("input", e=>{ query = e.target.value.trim().toLowerCase(); render(); });
+$("#v-shelf").addEventListener("click", ()=>{ view="shelf"; $("#v-shelf").setAttribute("aria-pressed","true"); $("#v-list").setAttribute("aria-pressed","false"); render(); });
+$("#v-list").addEventListener("click", ()=>{ view="list"; $("#v-list").setAttribute("aria-pressed","true"); $("#v-shelf").setAttribute("aria-pressed","false"); render(); });
+
+$("#addgrid").innerHTML = ADDWORDS.map(a=>
+  `<button class="addcard" data-copy="${esc(a.w)}"><b>${esc(a.w)}</b><span>${esc(a.d)}</span></button>`).join("");
+$("#subline").textContent = `ANIMATION REFERENCE / ${GENRES.length}棚 ${DATA.length}本 在庫中`;
+
+render();
+</script>
+</body>
+</html>
