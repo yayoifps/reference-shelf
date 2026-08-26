@@ -320,6 +320,10 @@ h1{margin:0;font-size:clamp(21px,3.4vw,29px);line-height:1.25;letter-spacing:.01
   position:relative;margin-top:auto;font-size:19px;font-weight:700;
   color:var(--face-ink);line-height:1.25;letter-spacing:.02em;
 }
+/* 長い名前は縮めて、狭い札でも変な位置で折れないようにする */
+.ja.n6{font-size:16.5px}
+.ja.n7{font-size:15px}
+.ja.n8{font-size:13.5px;line-height:1.35}
 .en{
   position:relative;font-family:"DM Mono",monospace;font-size:9.5px;line-height:1.35;
   color:var(--face-mute);margin-top:4px;word-break:break-word;
@@ -566,6 +570,22 @@ footer{margin-top:38px;font-size:11.5px;color:var(--ink-2);text-align:center;lin
       </g>
     </g>
 
+    <g id="mk-clens" fill="none" stroke="currentColor" stroke-width="3.5">
+      <circle cx="24" cy="24" r="19"/>
+      <circle cx="24" cy="24" r="9"/>
+      <path d="M24 5 L31 17 M43 24 L30 28 M31 41 L26 33 M5 24 L18 20 M17 41 L22 33" stroke-width="2.5"/>
+    </g>
+    <g id="mk-clight" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
+      <circle cx="24" cy="19" r="8" fill="currentColor" stroke="none"/>
+      <path d="M12 40 L24 29 L36 40 Z" fill="currentColor" stroke="none" opacity=".55"/>
+      <path d="M24 4 L24 8 M38 9 L35 12 M10 9 L13 12 M43 20 L39 20 M5 20 L9 20" stroke-width="3"/>
+    </g>
+    <g id="mk-ctime" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
+      <circle cx="24" cy="25" r="17"/>
+      <path d="M24 15 L24 25 L31 30"/>
+      <path d="M19 4 L29 4" stroke-width="4"/><path d="M24 4 L24 8" stroke-width="4"/>
+    </g>
+
     <!-- フロアのアイコン（24x24） -->
     <g id="ic-body" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
       <circle cx="13" cy="4" r="2.4" fill="currentColor" stroke="none"/>
@@ -797,12 +817,15 @@ const GENRES = [
   {id:"life",  ja:"日常・演技", en:"acting",    gh:148, gs:"38%", mk:"mk-life"},
 
   /* ---- 2F：カメラ ---- */
-  {id:"cmove", ja:"カメラの動き", en:"camera moves",  gh:190, gs:"48%", mk:"mk-cmove", floor:"camera"},
+  {id:"cmove", ja:"カメラの動き", en:"camera moves",  gh:192, gs:"48%", mk:"mk-cmove", floor:"camera"},
+  {id:"clens", ja:"レンズ・写り", en:"lens",          gh:220, gs:"32%", mk:"mk-clens", floor:"camera"},
   {id:"cshot", ja:"ショットサイズ",en:"shot size",    gh:258, gs:"40%", mk:"mk-cshot", floor:"camera"},
-  {id:"cangle",ja:"アングル",     en:"camera angle",  gh:25,  gs:"58%", mk:"mk-cangle",floor:"camera"},
-  {id:"ccomp", ja:"構図",         en:"composition",   gh:150, gs:"36%", mk:"mk-ccomp", floor:"camera"},
-  {id:"caction",ja:"アクション撮影",en:"action camera",gh:350, gs:"52%", mk:"mk-caction",floor:"camera"},
-  {id:"cedit", ja:"繋ぎ・演出",   en:"editing",       gh:300, gs:"34%", mk:"mk-cedit", floor:"camera"}
+  {id:"cangle",ja:"アングル",     en:"camera angle",  gh:22,  gs:"58%", mk:"mk-cangle",floor:"camera"},
+  {id:"ccomp", ja:"構図",         en:"composition",   gh:148, gs:"36%", mk:"mk-ccomp", floor:"camera"},
+  {id:"clight",ja:"光・ライティング",en:"lighting",   gh:47,  gs:"55%", mk:"mk-clight",floor:"camera"},
+  {id:"ctime", ja:"時間・速度",   en:"time and speed",gh:292, gs:"32%", mk:"mk-ctime", floor:"camera"},
+  {id:"caction",ja:"アクション撮影",en:"action camera",gh:353, gs:"52%", mk:"mk-caction",floor:"camera"},
+  {id:"cedit", ja:"繋ぎ・演出",   en:"editing",       gh:325, gs:"34%", mk:"mk-cedit", floor:"camera"}
 ];
 GENRES.forEach(g=>{ if(!g.floor) g.floor = "body"; });
 
@@ -1215,6 +1238,152 @@ const DATA = [
  res:"スロープッシュインの作例、感情の高まりに合わせた寄り。",
  tip:"気づかれない速さで寄るのが slow push in。定番の感情演出。",
  alt:["slow push in shot","pull back reveal shot"]},
+{id:"truck",g:"cmove",ja:"横移動",en:"truck shot camera movement",kana:"トラック ショット カメラ ムーブメント",tag:"基本",
+ mean:"カメラごと真横に平行移動する。ドリー（前後）の横版。",
+ res:"横移動撮影の作例、棚や壁に沿って流す動き、比較解説。",
+ tip:"crab shot とも呼ぶ。追従（tracking）は被写体基準、truck はカメラの方向を指す。",
+ alt:["crab dolly shot","lateral camera movement"]},
+{id:"pedestal",g:"cmove",ja:"上下移動",en:"pedestal shot camera movement",kana:"ペデスタル ショット カメラ ムーブメント",tag:"基本",
+ mean:"角度を変えず、カメラの高さだけを上下させる。ティルトとは別物。",
+ res:"ペデスタルアップ／ダウンの作例、ティルトとの違いの比較。",
+ tip:"「見上げずに高さだけ変える」動き。立ち上がる人物に合わせる時に使う。",
+ alt:["pedestal vs tilt difference","boom up camera move"]},
+{id:"croll",g:"cmove",ja:"ロール",en:"camera roll shot",kana:"カメラ ロール ショット",tag:"応用",
+ mean:"レンズの軸を中心に画面ごと回す。混乱・浮遊・反転の表現。",
+ res:"回転する画面の作例、天地が入れ替わる演出、格闘や落下シーン。",
+ tip:"傾けて止めるのがダッチアングル、回し続けるのがロール。",
+ alt:["rotating camera shot","barrel roll camera effect"]},
+{id:"drone",g:"cmove",ja:"空撮",en:"drone shot cinematography",kana:"ドローン ショット シネマトグラフィー",tag:"応用",
+ mean:"上空からの移動撮影。地形や規模を一息で見せる。",
+ res:"空撮の作例、上昇して引くカット、追走する空撮。",
+ tip:"上昇して全体を明かすのが drone reveal、被写体を追うのが drone follow。",
+ alt:["drone reveal shot","aerial cinematography examples"]},
+{id:"bodymount",g:"cmove",ja:"体固定",en:"snorricam body mounted camera",kana:"スノリカム ボディ マウント カメラ",tag:"応用",
+ mean:"カメラを体に固定する。顔は止まったまま背景だけが激しく揺れる。",
+ res:"体固定撮影の作例、狂気・酩酊の演出、装着の様子。",
+ tip:"走るキャラを正面から張り付いて撮る演出はこれ。アニメでも効く。",
+ alt:["snorricam effect examples","body mounted camera rig"]},
+
+/* ---- レンズ・写り ---- */
+{id:"wideangle",g:"clens",ja:"広角",en:"wide angle lens cinematography",kana:"ワイド アングル レンズ シネマトグラフィー",tag:"基本",
+ mean:"広く写り、奥行きが誇張される。手前が大きく、奥が遠く見える。",
+ res:"焦点距離ごとの比較、広角で撮った顔の歪み、狭い場所での使用。",
+ tip:"アニメの「パースの効いた絵」はほぼ広角の見え方。作画の誇張の根拠になる。",
+ alt:["focal length comparison","wide angle distortion face"]},
+{id:"tele",g:"clens",ja:"望遠（圧縮）",en:"telephoto compression effect",kana:"テレフォト コンプレッション エフェクト",tag:"基本",
+ mean:"遠くを大きく写す。奥行きが潰れ、手前と奥が近づいて見える。",
+ res:"圧縮効果の比較、雑踏を望遠で抜いた画、背景の巨大な月。",
+ tip:"背景の月や富士山が異様に大きい画は望遠。距離感を殺したい時に。",
+ alt:["lens compression explained","long lens look film"]},
+{id:"fisheye",g:"clens",ja:"魚眼",en:"fisheye lens effect",kana:"フィッシュアイ レンズ エフェクト",tag:"応用",
+ mean:"極端な広角で、直線が丸く曲がる。異常さや主観の歪みに使う。",
+ res:"魚眼の作例、曲がった直線、MVやスケート映像。",
+ tip:"作画で真似るなら「画面端に近いほど曲げる」。fisheye distortion で図解が出る。",
+ alt:["fisheye distortion explained","fisheye music video"]},
+{id:"dof",g:"clens",ja:"ボケ（浅い）",en:"shallow depth of field cinematography",kana:"シャロー デプス オブ フィールド",tag:"基本",
+ mean:"ピントの合う範囲が狭く、前後が大きくボケる。主役を際立たせる。",
+ res:"絞りによる比較、浅い／深いの使い分け、背景ボケの作例。",
+ tip:"アニメの「背景ぼかし」と同じ効果。どこにピントを置くかで視線が決まる。",
+ alt:["depth of field comparison","bokeh cinematography"]},
+{id:"rack",g:"clens",ja:"フォーカス送り",en:"rack focus technique",kana:"ラック フォーカス テクニック",tag:"応用",
+ mean:"手前と奥でピントを移す。視線と話題を切り替える、カットを割らない技法。",
+ res:"フォーカス送りの作例、会話での使い方、送るタイミングの解説。",
+ tip:"「気づき」の演出に強い。focus pull でも同じものが出る。",
+ alt:["focus pull examples","rack focus storytelling"]},
+{id:"flare",g:"clens",ja:"レンズフレア",en:"lens flare cinematography",kana:"レンズ フレア シネマトグラフィー",tag:"応用",
+ mean:"強い光がレンズ内で反射して出る光の筋や玉。臨場感と眩しさ。",
+ res:"フレアの種類、アナモルフィックの横一文字、逆光での発生。",
+ tip:"アニメの光芒・ゴーストの元ネタ。種類ごとに形が違うので作例を見ると早い。",
+ alt:["anamorphic lens flare","types of lens flare"]},
+{id:"anamo",g:"clens",ja:"アナモルフィック",en:"anamorphic lens look",kana:"アナモルフィック レンズ ルック",tag:"応用",
+ mean:"横長シネスコの画。横一文字のフレアと楕円のボケが特徴。",
+ res:"アナモルフィックの特徴解説、球面レンズとの比較。",
+ tip:"「映画っぽさ」の正体の多くがこれ。cinematic look の分析動画が参考になる。",
+ alt:["anamorphic vs spherical","cinematic look explained"]},
+{id:"distort",g:"clens",ja:"レンズ歪み",en:"lens distortion barrel pincushion",kana:"レンズ ディストーション",tag:"応用",
+ mean:"直線が樽状／糸巻き状に曲がる。広角ほど強く出る。",
+ res:"歪みの種類の図解、補正前後の比較、レンズ別の作例。",
+ tip:"背景の建物をどう曲げるかの根拠になる。図解つきの解説が分かりやすい。",
+ alt:["barrel distortion explained","lens distortion correction"]},
+
+/* ---- 光・ライティング ---- */
+{id:"three",g:"clight",ja:"三点照明",en:"three point lighting setup",kana:"スリー ポイント ライティング セットアップ",tag:"基本",
+ mean:"キーライト・フィル・バックの3灯。すべての照明の基本形。",
+ res:"三点照明の図解、1灯ずつ足していく比較映像。",
+ tip:"「どこから当てて、どこに影を落とすか」の基準。作画の陰影設計にも直結。",
+ alt:["key fill back light","lighting setup diagram"]},
+{id:"backlit",g:"clight",ja:"逆光",en:"backlight silhouette cinematography",kana:"バックライト シルエット シネマトグラフィー",tag:"基本",
+ mean:"後ろから当てる。輪郭だけが光り、顔は暗く沈む。登場や別れに強い。",
+ res:"逆光の作例、シルエット、輪郭の光り方の比較。",
+ tip:"完全に潰すとシルエット、少し起こすと神秘的。正体を隠す演出の定番。",
+ alt:["silhouette shot cinematography","backlighting technique"]},
+{id:"rim",g:"clight",ja:"リムライト",en:"rim lighting technique",kana:"リム ライティング テクニック",tag:"基本",
+ mean:"輪郭に細く光を乗せて、背景から人物を浮かせる。",
+ res:"リムライトの作例、背景と分離する仕組みの解説。",
+ tip:"アニメの「輪郭のハイライト」がこれ。暗い背景で人物を見せる時に必須。",
+ alt:["separation lighting film","edge light technique"]},
+{id:"lowkey",g:"clight",ja:"ローキー",en:"low key lighting cinematography",kana:"ロー キー ライティング",tag:"応用",
+ mean:"暗部が多く、明暗差が強い。緊張・不穏・ノワール。",
+ res:"ローキーの作例、フィルム・ノワール、明暗法の分析。",
+ tip:"明暗の対比を極端にした古典技法は chiaroscuro（キアロスクーロ）。",
+ alt:["film noir lighting","chiaroscuro lighting"]},
+{id:"highkey",g:"clight",ja:"ハイキー",en:"high key lighting",kana:"ハイ キー ライティング",tag:"応用",
+ mean:"全体が明るく影が薄い。清潔・日常・コメディ。",
+ res:"ハイキーの作例、ローキーとの比較、CMやコメディでの使用。",
+ tip:"ローキーと並べて見ると、光だけでジャンルが決まるのが分かる。",
+ alt:["high key vs low key","bright lighting comedy"]},
+{id:"practical",g:"clight",ja:"実光源",en:"practical lights cinematography",kana:"プラクティカル ライツ シネマトグラフィー",tag:"応用",
+ mean:"画面に写っている電灯・ネオン・炎そのものを光源にする。",
+ res:"実光源の作例、ネオン街の撮り方、蝋燭だけのシーン。",
+ tip:"「光源が画面内にある」と説得力が跳ね上がる。背景美術の設計に効く。",
+ alt:["motivated lighting film","neon lighting cinematography"]},
+{id:"golden",g:"clight",ja:"マジックアワー",en:"golden hour cinematography",kana:"ゴールデン アワー シネマトグラフィー",tag:"応用",
+ mean:"日の出・日没前後の低くて赤い光。長い影と暖色。",
+ res:"マジックアワーの作例、時間帯ごとの光の色の比較。",
+ tip:"日没直後の青い時間は blue hour。色設計の参考になる。",
+ alt:["blue hour cinematography","time of day lighting"]},
+{id:"shadow",g:"clight",ja:"影の演出",en:"hard shadow cinematography",kana:"ハード シャドウ シネマトグラフィー",tag:"応用",
+ mean:"輪郭のはっきりした影を積極的に使う。ブラインドや格子の影など。",
+ res:"影の形で語る作例、ハードとソフトの比較、影だけで見せる演出。",
+ tip:"硬い影＝小さく強い光源、柔らかい影＝大きい光源。この対応を覚えると描き分けられる。",
+ alt:["hard vs soft light","shadow patterns cinematography"]},
+
+/* ---- 時間・速度 ---- */
+{id:"slowmo",g:"ctime",ja:"スローモーション",en:"slow motion cinematography",kana:"スロー モーション シネマトグラフィー",tag:"基本",
+ mean:"時間を引き延ばす。重み・優雅さ・決定的瞬間の強調。",
+ res:"スローの作例、使いどころの解説、速度別の比較。",
+ tip:"何倍スローかで意味が変わる。2倍は重み、10倍は非現実。",
+ alt:["slow motion storytelling","slow motion speed comparison"]},
+{id:"highspeed",g:"ctime",ja:"超スロー",en:"high speed camera 1000fps",kana:"ハイ スピード カメラ 1000fps",tag:"応用",
+ mean:"毎秒1000コマ以上で撮る。肉眼では見えない変形や飛沫が見える。",
+ res:"衝撃の瞬間、水や布の挙動、破壊の超スロー映像。",
+ tip:"物のつぶれ方・戻り方の資料として最高。作画の誇張の裏付けになる。",
+ alt:["slow motion guys high speed","1000fps impact footage"]},
+{id:"fastmo",g:"ctime",ja:"早回し",en:"fast motion undercranking",kana:"ファスト モーション アンダークランキング",tag:"応用",
+ mean:"コマを間引いて速く見せる。慌ただしさ、喜劇、非人間的な速さ。",
+ res:"早回しの作例、アクションでの使用、コメディでの使い方。",
+ tip:"アクションを少しだけ早回しするのは香港映画の定番。undercranking で解説が出る。",
+ alt:["undercranking action films","fast motion comedy"]},
+{id:"lapse",g:"ctime",ja:"タイムラプス",en:"time lapse cinematography",kana:"タイム ラプス シネマトグラフィー",tag:"応用",
+ mean:"長時間を数秒に圧縮する。雲・人波・日の移ろい。",
+ res:"タイムラプスの作例、時間経過の見せ方、ハイパーラプス。",
+ tip:"移動しながら撮るのは hyperlapse。場面転換の定番。",
+ alt:["hyperlapse tutorial","time passage cinematography"]},
+{id:"freeze",g:"ctime",ja:"フリーズ",en:"freeze frame effect",kana:"フリーズ フレーム エフェクト",tag:"応用",
+ mean:"一瞬止める。紹介・強調・落ちの決め。",
+ res:"フリーズフレームの作例、名前紹介の演出、ラストカットでの使用。",
+ tip:"止めた瞬間に文字やナレーションを乗せるのが定番の型。",
+ alt:["freeze frame introduction","freeze frame ending"]},
+{id:"bullet",g:"ctime",ja:"ブレットタイム",en:"bullet time effect",kana:"バレット タイム エフェクト",tag:"応用",
+ mean:"時間はほぼ止まったまま、カメラだけが動く。マトリックスの技法。",
+ res:"ブレットタイムの仕組み、撮影の裏側、作例集。",
+ tip:"多数のカメラを並べて撮る。アニメでは「止めた絵の周りをカメラが回る」表現。",
+ alt:["bullet time behind the scenes","time slice photography"]},
+{id:"reversem",g:"ctime",ja:"逆再生",en:"reverse motion effect",kana:"リバース モーション エフェクト",tag:"応用",
+ mean:"時間を巻き戻す。不可逆なものが元に戻る違和感。",
+ res:"逆再生の作例、破壊の逆再生、演出としての使い方。",
+ tip:"壊れた物が組み上がる映像は、逆再生で撮ると一発で作れる。",
+ alt:["reverse footage effect","rewind time effect film"]},
 
 /* ---- ショットサイズ ---- */
 {id:"wide",g:"cshot",ja:"ロング",en:"wide shot cinematography",kana:"ワイド ショット シネマトグラフィー",tag:"基本",
@@ -1262,6 +1431,11 @@ const DATA = [
  res:"インサートの作例、緊張を作る小物カットの使い方。",
  tip:"手元のアップは cutaway とも。時間経過や心理の表現に使える。",
  alt:["cutaway shot examples","detail shot filmmaking"]},
+{id:"master",g:"cshot",ja:"マスターショット",en:"master shot filmmaking",kana:"マスター ショット フィルムメイキング",tag:"基本",
+ mean:"場面全体を頭から通しで押さえる一本。ここから寄りを足していく。",
+ res:"カバレッジの組み立て解説、マスター＋寄りの実例。",
+ tip:"絵コンテを切る順番の考え方そのもの。まず全体、次に寄り。",
+ alt:["scene coverage filmmaking","shooting a scene breakdown"]},
 
 /* ---- アングル ---- */
 {id:"eye",g:"cangle",ja:"目線の高さ",en:"eye level shot",kana:"アイ レベル ショット",tag:"基本",
@@ -1331,6 +1505,11 @@ const DATA = [
  res:"前景を使った構図の解説、奥行きの作り方、被写界深度の使い分け。",
  tip:"foreground framing を足すと「手前に何か置く」作例が集まる。",
  alt:["foreground framing tips","depth of field storytelling"]},
+{id:"blocking",g:"ccomp",ja:"人物配置",en:"blocking and staging film",kana:"ブロッキング アンド ステージング フィルム",tag:"応用",
+ mean:"人をどこに立たせ、どう動かすか。関係と力学を配置で語る。",
+ res:"ブロッキングの分析、名場面での人物の動き、演出解説。",
+ tip:"「誰が前に出るか」で主導権が決まる。会話シーンの設計に直結する。",
+ alt:["blocking analysis film scene","staging characters direction"]},
 
 /* ---- アクション撮影 ---- */
 {id:"fightcam",g:"caction",ja:"戦闘の撮り方",en:"fight scene cinematography",kana:"ファイト シーン シネマトグラフィー",tag:"応用",
@@ -1368,6 +1547,16 @@ const DATA = [
  res:"アニメの演出分析、3D背景と2D作画の合わせ方、名シーン解説。",
  tip:"「アニメ 演出 カメラワーク 解説」と日本語で探すと現場寄りの解説も出る。",
  alt:["anime cinematography analysis","3d camera anime background"]},
+{id:"fpv",g:"caction",ja:"主観アクション",en:"first person action camera",kana:"ファースト パーソン アクション カメラ",tag:"応用",
+ mean:"戦っている本人の視界。殴る腕が手前から伸びる。",
+ res:"一人称アクションの作例、ヘルメットカメラ、FPVドローン。",
+ tip:"「手が画面手前に入る」画作りの参考になる。gopro fight scene でも出る。",
+ alt:["gopro fight scene","fpv drone chase"]},
+{id:"tocam",g:"caction",ja:"カメラに向かって",en:"action toward camera shot",kana:"アクション トワード カメラ ショット",tag:"応用",
+ mean:"拳や刃が画面手前に突き出てくる。奥行きを一気に感じさせる。",
+ res:"カメラに向かう攻撃の作例、手前に抜ける動き、3D的な演出。",
+ tip:"アニメの「画面に向かって殴る」カットの元。パースの誇張とセットで使う。",
+ alt:["punch toward camera slow motion","breaking the frame action"]},
 
 /* ---- 繋ぎ・演出 ---- */
 {id:"match",g:"cedit",ja:"マッチカット",en:"match cut editing",kana:"マッチ カット エディティング",tag:"応用",
@@ -1375,7 +1564,7 @@ const DATA = [
  res:"マッチカットの名場面集、作り方の解説、種類の分類。",
  tip:"骨→宇宙船（2001年）が最も有名な例。graphic match でも出る。",
  alt:["famous match cuts","graphic match editing"]},
-{id:"jump",g:"cedit",ja:"ジャンプカット",en:"jump cut editing",kana:"ジャンプ カット エディティング",tag:"応用",
+{id:"cjump",g:"cedit",ja:"ジャンプカット",en:"jump cut editing",kana:"ジャンプ カット エディティング",tag:"応用",
  mean:"同じ構図のまま時間を飛ばす。違和感・焦り・時間経過。",
  res:"ジャンプカットの作例、使い方の解説、失敗例。",
  tip:"YouTubeの喋り動画で多用されているのも同じ技法。",
@@ -1404,7 +1593,22 @@ const DATA = [
  mean:"前の画に次の画を重ねて溶かす。時間経過や回想の合図。",
  res:"各種トランジションの比較、使い分けの解説、作例。",
  tip:"カット（切り替え）とディゾルブの使い分けが分かると繋ぎが締まる。",
- alt:["film transitions explained","fade dissolve wipe difference"]}
+ alt:["film transitions explained","fade dissolve wipe difference"]},
+{id:"fade",g:"cedit",ja:"フェード",en:"fade in fade out film",kana:"フェード イン フェード アウト フィルム",tag:"基本",
+ mean:"黒（や白）から出る／黒に沈む。章の切れ目、幕の開閉。",
+ res:"フェードの作例、暗転の使いどころ、白飛びでの転換。",
+ tip:"黒は終わり・喪失、白は記憶・意識の飛びに使われることが多い。",
+ alt:["fade to black meaning","fade to white transition"]},
+{id:"wipe",g:"cedit",ja:"ワイプ",en:"wipe transition film",kana:"ワイプ トランジション フィルム",tag:"応用",
+ mean:"線が画面を横切って次の画に入れ替わる。古典的で快活な転換。",
+ res:"ワイプの種類、スター・ウォーズでの使用、アイリスなどの変種。",
+ tip:"丸く閉じるのは iris wipe。ギャグや昔語りの締めに合う。",
+ alt:["iris wipe transition","star wars wipe transitions"]},
+{id:"parallel",g:"cedit",ja:"並行編集",en:"cross cutting parallel editing",kana:"クロス カッティング パラレル エディティング",tag:"応用",
+ mean:"別々の場所を交互に見せる。同時進行の緊張を作る。",
+ res:"並行編集の作例、クライマックスでの使用、緊張の高め方。",
+ tip:"カットの間隔をだんだん短くすると緊張が上がる。定番の型。",
+ alt:["parallel editing suspense","intercutting climax scene"]}
 ];
 
 /* ============================================================
@@ -1804,7 +2008,7 @@ animecam:[["アニメの3D背景と2D作画の合わせ方","3d background 2d an
 match:[["有名なマッチカット集","famous match cuts compilation"],
  ["動きで繋ぐ：アクションマッチ","match on action editing"],
  ["形で繋ぐ：グラフィックマッチ","graphic match cut"]],
-jump:[["ジャンプカットの作例と是非","jump cut analysis film"],
+cjump:[["ジャンプカットの作例と是非","jump cut analysis film"],
  ["時間圧縮の見せ方","compressing time editing"],
  ["違和感の演出として使う","jump cut anxiety effect"]],
 reverse:[["会話のカバレッジ一式","dialogue scene coverage tutorial"],
@@ -1821,7 +2025,117 @@ montage:[["特訓モンタージュの型","training montage breakdown"],
  ["音楽との同期","music montage editing sync"]],
 dissolve:[["トランジション全種の比較","film transitions types compared"],
  ["回想への入り方","flashback transition technique"],
- ["カットとディゾルブの使い分け","when to use dissolve vs cut"]]
+ ["カットとディゾルブの使い分け","when to use dissolve vs cut"]],
+
+truck:[["クラブドリー：横滑りの移動撮影","crab dolly technique"],
+ ["壁沿いの横移動：奥行きの変化を見せる","tracking along wall shot"],
+ ["ドリーとトラックの違い","dolly vs truck camera terms"]],
+pedestal:[["ブームアップ／ダウン：高さだけ変える","boom up boom down camera"],
+ ["ティルトとの違いの実演","pedestal vs tilt demonstration"],
+ ["立ち上がりに合わせる：人物追従の上下","rise with character camera move"]],
+croll:[["画面回転の演出例","rotating camera shot examples"],
+ ["天地反転：ひっくり返る画","upside down shot transition"],
+ ["回転しながら寄る複合の動き","spiral camera move"]],
+drone:[["ドローンリビール：上昇して明かす","drone reveal shot"],
+ ["ドローン追走：走る被写体を追う","drone follow shot"],
+ ["FPVドローン：屋内を抜ける一気の動き","fpv drone one take"]],
+bodymount:[["スノリカム：正面固定の作例","snorricam shot examples"],
+ ["体固定リグの組み方","body mount rig behind the scenes"],
+ ["酩酊・狂気の演出","disorientation camera rig"]],
+
+wideangle:[["焦点距離比較：14mmから200mmまで","focal length comparison 14mm 200mm"],
+ ["広角での顔の歪み","wide angle face distortion"],
+ ["狭所での使用：部屋を広く見せる","wide angle interior cinematography"]],
+tele:[["圧縮効果の実演","lens compression demonstration"],
+ ["巨大な背景：望遠で月を大きく見せる","telephoto moon effect"],
+ ["雑踏を抜く：望遠での群衆表現","telephoto crowd shot"]],
+fisheye:[["歪みの図解","fisheye distortion explained"],
+ ["スケート／MVでの使用","fisheye skate video"],
+ ["超広角との違い","fisheye vs ultra wide"]],
+dof:[["絞りと被写界深度の関係","aperture depth of field explained"],
+ ["ディープフォーカス：全部にピントを合わせる","deep focus cinematography"],
+ ["ボケの形：玉ボケと絞り羽根","bokeh shape aperture blades"]],
+rack:[["フォーカスプル：送りのタイミング","focus pull timing"],
+ ["気づきの演出：奥へピントを送る","rack focus revelation"],
+ ["フォローフォーカス：動く被写体に送り続ける","follow focus technique"]],
+flare:[["フレアの種類一覧","types of lens flare explained"],
+ ["アナモルフィックの横一文字","anamorphic flare streak"],
+ ["逆光での発生条件","backlight flare cinematography"]],
+anamo:[["球面レンズとの比較","anamorphic vs spherical comparison"],
+ ["楕円ボケ：アナモ特有のボケ形","oval bokeh anamorphic"],
+ ["「映画っぽさ」の正体","cinematic look explained"]],
+distort:[["樽型・糸巻き型の図解","barrel vs pincushion distortion"],
+ ["補正前後の比較","lens distortion correction comparison"],
+ ["建物の直線がどう曲がるか","architecture lens distortion"]],
+
+three:[["キー・フィル・バックを1灯ずつ足す","three point lighting step by step"],
+ ["レイシオ：明部と暗部の比率","lighting ratio explained"],
+ ["1灯だけで撮る：最小構成","one light setup cinematography"]],
+backlit:[["シルエットの作り方","how to shoot silhouette"],
+ ["正体を隠す登場","backlit reveal character"],
+ ["ヘアライト：髪だけ光らせる","hair light technique"]],
+rim:[["分離の照明：背景から人物を浮かす","separation lighting technique"],
+ ["キッカー：斜め後ろからの光","kicker light cinematography"],
+ ["アニメの輪郭ハイライト","anime rim light shading"]],
+lowkey:[["フィルム・ノワールの照明","film noir lighting analysis"],
+ ["キアロスクーロ：明暗の対比","chiaroscuro lighting painting"],
+ ["ブラインドの影：格子の光","venetian blind lighting noir"]],
+highkey:[["ローキーとの並列比較","high key vs low key comparison"],
+ ["影を消す：フラットな光の作り方","flat lighting technique"],
+ ["コメディ・CMでの使用","commercial lighting bright"]],
+practical:[["モチベーテッドライティング：光源に理由を持たせる","motivated lighting explained"],
+ ["ネオン街の撮り方","neon lighting cinematography"],
+ ["蝋燭・焚き火だけの照明","firelight candlelight cinematography"]],
+golden:[["ブルーアワー：日没直後の青い時間","blue hour cinematography"],
+ ["時間帯ごとの光の色","time of day color temperature"],
+ ["長い影：低い太陽の使い方","long shadows golden hour"]],
+shadow:[["ハードとソフトの比較","hard light vs soft light"],
+ ["影の形で語る：模様の投影","shadow pattern gobo lighting"],
+ ["影だけで人物を見せる","shadow only shot technique"]],
+
+slowmo:[["速度別の印象の違い","slow motion speed comparison"],
+ ["使いどころ：どこで落とすか","when to use slow motion"],
+ ["スローと通常速度の混在","mixing slow motion normal speed"]],
+highspeed:[["超スロー衝撃映像","1000fps impact slow motion"],
+ ["水・布の挙動","high speed water cloth slow motion"],
+ ["破壊の超スロー","high speed destruction footage"]],
+fastmo:[["アンダークランキング：香港式の速さ","undercranking hong kong action"],
+ ["コメディの早回し","fast motion comedy timing"],
+ ["非人間的な速さの演出","inhuman speed effect film"]],
+lapse:[["ハイパーラプス：移動しながらの圧縮","hyperlapse tutorial"],
+ ["雲・人波の時間経過","time lapse clouds crowd"],
+ ["デイトゥナイト：昼から夜への変化","day to night time lapse"]],
+freeze:[["紹介の型：止めて名前を出す","freeze frame character introduction"],
+ ["ラストのフリーズ","freeze frame ending famous"],
+ ["連続フリーズ：畳みかける演出","freeze frame montage"]],
+bullet:[["撮影の仕組み：カメラを並べる","bullet time how it works"],
+ ["マトリックスの舞台裏","matrix bullet time behind the scenes"],
+ ["タイムスライス写真","time slice photography"]],
+reversem:[["破壊の逆再生","reverse destruction footage"],
+ ["巻き戻し演出","rewind effect film scene"],
+ ["逆再生で撮る：正順で撮れない動き","filmed in reverse technique"]],
+
+master:[["カバレッジ：1シーンに必要なカット一式","scene coverage checklist filmmaking"],
+ ["マスターから寄りへ：割りの順番","master shot to coverage"],
+ ["絵コンテでの組み立て","storyboarding a scene breakdown"]],
+blocking:[["名場面のブロッキング分析","blocking analysis famous scene"],
+ ["三角形の配置：3人の力学","triangle blocking three characters"],
+ ["動きで関係を変える：立ち位置の入れ替え","dynamic blocking movement scene"]],
+fpv:[["ヘルメットカメラのアクション","gopro helmet cam fight"],
+ ["FPVドローンの一気通貫","fpv drone one take chase"],
+ ["主観視点のゲーム的な動き","first person perspective film scene"]],
+tocam:[["カメラに向かうパンチ","punch toward camera slow motion"],
+ ["フレームを破る演出","breaking the fourth wall camera"],
+ ["手前に抜ける動き：奥行きの誇張","depth exaggeration action shot"]],
+fade:[["黒への暗転の意味","fade to black meaning film"],
+ ["白飛びでの転換","fade to white transition"],
+ ["フェードの長さとリズム","fade duration editing rhythm"]],
+wipe:[["アイリス：丸く閉じる古典技法","iris wipe transition"],
+ ["スター・ウォーズのワイプ","star wars wipe transition analysis"],
+ ["ワイプの種類一覧","types of wipe transitions"]],
+parallel:[["緊張の高め方：カット間隔を詰める","accelerating cross cutting suspense"],
+ ["クライマックスの同時進行","climax parallel action editing"],
+ ["グリフィス以来の古典技法","cross cutting film history"]]
 };
 
 const ADDWORDS = [
@@ -1867,6 +2181,10 @@ function term(d){
   return pat.replace("{v}", v.en);
 }
 function variantJa(gid){ const v = curVar(gid); return v ? v.ja : ""; }
+function jaSize(s){                        // 札のタイトルの文字数に応じたサイズ
+  const n = Array.from(s).length;
+  return n >= 8 ? "n8" : n === 7 ? "n7" : n === 6 ? "n6" : "";
+}
 
 /* ---------- copy ---------- */
 async function copyText(t){
@@ -1950,7 +2268,7 @@ function renderShelf(){
             <span class="face">
               <span class="tag">${esc(d.tag)}</span>
               <svg class="mk" viewBox="0 0 48 48" aria-hidden="true"><use href="#${g.mk}"/></svg>
-              <span class="ja">${esc(d.ja)}</span>
+              <span class="ja ${jaSize(d.ja)}">${esc(d.ja)}</span>
               <span class="en">${esc(t)}</span>
               <span class="barcode"><span class="bars"></span><span class="no">${String(i+1).padStart(3,"0")}</span></span>
             </span>
