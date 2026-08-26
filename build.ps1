@@ -22,8 +22,27 @@ $bodyPart = $src.Substring($i + $marker.Length).Trim()
 $count = ([regex]::Matches($src, ',g:"')).Count
 $desc  = "アニメ・ゲーム制作のための英語リファレンス検索ワード集。体の動き・カメラワーク・アニメの基礎の3フロア。カーソルで日本語の説明、クリックでコピー。"
 
+# 改行を LF に統一（CSPのハッシュが環境で変わらないように）
+$bodyPart = $bodyPart -replace "`r`n", "`n"
+$headPart = $headPart -replace "`r`n", "`n"
+
+# インラインscriptのSHA-256を取り、CSPで「このscriptだけ許可」する
+$sm = [regex]::Match($bodyPart, '(?s)<script>(.*?)</script>')
+if (-not $sm.Success) { Write-Host "script が見つかりません" -ForegroundColor Red; exit 1 }
+$sha  = [System.Security.Cryptography.SHA256]::Create()
+$hash = [Convert]::ToBase64String($sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($sm.Groups[1].Value)))
+
+$csp = "default-src 'none'; " +
+       "img-src 'self' data:; " +
+       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+       "font-src https://fonts.gstatic.com; " +
+       "script-src 'sha256-$hash'; " +
+       "base-uri 'none'; form-action 'none'"
+
 $meta = @"
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="$csp">
+<meta name="referrer" content="no-referrer">
 <meta name="description" content="$desc">
 <meta name="theme-color" content="#E9E5DB">
 
@@ -48,8 +67,8 @@ $meta = @"
 <link rel="apple-touch-icon" href="${SITE}ogp.png">
 "@
 
-$out = "<!doctype html>`r`n<html lang=`"ja`">`r`n<head>`r`n" + $meta + "`r`n" + $headPart +
-       "`r`n</head>`r`n<body>`r`n" + $bodyPart + "`r`n</body>`r`n</html>`r`n"
+$out = "<!doctype html>`n<html lang=`"ja`">`n<head>`n" + ($meta -replace "`r`n","`n") + "`n" + $headPart +
+       "`n</head>`n<body>`n" + $bodyPart + "`n</body>`n</html>`n"
 
 [System.IO.File]::WriteAllText("$PSScriptRoot\index.html", $out, (New-Object System.Text.UTF8Encoding($false)))
 $kb = [math]::Round((Get-Item "$PSScriptRoot\index.html").Length / 1kb)
