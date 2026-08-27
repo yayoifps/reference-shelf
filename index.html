@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'sha256-hTXCQxwoz6JRg6ZBA4GZroP2FBdyyO+vOEd9XyeJtqQ='; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'sha256-nsQIHIpFP10fDSnBidRMSuLIBWwz1zAe4ZDwNUNmmDU='; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="アニメ・ゲーム制作のための英語リファレンス検索ワード集。体の動き・カメラワーク・アニメの基礎の3フロア。カーソルで日本語の説明、クリックでコピー。">
 <meta name="theme-color" content="#E9E5DB">
@@ -3917,18 +3917,24 @@ function showPop(btn){
   position(btn);
 }
 function position(btn){
-  if(window.innerWidth<=640) return;               // bottom sheet
+  if(window.innerWidth<=640) return;               // 狭い画面では下から出すシート
   const r = btn.getBoundingClientRect();
-  const w = pop.offsetWidth, h = pop.offsetHeight, pad = 10, gap = 30;
-  let left = r.left + r.width/2 - w/2;
-  left = Math.max(pad, Math.min(left, window.innerWidth - w - pad));
-  /* 上に大きく逃がす。下に回すのは上がどうしても足りない時だけ */
-  let top = r.top - h - gap;
-  if(top < pad){
-    const below = r.bottom + gap;
-    top = (below + h <= window.innerHeight - pad) ? below : pad;
-  }
-  pop.style.left = left+"px"; pop.style.top = top+"px";
+  const w = pop.offsetWidth, h = pop.offsetHeight, pad = 10, gap = 14;
+
+  /* 横に出す。カードの上下を潰さないので、棚を見ながら読める */
+  const roomRight = window.innerWidth - r.right - gap - pad;
+  const roomLeft  = r.left - gap - pad;
+  let left;
+  if(roomRight >= w)      left = r.right + gap;                 // 右にスペースあり
+  else if(roomLeft >= w)  left = r.left - gap - w;              // 無ければ左へ
+  else if(roomRight >= roomLeft) left = window.innerWidth - w - pad;
+  else                    left = pad;
+
+  /* 縦はカードの中心に合わせ、画面からはみ出す分だけ寄せる */
+  let top = r.top + r.height / 2 - h / 2;
+  top = Math.max(pad, Math.min(top, window.innerHeight - h - pad));
+
+  pop.style.left = left + "px"; pop.style.top = top + "px";
 }
 function hidePop(){ pop.classList.remove("on"); pop.setAttribute("aria-hidden","true"); }
 
